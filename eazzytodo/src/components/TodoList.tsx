@@ -1,23 +1,29 @@
 /** @jsxImportSource theme-ui */
 
-import firebase from 'firebase/app';
+import React, { useRef, useState } from 'react';
+
+import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/analytics';
 
-import ScrollTop from "react-scrolltop-button";
+// import ScrollTop from "react-scrolltop-button";
 
 import { ThemeProvider,
-    Box,
-    Flex,
+    Box,    
     Image,
     Button,
     Input,    
     Paragraph,
     Heading,
-    } from 'theme-ui';   
+    } from 'theme-ui';  
 
-    function ChatRoom() {
+    import TodoItem from './TodoItem';
+
+    import { BsArrowBarUp } from 'react-icons/bs';    
+    
+
+    function TodoList() {
         const dummy = useRef();
         const messagesRef = firestore.collection('messages');
         const query = messagesRef.orderBy('createdAt').limit(100);
@@ -44,7 +50,8 @@ import { ThemeProvider,
         }
       
         return (<> 
-          <Flex id={'main'} sx={{
+          <div id={'main'} sx={{
+            display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
@@ -52,13 +59,14 @@ import { ThemeProvider,
             opacity: '0.85',     
           }}>
             
-            {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+            {messages && messages.map(msg => <TodoItem key={msg.id} message={msg} />)}
       
             <span ref={dummy}></span>
       
-          </Flex>  
+          </div>  
           <form className='form' onSubmit={sendMessage} >
-            <Flex  sx={{
+            <div  sx={{
+              display: 'flex',  
               justifyContent: 'center',
               alignItems: 'center',
               width: '100%',
@@ -84,7 +92,8 @@ import { ThemeProvider,
                }
               }}
               />
-               <Flex sx={{        
+               <div sx={{  
+                   display: 'flex',        
           }}> 
                  <Button type="submit" disabled={!formValue}
               sx={{
@@ -116,11 +125,11 @@ import { ThemeProvider,
               }
               }}
               >🕊️</Button>
-          </Flex>
+          </div>
          
-            </Flex>
+            </div>
           </form>    
-          <ScrollTop
+          {/* <ScrollTop
               text="^"
               distance={0}
               breakpoint={0}
@@ -151,6 +160,8 @@ import { ThemeProvider,
               speed={1000}
               target={75}
               icon={<BsArrowBarUp />}
-            />
+            /> */}
         </>)
-      }    
+      }  
+      
+export default TodoList;      

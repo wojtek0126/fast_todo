@@ -1,20 +1,12 @@
 /** @jsxImportSource theme-ui */
-
-import React, { useRef, useState } from 'react';
-
 import './App.css';
-
-import SignIn from './components/SignIn';'./components/SignIn';
-import TodoList from './components/SignIn';'./components/TodoList';
-
-
+import SignIn from './components/SignIn';
+import TodoList from './components/TodoList';
 import { ThemeProvider } from 'theme-ui';
-import { theme } from './styles/theme';
-
-import firebase from 'firebase/app';
+import theme from './styles/theme';
+import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
@@ -37,15 +29,17 @@ function App() {
   const [user] = useAuthState(auth);
 
   return (
+    <ThemeProvider theme={theme}>    
     <div className="App">
       <header className="App-header">
 
       <section>
           {user ? <TodoList /> : <SignIn />}
         </section>
-        
+
       </header>
     </div>
+    </ThemeProvider>
   );
 }
 

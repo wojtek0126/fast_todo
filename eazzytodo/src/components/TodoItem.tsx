@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/analytics';
@@ -17,13 +17,33 @@ import { ThemeProvider,
     Heading,
     } from 'theme-ui';   
 
-function ChatMessage(props) {
-    const { text, uid, photoURL } = props.message;
+    type AppProps = {
+        text: string;
+        uid: string;
+        photoURL: string;
+      };
+
+      firebase.initializeApp({
+        apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
+        authDomain: "eazzy-todo.firebaseapp.com",
+        projectId: "eazzy-todo",
+        storageBucket: "eazzy-todo.appspot.com",
+        messagingSenderId: "461379999354",
+        appId: "1:461379999354:web:0b5aad7eaa090b4fb34dc3",
+        measurementId: "G-8M0LZN0HLX"
+      })
+      
+      const auth = firebase.auth();
+      const firestore = firebase.firestore();
+      // const analytics = firebase.analytics();
+
+function TodoItem({ text, uid, photoURL }: AppProps) {  
   
-    const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+    const messageClass = uid === auth.currentUser!.uid ? 'sent' : 'received';
   
     return (<>  
-      <Flex sx={{
+      <div sx={{
+          display: 'flex',
           borderRadius: '10px',
           backgroundColor: `${messageClass}`,
           color: 'messageText',
@@ -43,6 +63,8 @@ function ChatMessage(props) {
           top: '-20px'
         }} />
         <p>{text}</p>
-      </Flex>
+      </div>
     </>)
   }
+
+  export default TodoItem;
