@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 
-
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 // import ScrollText from 'react-scroll-text';
 
@@ -16,12 +17,14 @@ import { ThemeProvider,
 
 import { btnPrimary } from '.././styles/settings';
 
+// import firebase from 'firebase'
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+require('firebase/auth')
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+
 
 firebase.initializeApp({
     apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",

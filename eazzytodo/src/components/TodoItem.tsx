@@ -17,11 +17,11 @@ import { ThemeProvider,
     Heading,
     } from 'theme-ui';   
 
-    type AppProps = {
-        text: string;
-        uid: string;
-        photoURL: string;
-      };
+    // type AppProps = {
+    //     text: string;
+    //     uid: string;
+    //     photoURL: string;
+    //   };
 
       firebase.initializeApp({
         apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
@@ -37,7 +37,18 @@ import { ThemeProvider,
       const firestore = firebase.firestore();
       // const analytics = firebase.analytics();
 
-function TodoItem({ text, uid, photoURL }: AppProps) {  
+      type AppProps = {
+        message: string;     
+      };
+
+    //   export interface Msg {
+    //     text: string;
+    //     uid: string;
+    //     photoURL: string;
+    //   }
+
+function TodoItem(props: AppProps) {  
+    const { text, uid, photoURL }: any = props.message;
   
     const messageClass = uid === auth.currentUser!.uid ? 'sent' : 'received';
   

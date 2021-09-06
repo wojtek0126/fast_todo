@@ -3,9 +3,9 @@
 import React, { useRef, useState } from 'react';
 
 import firebase from 'firebase/compat/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/analytics';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import 'firebase/compat/analytics';
 
 // import ScrollTop from "react-scrolltop-button";
 
@@ -18,13 +18,33 @@ import { ThemeProvider,
     Heading,
     } from 'theme-ui';  
 
-    import TodoItem from './TodoItem';
+import TodoItem from './TodoItem';
 
-    import { BsArrowBarUp } from 'react-icons/bs';    
+import { BsArrowBarUp } from 'react-icons/bs';   
+    
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+    firebase.initializeApp({
+        apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
+        authDomain: "eazzy-todo.firebaseapp.com",
+        projectId: "eazzy-todo",
+        storageBucket: "eazzy-todo.appspot.com",
+        messagingSenderId: "461379999354",
+        appId: "1:461379999354:web:0b5aad7eaa090b4fb34dc3",
+        measurementId: "G-8M0LZN0HLX"
+      })
+      
+      const auth = firebase.auth();
+      const firestore = firebase.firestore();
+      // const analytics = firebase.analytics();   
+      
+     
+   
     
 
     function TodoList() {
-        const dummy = useRef();
+        const dummy = useRef<null | HTMLDivElement>(null); 
         const messagesRef = firestore.collection('messages');
         const query = messagesRef.orderBy('createdAt').limit(100);
       
@@ -33,10 +53,10 @@ import { ThemeProvider,
         const [formValue, setFormValue] = useState('');
       
       
-        const sendMessage = async (e) => {
+        const sendMessage = async (e: any) => {
           e.preventDefault();
       
-          const { uid, photoURL } = auth.currentUser;
+          const { uid, photoURL } = auth.currentUser!;
       
           await messagesRef.add({
             text: formValue,
@@ -46,7 +66,7 @@ import { ThemeProvider,
           })
       
           setFormValue('');
-          dummy.current.scrollIntoView({ behavior: 'smooth' });
+          dummy!.current!.scrollIntoView({ behavior: 'smooth' });
         }
       
         return (<> 
@@ -76,7 +96,7 @@ import { ThemeProvider,
               left: 0,
               bottom: 0   
             }}>
-              <Input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="your message..." 
+              <Input value={formValue} onChange={(e: any) => setFormValue(e.target.value)} placeholder="your message..." 
               sx={{
                 backgroundColor: 'inputBackground',
                 margin: '20px',

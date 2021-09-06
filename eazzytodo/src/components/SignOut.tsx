@@ -15,7 +15,8 @@ import { ThemeProvider,
     Heading,
     } from 'theme-ui';  
 
-    import { btnPrimary } from '.././styles/settings';
+import { btnPrimary } from '.././styles/settings';
+    
     
     firebase.initializeApp({
         apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
