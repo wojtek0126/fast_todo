@@ -18,7 +18,7 @@ import { ThemeProvider,
 import { btnPrimary } from '.././styles/settings';
 
 // import firebase from 'firebase'
-import firebase from 'firebase/compat/app';
+import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 require('firebase/auth')
@@ -52,7 +52,7 @@ function SignIn() {
   
     return (
       <>          
-        <Button className="sign-in" onClick={signInWithGoogle} sx={btnPrimary}>Sign in with Google</Button>
+        <Button className="sign-in" onClick={signInWithGoogle} >Sign in with Google</Button>
           <Paragraph sx={{
             color: 'text2',
             fontWeight: '600',

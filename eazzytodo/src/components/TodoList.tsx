@@ -2,10 +2,10 @@
 
 import React, { useRef, useState } from 'react';
 
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import 'firebase/compat/analytics';
+import firebase from 'firebase';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
 
 // import ScrollTop from "react-scrolltop-button";
 
@@ -25,15 +25,17 @@ import { BsArrowBarUp } from 'react-icons/bs';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-    firebase.initializeApp({
-        apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
-        authDomain: "eazzy-todo.firebaseapp.com",
-        projectId: "eazzy-todo",
-        storageBucket: "eazzy-todo.appspot.com",
-        messagingSenderId: "461379999354",
-        appId: "1:461379999354:web:0b5aad7eaa090b4fb34dc3",
-        measurementId: "G-8M0LZN0HLX"
-      })
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
+    authDomain: "eazzy-todo.firebaseapp.com",
+    projectId: "eazzy-todo",
+    storageBucket: "eazzy-todo.appspot.com",
+    messagingSenderId: "461379999354",
+    appId: "1:461379999354:web:0b5aad7eaa090b4fb34dc3",
+    measurementId: "G-8M0LZN0HLX"
+  });
+}
       
       const auth = firebase.auth();
       const firestore = firebase.firestore();

@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import firebase from 'firebase/compat/app';
+import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/analytics';
@@ -34,6 +34,6 @@ import { btnPrimary } from '.././styles/settings';
 
 function SignOut() {
     return auth.currentUser && (
-      <Button className="sign-out" onClick={() => auth.signOut()} sx={btnPrimary}>Sign Out</Button>
+      <Button className="sign-out" onClick={() => auth.signOut()} >Sign Out</Button>
     )
   }
