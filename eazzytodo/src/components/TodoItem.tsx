@@ -1,63 +1,21 @@
 /** @jsxImportSource theme-ui */
+import { Image } from 'theme-ui';   
 
+import { config } from '../firebase/firebase'; 
 import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
-import 'firebase/analytics';
-
-// import TextAnimation from 'react-animate-text';
-
-import { ThemeProvider,
-    Box,
-    Flex,
-    Image,
-    Button,
-    Input,    
-    Paragraph,
-    Heading,
-    } from 'theme-ui';   
-
-    // type AppProps = {
-    //     text: string;
-    //     uid: string;
-    //     photoURL: string;
-    //   };
-
-    if (!firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
-        authDomain: "eazzy-todo.firebaseapp.com",
-        projectId: "eazzy-todo",
-        storageBucket: "eazzy-todo.appspot.com",
-        messagingSenderId: "461379999354",
-        appId: "1:461379999354:web:0b5aad7eaa090b4fb34dc3",
-        measurementId: "G-8M0LZN0HLX"
-      });
-  }
-
-      // firebase.initializeApp({
-      //   apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
-      //   authDomain: "eazzy-todo.firebaseapp.com",
-      //   projectId: "eazzy-todo",
-      //   storageBucket: "eazzy-todo.appspot.com",
-      //   messagingSenderId: "461379999354",
-      //   appId: "1:461379999354:web:0b5aad7eaa090b4fb34dc3",
-      //   measurementId: "G-8M0LZN0HLX"
-      // })
+require('firebase/auth');
       
-      const auth = firebase.auth();
-      const firestore = firebase.firestore();
-      // const analytics = firebase.analytics();
+const auth = firebase.auth();
 
-      type AppProps = {
-        message: any;     
-      };
+!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
-    //   export interface Msg {
-    //     text: string;
-    //     uid: string;
-    //     photoURL: string;
-    //   }
+
+type AppProps = {
+  message: any;     
+};
+ 
 
 function TodoItem(props: AppProps) {  
     const { text, uid, photoURL }: any = props.message;

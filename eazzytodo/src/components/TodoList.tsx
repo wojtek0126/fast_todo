@@ -1,77 +1,55 @@
 /** @jsxImportSource theme-ui */
+import { 
+  Button,
+  Input 
+  } from 'theme-ui';  
 
-import React, { useRef, useState } from 'react';
-
-import firebase from 'firebase';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/analytics';
-
-// import ScrollTop from "react-scrolltop-button";
-
-import { ThemeProvider,
-    Box,    
-    Image,
-    Button,
-    Input,    
-    Paragraph,
-    Heading,
-    } from 'theme-ui';  
+import { useCollectionData } from 'react-firebase-hooks/firestore';  
 
 import TodoItem from './TodoItem';
 
-import { BsArrowBarUp } from 'react-icons/bs';   
-    
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useRef, useState } from 'react';
 
-if (!firebase.apps.length) {
-  firebase.initializeApp({
-    apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
-    authDomain: "eazzy-todo.firebaseapp.com",
-    projectId: "eazzy-todo",
-    storageBucket: "eazzy-todo.appspot.com",
-    messagingSenderId: "461379999354",
-    appId: "1:461379999354:web:0b5aad7eaa090b4fb34dc3",
-    measurementId: "G-8M0LZN0HLX"
-  });
-}
+import { config } from '../firebase/firebase'; 
+import firebase from 'firebase';
+import 'firebase/firestore';
+import 'firebase/auth';
+require('firebase/auth');
       
-      const auth = firebase.auth();
-      const firestore = firebase.firestore();
-      // const analytics = firebase.analytics();   
-      
-     
-   
+const auth = firebase.auth();
+const firestore = firebase.firestore();  
+
+!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+
     
 
-    function TodoList() {
-        const dummy = useRef<null | HTMLDivElement>(null); 
-        const messagesRef = firestore.collection('messages');
-        const query = messagesRef.orderBy('createdAt').limit(100);
-      
-        const [messages] = useCollectionData(query, { idField: 'id' });
-      
-        const [formValue, setFormValue] = useState('');
-      
-      
-        const sendMessage = async (e: any) => {
-          e.preventDefault();
-      
-          const { uid, photoURL } = auth.currentUser!;
-      
-          await messagesRef.add({
-            text: formValue,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            uid,
-            photoURL
-          })
-      
-          setFormValue('');
-          dummy!.current!.scrollIntoView({ behavior: 'smooth' });
-        }
-      
-        return (<> 
+function TodoList() {
+    const dummy = useRef<null | HTMLDivElement>(null); 
+    const messagesRef = firestore.collection('messages');
+    const query = messagesRef.orderBy('createdAt').limit(100);
+  
+    const [messages] = useCollectionData(query, { idField: 'id' });
+  
+    const [formValue, setFormValue] = useState('');
+  
+  
+    const sendMessage = async (e: any) => {
+      e.preventDefault();
+  
+      const { uid, photoURL } = auth.currentUser!;
+  
+      await messagesRef.add({
+        text: formValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        photoURL
+      })
+  
+      setFormValue('');
+      dummy!.current!.scrollIntoView({ behavior: 'smooth' });
+    }
+  
+    return (<> 
           <div id={'main'} sx={{
             display: 'flex',
             alignItems: 'center',
@@ -150,40 +128,8 @@ if (!firebase.apps.length) {
           </div>
          
             </div>
-          </form>    
-          {/* <ScrollTop
-              text="^"
-              distance={0}
-              breakpoint={0}
-              style={{
-                backgroundImage:'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)',
-                cursor: 'pointer',
-                margin: '10px',  
-                border: 'none',         
-                textAlign: 'center',
-                textTransform: 'uppercase',
-                transition: '0.5s',
-                backgroundSize: '200% auto',
-                color: 'white',            
-                boxShadow: '0 0 20px #eee',
-                borderRadius: '10px',      
-                '&:hover, &:focus': {  
-                  backgroundPosition: 'right center', 
-                  color: '#fff',
-                  textDecoration: 'none'
-               },
-               position: 'fixed',
-               bottom: 12,
-               left: 0,     
-               zIndex: '15',
-               height: 50
-              }}
-              className="scroll-your-role"
-              speed={1000}
-              target={75}
-              icon={<BsArrowBarUp />}
-            /> */}
+          </form>            
         </>)
-      }  
+  }  
       
 export default TodoList;      
