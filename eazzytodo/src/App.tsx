@@ -6,13 +6,11 @@ import { ThemeProvider } from 'theme-ui';
 import theme from './styles/theme';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { auth } from './firebase/firebase';
 require('firebase/auth');
 
-
-const auth = firebase.auth();
 
 function App() {
 
