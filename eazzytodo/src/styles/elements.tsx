@@ -1,4 +1,5 @@
   // unified styles control center, fused with theme-ui
+  import background from '../assets/background.png'
   
   type Styles = {
     [key: string]: any;
@@ -6,14 +7,47 @@
 
   //common styles
   const btnBorderRadius: string = '50%';
+  const btnGradient: string = 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)';
+  const txtShadow: string = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
+
 
   //containers
+  export const appContainer: Styles = {
+    background: `url(${background})`,
+    maxWidth: '100vw',
+    minHeight: '100vh'    
+  };
+
+  export const signInContainer: Styles = {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: 'transparent'
+  };
+
+  export const headerContainer: Styles = {
+    display: 'flex',
+    justtifyContent: 'center',
+    alignItems: 'center',
+    padding: 30,
+    textAlign: 'center'
+  };
+
   export const todosContainer: Styles = {          
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
     paddingTop: '2',
     opacity: '0.85',     
+  };
+
+  export const waveEffectContainer: Styles = {  
+    width: '100vw',
+    position: 'absolute',
+    top: 140,
+    left: 0,
+    maxWidth: '100%',
+    zIndex: 0
   };
 
   export const addTaskContainer: Styles = {  
@@ -48,7 +82,7 @@
 
 // buttons
 export const btnPrimary: Styles = {
-    backgroundImage:'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)',
+    backgroundImage: btnGradient,
     cursor: 'pointer',
     margin: '10px',
     padding: '15px',
@@ -67,20 +101,20 @@ export const btnPrimary: Styles = {
   };
 
   export const btnScrollUp: Styles = {
-    backgroundImage:'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)',
+    backgroundImage: btnGradient,
     cursor: 'pointer',
-    margin: '10px',
-    padding: '15px 45px',
+    // margin: '10px',
+    padding: '15px',
     textAlign: 'center',
     textTransform: 'uppercase',
     transition: '0.5s',
     backgroundSize: '200% auto',
     color: 'white',            
     boxShadow: '0 0 20px #eee',
-    borderRadius: btnBorderRadius,
-    position: 'absolute',
-    left: 0,
-    bottom: 0,      
+    borderRadius: '50%',
+    position: 'fixed',
+    right: 0,
+    bottom: 61,      
     '&:hover, &:focus': {  
       backgroundPosition: 'right center', 
       color: '#fff',
@@ -90,9 +124,9 @@ export const btnPrimary: Styles = {
 
   export const btnAddTask: Styles = {
     position: 'fixed',
-    bottom: 100,
+    bottom: 115,
     right: 0,
-    backgroundImage:'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)',
+    backgroundImage: btnGradient,
     cursor: 'pointer',
     padding: '15px',
     textTransform: 'uppercase',
@@ -108,8 +142,7 @@ export const btnPrimary: Styles = {
    },
        "@media (max-width: 780px)": { 
       bottom: 0,
-      opacity: 0.9   
-           
+      opacity: 0.9              
    }
   };
 
@@ -117,7 +150,7 @@ export const btnPrimary: Styles = {
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundImage:'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)',
+    backgroundImage: btnGradient,
     cursor: 'pointer',
     margin: '10px',
     padding: '15px',
@@ -162,22 +195,29 @@ export const btnPrimary: Styles = {
     wordWrap: 'break-word',
     backgroundColor: 'transparent',
     border: 'none',
-    maxWidth: '75%'
+    maxWidth: '100%',
+    paddingTop: 20,
+    paddingLeft: 20
   } 
 
   //text
   export const bigTitleTxt: Styles = {
-    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
-    color: 'text2',
-    marginTop: 80,
-    marginBottom: 80,
-    fontSize: '40px'      
+    alignSelf: 'center',
+    fontSize: [12, 14, 16, 20],
+    maxWidth: '100vw',
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'break-word',
+    textShadow: txtShadow,
+    color: 'underwater',
+    marginTop: 40,
+    marginBottom: 40,
     };
 
   export const smallTitleTxt: Styles = {
-    color: 'text2',
+    width: '100%',
+    color: 'underwater',
     fontWeight: '600',
-    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+    textShadow: txtShadow,
     marginTop: 60,
     marginBottom: 60 
     };

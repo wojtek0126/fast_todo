@@ -4,6 +4,9 @@ export default {
       heading: '"Avenir Next", sans-serif',
       monospace: 'Menlo, monospace',
     },
+    fontSizes: [
+      12, 14, 16, 18, 24, 32, 48, 64, 72,
+    ],
     colors: {
       text: '#000',
       text2: '#fff',
@@ -14,7 +17,8 @@ export default {
       primary: '#33e',
       sent: 'teal',
       received: '#000',
-      messageText: '#fff'
+      messageText: '#fff',
+      underwater: '#1277b0'
     },
     images: {
         avatar: {

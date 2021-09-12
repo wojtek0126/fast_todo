@@ -1,11 +1,13 @@
 /** @jsxImportSource theme-ui */
 import { 
   Button,
-  Flex,
-  Input,
+  Flex,  
   Box, 
   Textarea
   } from 'theme-ui';  
+
+import ScrollTop from "react-scrolltop-button";  
+import { BsArrowBarUp } from 'react-icons/bs'; 
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
 
@@ -16,7 +18,7 @@ import { useRef, useState } from 'react';
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
 import 'firebase/firestore';
-import { addTaskContainer, addTodoForm, btnAddTask, btnContainer, inputTodoAdd, todosContainer } from '../styles/elements';
+import { addTaskContainer, addTodoForm, btnAddTask, btnContainer, btnScrollUp, inputTodoAdd, todosContainer } from '../styles/elements';
 import { txtTodoInputEng } from '../content/content';
 import SignOut from './SignOut';
 import { iconAddTaskBtn } from '../content/icons';
@@ -31,7 +33,7 @@ function TodoList() {
     const [todos] = useCollectionData(query, { idField: 'id' });
   
     const [formValue, setFormValue] = useState('');
-      
+
   
     const sendTodo = async (e: any) => {
       e.preventDefault();
@@ -51,11 +53,12 @@ function TodoList() {
       dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
     }
   
-    return (<>
+    return (<>          
           <Box sx={btnContainer} >
             <SignOut />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>
+         
             {todos && todos.map(task => <TodoItem key={task.id} todo={task} />)}
       
             <span ref={dummy}></span>
@@ -69,6 +72,16 @@ function TodoList() {
                       placeholder={txtTodoInputEng}               
                 >{formValue}
                 </Textarea>
+                <ScrollTop
+        text={<BsArrowBarUp />}
+        distance={0}
+        breakpoint={0}
+        style={btnScrollUp}
+        className="scroll-your-role"
+        speed={1000}
+        target={75}
+        icon={<BsArrowBarUp />}
+      />
                   <Button type="submit" disabled={!formValue}
                 sx={btnAddTask}
                 >{iconAddTaskBtn}</Button>

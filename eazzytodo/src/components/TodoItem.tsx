@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { useState } from 'react';
-import { Image, Button, Flex, Input, Textarea } from 'theme-ui';   
+
+import { Image, Button, Flex, Textarea } from 'theme-ui';   
 
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -32,6 +33,7 @@ function TodoItem(props: AppProps) {
   
     return (<>  
       <Flex sx={todoItemContainer}>
+        
         <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
         <Textarea sx={inputTodoEdit}
              value={todoTxt}

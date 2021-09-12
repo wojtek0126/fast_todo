@@ -1,7 +1,8 @@
 /** @jsxImportSource theme-ui */
 import './App.css';
 
-import { RecoilRoot } from 'recoil';
+// recoil ready for filters and search
+import {  RecoilRoot } from 'recoil';
 
 import SignIn from './components/SignIn';
 import TodoList from './components/TodoList';
@@ -12,6 +13,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { auth } from './firebase/firebase';
+import { appContainer, headerContainer } from './styles/elements';
 require('firebase/auth');
 
 
@@ -22,8 +24,8 @@ function App() {
   return (
     <RecoilRoot>
       <ThemeProvider theme={theme}>    
-      <div className="App">
-        <header className="App-header">
+      <div sx={appContainer} >
+        <header sx={headerContainer} >
 
         <section>
             {user ? <TodoList /> : <SignIn />}
