@@ -12,7 +12,8 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { bigTitleTxt, btnContainer, btnPrimary, smallTitleTxt } from '../styles/elements';
-import { txtSignInGoogleEng, txtTitleBigEng, txtTitleSmallEng } from '../content/content';
+import { txtTitleBigEng, txtTitleSmallEng } from '../content/content';
+import { iconSignInBtn } from '../content/icons';
 require('firebase/auth');
 
 
@@ -26,7 +27,7 @@ function SignIn() {
     return (
       <>   
         <Box sx={btnContainer}>
-            <Button sx={btnPrimary} onClick={signInWithGoogle} >{txtSignInGoogleEng}</Button>
+            <Button sx={btnPrimary} onClick={signInWithGoogle} >{iconSignInBtn}</Button>
         </Box>     
           <Paragraph sx={smallTitleTxt}>{txtTitleSmallEng}</Paragraph>
         <Heading sx={bigTitleTxt}>{txtTitleBigEng}</Heading>  

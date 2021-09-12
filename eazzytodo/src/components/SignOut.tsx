@@ -4,13 +4,14 @@ import { Button } from 'theme-ui';
 import { auth } from '../firebase/firebase';   
 import 'firebase/firestore';
 import 'firebase/auth';
-import { btnPrimary } from '../styles/elements';
+import { btnLogOut } from '../styles/elements';
+import { iconSignOutBtn } from '../content/icons';
 require('firebase/auth');       
 
 
 function SignOut() {
     return auth.currentUser && (
-      <Button sx={btnPrimary} onClick={() => auth.signOut()} >Sign Out</Button>
+      <Button sx={btnLogOut} onClick={() => auth.signOut()} >{iconSignOutBtn}</Button>
     )
   }
 

@@ -9,7 +9,7 @@ export default {
       text2: '#fff',
       text3: 'red',
       text4: 'blue',
-      todoBackground: 'green',
+      todoBackground: 'rgba(0, 153, 51, 0.8)',
       inputBackground: '#000',
       primary: '#33e',
       sent: 'teal',

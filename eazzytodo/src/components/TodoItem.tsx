@@ -1,12 +1,12 @@
 /** @jsxImportSource theme-ui */
-import { useState, useEffect } from 'react';
-import { Image, Button, Flex, Input } from 'theme-ui';   
+import { useState } from 'react';
+import { Image, Button, Flex, Input, Textarea } from 'theme-ui';   
 
 import 'firebase/firestore';
 import 'firebase/auth';
-import { btnPrimary, itemsBtnsContainer, todoInput, todoItemContainer, userImg } from '../styles/elements';
-import { txtCompleteTaskBtnEng, txtDeleteTaskBtnEng, txtEditTaskBtnEng } from '../content/content';
+import { btnPrimary, inputTodoEdit, itemsBtnsContainer, todoItemContainer, userImg } from '../styles/elements';
 import { firestore } from '../firebase/firebase';
+import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 require('firebase/auth');  
 
 type AppProps = {
@@ -33,7 +33,7 @@ function TodoItem(props: AppProps) {
     return (<>  
       <Flex sx={todoItemContainer}>
         <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
-        <Input sx={todoInput}
+        <Textarea sx={inputTodoEdit}
              value={todoTxt}
              placeholder={todoTxt}
              onChange={e => {
@@ -44,13 +44,13 @@ function TodoItem(props: AppProps) {
           <Button disabled={btnDisabled}
               onClick={onComplete}
               sx={btnPrimary}
-              >{txtCompleteTaskBtnEng}</Button>
+              >{iconCompleteTaskBtn}</Button>
                <Button 
               sx={btnPrimary} onClick={onUpdate}
-              >{txtEditTaskBtnEng}</Button>
+              >{iconEditTaskBtn}</Button>
                <Button onClick={onDelete}
               sx={btnPrimary}
-              >{txtDeleteTaskBtnEng}</Button>
+              >{iconDeleteTaskBtn}</Button>
           </Flex>             
       </Flex>
     </>)

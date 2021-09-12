@@ -3,7 +3,8 @@ import {
   Button,
   Flex,
   Input,
-  Box 
+  Box, 
+  Textarea
   } from 'theme-ui';  
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
@@ -15,9 +16,10 @@ import { useRef, useState } from 'react';
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
 import 'firebase/firestore';
-import { btnContainer, btnPrimary, form, input, todosContainer } from '../styles/elements';
-import { txtAddTaskBtnEng, txtTodoInputEng } from '../content/content';
+import { addTaskContainer, addTodoForm, btnAddTask, btnContainer, inputTodoAdd, todosContainer } from '../styles/elements';
+import { txtTodoInputEng } from '../content/content';
 import SignOut from './SignOut';
+import { iconAddTaskBtn } from '../content/icons';
 require('firebase/auth');      
     
 
@@ -46,7 +48,7 @@ function TodoList() {
       })
   
       setFormValue('');
-      dummy!.current!.scrollIntoView({ behavior: 'smooth' });
+      dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
     }
   
     return (<>
@@ -60,16 +62,18 @@ function TodoList() {
       
           </Flex>  
           <form className='form' onSubmit={sendTodo} >
-            <Flex  sx={form}>
-              <Input sx={input}
-                     value={formValue}
-                     onChange={(e: any) => setFormValue(e.target.value)} 
-                     placeholder={txtTodoInputEng}               
-              />
-          <Flex> 
-              <Button type="submit" disabled={!formValue}
-              sx={btnPrimary}
-              >{txtAddTaskBtnEng}</Button>
+              <Flex  sx={addTodoForm}>
+                <Box sx={addTaskContainer}>
+                <Textarea sx={inputTodoAdd}                     
+                      onChange={(e: any) => setFormValue(e.target.value)} 
+                      placeholder={txtTodoInputEng}               
+                >{formValue}
+                </Textarea>
+                  <Button type="submit" disabled={!formValue}
+                sx={btnAddTask}
+                >{iconAddTaskBtn}</Button>
+                </Box>             
+              <Flex>            
           </Flex>         
             </Flex>
           </form>            
