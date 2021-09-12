@@ -12,9 +12,13 @@ export const txtAddTaskBtnEng: string = "Add Task";
 
 export const txtCompleteTaskBtnEng: string = "Complete";
 
-export const txtEditTaskBtnEng: string = "Edit";
+export const txtEditTaskBtnEng: string = "Update";
 
 export const txtDeleteTaskBtnEng: string = "Delete";
+
+export const txtTodoInputEng: string = "What needs to be done";
+
+
 
 
 

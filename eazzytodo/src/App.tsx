@@ -1,5 +1,8 @@
 /** @jsxImportSource theme-ui */
 import './App.css';
+
+import { RecoilRoot } from 'recoil';
+
 import SignIn from './components/SignIn';
 import TodoList from './components/TodoList';
 import { ThemeProvider } from 'theme-ui';
@@ -17,17 +20,19 @@ function App() {
   const [user] = useAuthState(auth);
 
   return (
-    <ThemeProvider theme={theme}>    
-    <div className="App">
-      <header className="App-header">
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>    
+      <div className="App">
+        <header className="App-header">
 
-      <section>
-          {user ? <TodoList /> : <SignIn />}
-        </section>
+        <section>
+            {user ? <TodoList /> : <SignIn />}
+          </section>
 
-      </header>
-    </div>
-    </ThemeProvider>
+        </header>
+      </div>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 

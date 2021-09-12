@@ -2,7 +2,8 @@
 import { 
   Button,
   Flex,
-  Input 
+  Input,
+  Box 
   } from 'theme-ui';  
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
@@ -14,8 +15,8 @@ import { useRef, useState } from 'react';
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
 import 'firebase/firestore';
-import { btnPrimary, form, input, todosContainer } from '../styles/elements';
-import { txtAddTaskBtnEng } from '../content/content';
+import { btnContainer, btnPrimary, form, input, todosContainer } from '../styles/elements';
+import { txtAddTaskBtnEng, txtTodoInputEng } from '../content/content';
 import SignOut from './SignOut';
 require('firebase/auth');      
     
@@ -48,8 +49,10 @@ function TodoList() {
       dummy!.current!.scrollIntoView({ behavior: 'smooth' });
     }
   
-    return (<>      
-    <SignOut />     
+    return (<>
+          <Box sx={btnContainer} >
+            <SignOut />  
+          </Box>        
           <Flex id={'main'} sx={todosContainer}>
             {todos && todos.map(task => <TodoItem key={task.id} todo={task} />)}
       
@@ -58,15 +61,16 @@ function TodoList() {
           </Flex>  
           <form className='form' onSubmit={sendTodo} >
             <Flex  sx={form}>
-              <Input value={formValue} onChange={(e: any) => setFormValue(e.target.value)} placeholder="what needs to be done?..." 
-              sx={input}
+              <Input sx={input}
+                     value={formValue}
+                     onChange={(e: any) => setFormValue(e.target.value)} 
+                     placeholder={txtTodoInputEng}               
               />
-               <Flex> 
-                 <Button type="submit" disabled={!formValue}
+          <Flex> 
+              <Button type="submit" disabled={!formValue}
               sx={btnPrimary}
               >{txtAddTaskBtnEng}</Button>
-          </Flex>
-         
+          </Flex>         
             </Flex>
           </form>            
         </>)
