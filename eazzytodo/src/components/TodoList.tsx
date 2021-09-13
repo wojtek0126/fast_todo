@@ -71,8 +71,16 @@ function TodoList() {
                       onChange={(e: any) => setFormValue(e.target.value)} 
                       placeholder={txtTodoInputEng}               
                 >{formValue}
-                </Textarea>
-                <ScrollTop
+                </Textarea>               
+                  <Button type="submit" disabled={!formValue}
+                sx={btnAddTask}
+                >{iconAddTaskBtn}</Button>
+                </Box>             
+              <Flex>            
+          </Flex>         
+            </Flex>
+          </form>  
+          <ScrollTop
         text={<BsArrowBarUp />}
         distance={0}
         breakpoint={0}
@@ -81,15 +89,7 @@ function TodoList() {
         speed={1000}
         target={75}
         icon={<BsArrowBarUp />}
-      />
-                  <Button type="submit" disabled={!formValue}
-                sx={btnAddTask}
-                >{iconAddTaskBtn}</Button>
-                </Box>             
-              <Flex>            
-          </Flex>         
-            </Flex>
-          </form>            
+      />          
         </>)
   }  
       
