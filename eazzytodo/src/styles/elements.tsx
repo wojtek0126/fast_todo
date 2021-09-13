@@ -1,15 +1,17 @@
   // unified styles control center, fused with theme-ui
   import background from '../assets/background.png'
+  import { keyframes } from '@emotion/react'  
+
   
   type Styles = {
     [key: string]: any;
   };
 
   //common styles
-  const btnBorderRadius: string = '50%';
-  const btnGradient: string = 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)';
-  const txtShadow: string = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
-
+  export const btnBorderRadius: string = '50%';
+  export const btnGradient: string = 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)';
+  export const btnSecondGradient: string = 'linear-gradient(to right, #50C9C3 0%, #96DEDA  51%, #50C9C3  100%)';
+  export const txtShadow: string = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
 
   //containers
   export const appContainer: Styles = {
@@ -231,5 +233,24 @@ export const btnPrimary: Styles = {
     left: '-16px',
     top: '-20px'
   };
+
+// animations
+export const clickedBtnAnim = keyframes`
+from, 20%, 53%, 80%, to {
+  transform: translate3d(0,0,0);
+}
+
+40%, 43% {
+  transform: translate3d(0, -30px, 0);
+}
+
+70% {
+  transform: translate3d(0, -15px, 0);
+}
+
+90% {
+  transform: translate3d(0,-4px,0);
+}
+` ;
 
  
