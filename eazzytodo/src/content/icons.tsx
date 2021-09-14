@@ -4,10 +4,6 @@ import { MdSystemUpdateAlt } from 'react-icons/md';
 import { BiLogOutCircle, BiLogInCircle } from 'react-icons/bi';
 
 
-
-
-
-
 export const iconAddTaskBtn: JSX.Element = <AiOutlineAppstoreAdd />;
 
 export const iconCompleteTaskBtn: JSX.Element = <FaFlagCheckered />;

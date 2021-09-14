@@ -9,10 +9,13 @@
 
   //common styles
   export const btnBorderRadius: string = '50%';
+  export const inputBorderRadius: string = '10px';
+  export const boxBorderRadius: string = '10px';
   export const btnGradient: string = 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)';
   export const btnSecondGradient: string = 'linear-gradient(to right, #50C9C3 0%, #96DEDA  51%, #50C9C3  100%)';
   export const txtShadow: string = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
-
+  export const itemBoxShadow: string = '24px 33px 46px 3px rgba(0,0,0,0.92)';
+ 
   //containers
   export const appContainer: Styles = {
     background: `url(${background})`,
@@ -52,6 +55,40 @@
     zIndex: 0
   };
 
+  export const todoStatusContainer: Styles = {  
+    flexDirection: 'column',
+    borderRadius: boxBorderRadius,
+    backgroundColor: `todoBackground`,
+    color: 'todoText',
+    width: '80vw',
+    wordBreak: 'break-word',
+    position: 'relative',    
+    marginLeft: '10px',
+    padding: 2, 
+    marginTop: 50,
+    marginBottom: 80,
+    minHeight: 100,
+    boxShadow: itemBoxShadow   
+  };
+
+  export const todoSearchContainer: Styles = {  
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: boxBorderRadius,
+    backgroundColor: `todoBackground`,
+    color: 'todoText',
+    width: '80vw',
+    wordBreak: 'break-word',
+    position: 'relative',    
+    marginLeft: '10px',
+    padding: 2, 
+    marginTop: 50,
+    marginBottom: 80,
+    minHeight: 100,
+    boxShadow: itemBoxShadow   
+  };
+
   export const addTaskContainer: Styles = {  
     position: 'relative'     
   };
@@ -63,9 +100,8 @@
   };
 
   export const todoItemContainer: Styles = {
-    display: 'flex',
     flexDirection: 'column',
-    borderRadius: 5,
+    borderRadius: boxBorderRadius,
     backgroundColor: `todoBackground`,
     color: 'todoText',
     width: '80vw',
@@ -75,11 +111,16 @@
     padding: 2, 
     marginTop: 50,
     marginBottom: 80,
-    minHeight: 100
+    minHeight: 100,
+    boxShadow: itemBoxShadow
   };
 
   export const btnContainer: Styles = {
     margin: '40px 0px'
+  };
+
+  export const displayBar: Styles = {
+    border: '1px sold border',    
   };
 
 // buttons
@@ -105,7 +146,6 @@ export const btnPrimary: Styles = {
   export const btnScrollUp: Styles = {
     backgroundImage: btnGradient,
     cursor: 'pointer',
-    // margin: '10px',
     padding: '15px',
     textAlign: 'center',
     textTransform: 'uppercase',
@@ -189,7 +229,16 @@ export const btnPrimary: Styles = {
     fontFamily: 'body',
     backgroundColor: 'inputBackground',
     color: 'text2',   
-    borderRadius: '10px',
+    borderRadius: inputBorderRadius,
+  };
+
+  export const inputTodoSearch: Styles = {    
+    wordWrap: 'wrap',
+    fontFamily: 'body',
+    backgroundColor: 'inputBackground',
+    color: 'text2',   
+    borderRadius: inputBorderRadius,
+    margin: '0'
   };
 
   export const inputTodoEdit: Styles = { 

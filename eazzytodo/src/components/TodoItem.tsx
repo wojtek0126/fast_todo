@@ -1,13 +1,11 @@
 /** @jsxImportSource theme-ui */
 import { useState } from 'react';
 
-import { Image, Button, Flex, Textarea } from 'theme-ui'; 
+import { Image, Flex, Textarea } from 'theme-ui'; 
 
 import 'firebase/firestore';
 import 'firebase/auth';
-import { btnBorderRadius,
-         btnGradient,
-         btnPrimary,
+import { btnGradient,        
          btnSecondGradient,
          clickedBtnAnim,
          inputTodoEdit,
@@ -17,7 +15,6 @@ import { btnBorderRadius,
 import { firestore } from '../firebase/firebase';
 import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
-import { useEffect } from 'react';
 require('firebase/auth');  
 
 type AppProps = {
@@ -29,7 +26,6 @@ function TodoItem(props: AppProps) {
     const [ todoTxt, setTodoTxt ] = useState(props.todo.text);
     const [ btnDisabled, setBtnDisabled ] = useState(false);
     const [ anim, setAnim ] = useState("");
-    // const [ btnCompletedColor, setBtnCompletedColor ] = useState(btnGradient);
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
       if (props.todo.isCompleted === true) {
         return btnSecondGradient;

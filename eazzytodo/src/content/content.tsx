@@ -2,6 +2,7 @@ export const txtSignInGoogleEng: string = "Sign in with Google";
 
 export const txtSignOutEng: string = "Sign out";
 
+export const txtSearchInputEng: string = "Search for task..";
 
 export const txtTitleSmallEng: string = "Welcome to my personal Todo list. Happy list. Also my first TS app. Weekend work, \
 I can do faster than that. Loads of time available now :) So far it is supporting Android and desktop, IOS wip";
@@ -20,6 +21,8 @@ export const txtEditTaskBtnEng: string = "Update";
 export const txtDeleteTaskBtnEng: string = "Delete";
 
 export const txtTodoInputEng: string = "What needs to be done?";
+
+
 
 
 

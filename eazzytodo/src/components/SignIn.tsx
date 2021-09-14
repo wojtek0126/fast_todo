@@ -8,7 +8,6 @@ import {
     Flex
     } from 'theme-ui'; 
     
-import TextAnimation from 'react-animate-text';
 import { Wave as WaveTxt } from 'react-animated-text';
 import Wave from 'react-wavify';
 import ScrollText from 'react-scroll-text'

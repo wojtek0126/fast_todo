@@ -18,7 +18,8 @@ export default {
       sent: 'teal',
       received: '#000',
       messageText: '#fff',
-      underwater: '#1277b0'
+      underwater: '#1277b0',
+      border: "#fff"
     },
     images: {
         avatar: {

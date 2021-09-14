@@ -3,7 +3,8 @@ import {
   Button,
   Flex,  
   Box, 
-  Textarea
+  Textarea,
+  Input
   } from 'theme-ui';  
 
 import ScrollTop from "react-scrolltop-button";  
@@ -18,12 +19,12 @@ import { useRef, useState } from 'react';
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
 import 'firebase/firestore';
-import { addTaskContainer, addTodoForm, btnAddTask, btnContainer, btnScrollUp, inputTodoAdd, todosContainer } from '../styles/elements';
-import { txtTodoInputEng } from '../content/content';
+import { addTaskContainer, addTodoForm, btnAddTask, btnContainer, btnScrollUp, displayBar, inputTodoAdd, inputTodoSearch, todosContainer, todoSearchContainer, todoStatusContainer } from '../styles/elements';
+import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import SignOut from './SignOut';
 import { iconAddTaskBtn } from '../content/icons';
-require('firebase/auth');      
-    
+require('firebase/auth');  
+  
 
 function TodoList() {
     const dummy = useRef<null | HTMLDivElement>(null); 
@@ -33,6 +34,8 @@ function TodoList() {
     const [todos] = useCollectionData(query, { idField: 'id' });
   
     const [formValue, setFormValue] = useState('');
+
+    const [ searchByTxt, setSearchByTxt ] = useState('');
 
   
     const sendTodo = async (e: any) => {
@@ -58,9 +61,15 @@ function TodoList() {
             <SignOut />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>
-         
-            {todos && todos.map(task => <TodoItem key={task.id} todo={task} />)}
-      
+            <Flex sx={todoSearchContainer} >
+             <Input sx={inputTodoSearch}
+                    type={'text'}
+                    placeholder={txtSearchInputEng}
+                    onChange={(e) => setSearchByTxt(e.target.value)} />
+            </Flex>
+           
+            {todos && todos.filter(task => task.text.includes(searchByTxt)).map(task => <TodoItem key={task.id} todo={task} />)}      
+
             <span ref={dummy}></span>
       
           </Flex>  
