@@ -55,7 +55,7 @@
     zIndex: 0
   };
 
-  export const todoSearchContainer: Styles = {  
+  export const todoFiltersContainer: Styles = {  
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -243,7 +243,7 @@ export const btnPrimary: Styles = {
     backgroundColor: 'inputBackground',
     color: 'text2',   
     borderRadius: inputBorderRadius,
-    margin: '0'
+    margin: 0
   };
 
   export const inputTodoEdit: Styles = { 
@@ -255,6 +255,15 @@ export const btnPrimary: Styles = {
     paddingTop: 20,
     paddingLeft: 20
   } 
+
+  export const optionBox: Styles = {    
+    wordWrap: 'wrap',
+    fontFamily: 'body',
+    backgroundColor: 'inputBackground',
+    color: 'text2',   
+    borderRadius: inputBorderRadius,
+    margin: 0
+  };
 
   //text
   export const bigTitleTxt: Styles = {

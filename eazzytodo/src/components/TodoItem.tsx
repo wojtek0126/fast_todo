@@ -24,7 +24,6 @@ type AppProps = {
 
 function TodoItem(props: AppProps) {  
     const [ todoTxt, setTodoTxt ] = useState(props.todo.text);
-    const [ btnDisabled, setBtnDisabled ] = useState(false);
     const [ anim, setAnim ] = useState("");
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
       if (props.todo.isCompleted === true) {
@@ -48,7 +47,6 @@ function TodoItem(props: AppProps) {
 
     const onComplete = () => {
       firestore.collection('todos').doc(props.todo.id).update({isCompleted: true});
-      setBtnDisabled(true);
       setBtnCompletedColor(btnSecondGradient);
     } 
 
@@ -67,7 +65,6 @@ function TodoItem(props: AppProps) {
         />
           <Flex sx={itemsBtnsContainer}>      
               <PropsyBtn 
-                isDisabled={btnDisabled} 
                 background={btnCompletedColor}
                 click={onComplete}
                 content={iconCompleteTaskBtn}

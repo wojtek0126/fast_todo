@@ -4,7 +4,8 @@ import {
   Flex,  
   Box, 
   Textarea,
-  Input
+  Input,
+  Select
   } from 'theme-ui';  
 
 import ScrollTop from "react-scrolltop-button";  
@@ -19,12 +20,23 @@ import { useRef, useState } from 'react';
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
 import 'firebase/firestore';
-import { addTaskContainer, addTodoForm, btnAddTask, btnContainer, btnScrollUp, displayBar, inputTodoAdd, inputTodoSearch, todosContainer, todoSearchContainer, todoStatusContainer } from '../styles/elements';
+import { addTaskContainer,
+         addTodoForm,
+          btnAddTask,
+          btnContainer,
+          btnScrollUp,
+          displayBar,
+          inputTodoAdd,
+          inputTodoSearch,         
+          optionBox,
+          todoFiltersContainer,
+          todosContainer,
+          todoStatusContainer } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import SignOut from './SignOut';
 import { iconAddTaskBtn } from '../content/icons';
 require('firebase/auth');  
-  
+
 
 function TodoList() {
     const dummy = useRef<null | HTMLDivElement>(null); 
@@ -35,7 +47,9 @@ function TodoList() {
   
     const [formValue, setFormValue] = useState('');
 
-    const [searchByTxt, setSearchByTxt] = useState('');
+    const [searchByTxt, setSearchByTxt] = useState('');  
+
+    const [filterCompleted, setFilterCompleted] = useState("Show");
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;
@@ -43,7 +57,34 @@ const getPrecentCompleted: any = (data: any, precision: number) => {
   let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100
       return  parseFloat(percentage.toFixed(precision));  
 };
-  
+
+const filtered = (status: string): any => {
+  setFilterCompleted(status);  
+};
+
+const renderFiltered = (data: any, filterCompleted: string, searchBy: string): JSX.Element => {
+  const TodoJsx = (keyId: any, todo: any): JSX.Element => {
+    return <TodoItem key={keyId} todo={todo} />;
+   };
+  const searchIt = (task: any, searchItTxt: string) => {
+    return task.includes(searchItTxt);
+  };
+    switch (filterCompleted) {
+    case "Show all":
+      return data && data.filter((task: any) => searchIt(task.text, searchBy))
+      .map((task: any): JSX.Element => TodoJsx(task.id, task));
+    case "In progress only":
+      return data && data.filter((task: any): JSX.Element => searchIt(task.text, searchBy) && task.isCompleted === false)
+      .map((task: any): JSX.Element => TodoJsx(task.id, task));       
+    case "Completed only":
+      return data && data.filter((task: any) => searchIt(task.text, searchBy) && task.isCompleted === true)
+      .map((task: any): JSX.Element => TodoJsx(task.id, task)); 
+    default:
+      return data && data.filter((task: any) => searchIt(task.text, searchBy))
+      .map((task: any): JSX.Element => TodoJsx(task.id, task));
+  };
+}
+
     const sendTodo = async (e: any) => {
       e.preventDefault();
   
@@ -67,11 +108,28 @@ const getPrecentCompleted: any = (data: any, precision: number) => {
             <SignOut />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>
-            <Flex sx={todoSearchContainer} >
-             <Input sx={inputTodoSearch}
+            <Flex sx={todoFiltersContainer} >
+              <Input sx={inputTodoSearch}
                     type={'text'}
                     placeholder={txtSearchInputEng}
                     onChange={(e) => setSearchByTxt(e.target.value)} />
+              <Flex sx={{
+                flexDirection: 'row',
+                alignSelf: 'baseline',
+                marginTop: 2
+              }} >
+                <Select sx={optionBox} defaultValue="Show all" onChange={(e) => filtered(e.target.value)}>
+                  <option value="Show all" >{`Show all`}</option>
+                  <option value="In progress only" >In progress only</option>
+                  <option value="Completed only" >Completed only</option>           
+                </Select>
+                {/* <Select sx={optionBox} defaultValue="New first">
+                  <option>New first</option>
+                  <option>Oldest first</option>             
+                </Select> */}
+              </Flex>
+
+         
             </Flex>
             <Flex sx={todoStatusContainer} >
              <Box sx={displayBar}>
@@ -94,9 +152,9 @@ const getPrecentCompleted: any = (data: any, precision: number) => {
                {`You have finished ${getPrecentCompleted(todos)}% of Your job`}            
              
              </Box>
-            </Flex>
-           
-            {todos && todos.filter(task => task.text.includes(searchByTxt)).map(task => <TodoItem key={task.id} todo={task} />)}      
+            </Flex>             
+
+             {renderFiltered(todos, filterCompleted, searchByTxt)}
 
             <span ref={dummy}></span>
       
