@@ -91,7 +91,7 @@ const getPrecentCompleted: any = (data: any, precision: number) => {
              </Box>
              <Box sx={displayBar}>
                
-               {`You have finished ${getPrecentCompleted(todos)} % of Your job`}            
+               {`You have finished ${getPrecentCompleted(todos)}% of Your job`}            
              
              </Box>
             </Flex>
