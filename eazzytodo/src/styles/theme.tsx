@@ -19,7 +19,7 @@ export default {
       received: '#000',
       messageText: '#fff',
       underwater: '#1277b0',
-      border: "#fff"
+      border: "#000"
     },
     images: {
         avatar: {

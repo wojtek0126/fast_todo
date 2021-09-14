@@ -55,22 +55,6 @@
     zIndex: 0
   };
 
-  export const todoStatusContainer: Styles = {  
-    flexDirection: 'column',
-    borderRadius: boxBorderRadius,
-    backgroundColor: `todoBackground`,
-    color: 'todoText',
-    width: '80vw',
-    wordBreak: 'break-word',
-    position: 'relative',    
-    marginLeft: '10px',
-    padding: 2, 
-    marginTop: 50,
-    marginBottom: 80,
-    minHeight: 100,
-    boxShadow: itemBoxShadow   
-  };
-
   export const todoSearchContainer: Styles = {  
     flexDirection: 'column',
     justifyContent: 'center',
@@ -83,8 +67,23 @@
     position: 'relative',    
     marginLeft: '10px',
     padding: 2, 
+    marginTop: 50,    
+    minHeight: 100,
+    boxShadow: itemBoxShadow   
+  };
+
+  export const todoStatusContainer: Styles = {  
+    flexDirection: 'column',
+    borderRadius: boxBorderRadius,
+    backgroundColor: `todoBackground`,
+    color: 'todoText',
+    width: '80vw',
+    wordBreak: 'break-word',
+    position: 'relative',    
+    marginLeft: '10px',
+    padding: 2, 
     marginTop: 50,
-    marginBottom: 80,
+    marginBottom: 40,
     minHeight: 100,
     boxShadow: itemBoxShadow   
   };
@@ -119,8 +118,14 @@
     margin: '40px 0px'
   };
 
-  export const displayBar: Styles = {
-    border: '1px sold border',    
+  export const displayBar: Styles = {    
+    wordWrap: 'wrap',
+    fontFamily: 'body',
+    backgroundColor: 'inputBackground',
+    color: 'text2',   
+    borderRadius: inputBorderRadius,  
+    marginTop: 1,
+    padding: 2     
   };
 
 // buttons

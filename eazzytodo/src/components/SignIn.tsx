@@ -12,7 +12,6 @@ import { Wave as WaveTxt } from 'react-animated-text';
 import Wave from 'react-wavify';
 import ScrollText from 'react-scroll-text'
 
-
 import { auth } from '../firebase/firebase';    
 import firebase from 'firebase';
 import 'firebase/firestore';

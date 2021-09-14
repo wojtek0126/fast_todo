@@ -35,8 +35,14 @@ function TodoList() {
   
     const [formValue, setFormValue] = useState('');
 
-    const [ searchByTxt, setSearchByTxt ] = useState('');
+    const [searchByTxt, setSearchByTxt] = useState('');
 
+const getPrecentCompleted: any = (data: any, precision: number) => {
+  let alltodos: any = data?.length;
+  let completed: any = data?.filter((item: any) => item.isCompleted).length;
+  let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100
+      return  parseFloat(percentage.toFixed(precision));  
+};
   
     const sendTodo = async (e: any) => {
       e.preventDefault();
@@ -66,6 +72,28 @@ function TodoList() {
                     type={'text'}
                     placeholder={txtSearchInputEng}
                     onChange={(e) => setSearchByTxt(e.target.value)} />
+            </Flex>
+            <Flex sx={todoStatusContainer} >
+             <Box sx={displayBar}>
+               
+               {`All tasks: ${todos?.length}`}
+
+             </Box>
+             <Box sx={displayBar}>
+             
+               {`In progress: ${todos?.filter((item) => !item.isCompleted).length}`}
+
+             </Box>
+             <Box sx={displayBar}>
+               
+               {`Completed: ${todos?.filter((item) => item.isCompleted).length}`}                      
+             
+             </Box>
+             <Box sx={displayBar}>
+               
+               {`You have finished ${getPrecentCompleted(todos)} % of Your job`}            
+             
+             </Box>
             </Flex>
            
             {todos && todos.filter(task => task.text.includes(searchByTxt)).map(task => <TodoItem key={task.id} todo={task} />)}      
