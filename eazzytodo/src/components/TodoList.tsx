@@ -149,7 +149,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
              </Box>
              <Box sx={displayBar}>
                
-               {`You have finished ${getPrecentCompleted(todos)}% of Your job`}            
+               {`You have finished ${getPrecentCompleted(todos)}% of the job`}            
              
              </Box>
             </Flex>             
