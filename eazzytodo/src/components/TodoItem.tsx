@@ -7,14 +7,14 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import { btnGradient,        
          btnSecondGradient,
-         clickedBtnAnim,
+         clickedBtnAnimJump,
          inputTodoEdit,
-         itemsBtnsContainer,
-         todoItemContainer,
+         itemsBtnsContainer,         
          userImg } from '../styles/elements';
 import { firestore } from '../firebase/firebase';
 import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
+import PropsyFlexBox from './propsyComps/PropsyFlexBox';
 require('firebase/auth');  
 
 type AppProps = {
@@ -24,7 +24,12 @@ type AppProps = {
 
 function TodoItem(props: AppProps) {  
     const [ todoTxt, setTodoTxt ] = useState(props.todo.text);
-    const [ anim, setAnim ] = useState("");
+
+    const [ animBtn1, setAnimBtn1 ] = useState("");
+    const [ animBtn2, setAnimBtn2 ] = useState("");
+
+    const [ opacity1, setOpacity1 ] = useState(1);
+
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
       if (props.todo.isCompleted === true) {
         return btnSecondGradient;
@@ -34,28 +39,39 @@ function TodoItem(props: AppProps) {
       }
     });    
 
-    const {  photoURL }: any = props.todo;  
+    const {  photoURL }: any = props.todo;      
     
 
     const onUpdate = () =>  {
       firestore.collection('todos').doc(props.todo.id).update({text:  todoTxt});
-      setAnim(clickedBtnAnim);
+      setAnimBtn1(clickedBtnAnimJump);
       setTimeout(() => {
-          setAnim("");
-      }, 2000)
+        setAnimBtn1("");
+      }, 1000)
     };
 
     const onComplete = () => {
       firestore.collection('todos').doc(props.todo.id).update({isCompleted: true});
       setBtnCompletedColor(btnSecondGradient);
-    } 
+    };
 
-    const onDelete = () =>  firestore.collection('todos').doc(props.todo.id).delete();      
-
-  
+    const onDelete = () => {
+      setAnimBtn2(clickedBtnAnimJump);
+      setTimeout(() => {
+        setAnimBtn2("");
+      }, 1000);
+      setOpacity1(0);
+      setTimeout(() => {
+        firestore.collection('todos').doc(props.todo.id).delete();   
+      }, 2000);
+    };
+    
+    
     return (<>  
-      <Flex sx={todoItemContainer}>        
-        <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
+      <PropsyFlexBox 
+        opacity={opacity1}
+        content={<>
+  <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
         <Textarea sx={inputTodoEdit}
              defaultValue={todoTxt}
              placeholder={todoTxt}
@@ -73,15 +89,17 @@ function TodoItem(props: AppProps) {
                  background={btnGradient}
                  click={onUpdate}
                  content={iconEditTaskBtn}
-                 animation={anim}
+                 animation={animBtn1}
               />
               <PropsyBtn 
                  background={btnGradient}
                  click={onDelete}
                  content={iconDeleteTaskBtn}
+                 animation={animBtn2}
               />     
-          </Flex>             
-      </Flex>
+          </Flex>  
+        </>}
+      />   
     </>)
   }
 
