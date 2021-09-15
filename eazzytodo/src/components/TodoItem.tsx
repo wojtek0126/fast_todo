@@ -8,6 +8,7 @@ import 'firebase/auth';
 import { btnGradient,        
          btnSecondGradient,
          clickedBtnAnimJump,
+         clickedBtnAnimShrink,
          inputTodoEdit,
          itemsBtnsContainer,         
          userImg } from '../styles/elements';
@@ -56,7 +57,7 @@ function TodoItem(props: AppProps) {
     };
 
     const onDelete = () => {
-      setAnimBtn2(clickedBtnAnimJump);
+      setAnimBtn2(clickedBtnAnimShrink);
       setTimeout(() => {
         setAnimBtn2("");
       }, 1000);
@@ -70,6 +71,7 @@ function TodoItem(props: AppProps) {
     return (<>  
       <PropsyFlexBox 
         opacity={opacity1}
+        transition={'1s'}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
         <Textarea sx={inputTodoEdit}
@@ -89,13 +91,16 @@ function TodoItem(props: AppProps) {
                  background={btnGradient}
                  click={onUpdate}
                  content={iconEditTaskBtn}
-                 animation={animBtn1}
+                 animation={animBtn1} 
+                 animTime={'1s'}               
               />
               <PropsyBtn 
                  background={btnGradient}
                  click={onDelete}
                  content={iconDeleteTaskBtn}
                  animation={animBtn2}
+                 animTime={'2s'}
+
               />     
           </Flex>  
         </>}

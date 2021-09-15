@@ -51,6 +51,9 @@ function TodoList() {
 
     const [filterCompleted, setFilterCompleted] = useState("Show");
 
+    const [filterDate, setFilterDate] = useState("New");
+
+
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;
   let completed: any = data?.filter((item: any) => item.isCompleted).length;
@@ -58,8 +61,8 @@ const getPrecentCompleted: any = (data: any, precision: number) => {
       return  parseFloat(percentage.toFixed(precision));  
 };
 
-const filtered = (status: string): any => {
-  setFilterCompleted(status);  
+const filteredStatus = (status: string): any => {
+  setFilterCompleted(status);
 };
 
 const renderFiltered = (data: any, filterCompleted: string, searchBy: string): JSX.Element => {
@@ -69,18 +72,23 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   const searchIt = (task: any, searchItTxt: string) => {
     return task.includes(searchItTxt);
   };
+
     switch (filterCompleted) {
     case "Show all":
-      return data && data.filter((task: any) => searchIt(task.text, searchBy))
+      return data && data.filter((task: any) => 
+      searchIt(task.text, searchBy))
       .map((task: any): JSX.Element => TodoJsx(task.id, task));
     case "In progress only":
-      return data && data.filter((task: any): JSX.Element => searchIt(task.text, searchBy) && task.isCompleted === false)
+      return data && data.filter((task: any): JSX.Element => 
+      searchIt(task.text, searchBy) && task.isCompleted === false)
       .map((task: any): JSX.Element => TodoJsx(task.id, task));       
     case "Completed only":
-      return data && data.filter((task: any) => searchIt(task.text, searchBy) && task.isCompleted === true)
+      return data && data.filter((task: any) => 
+      searchIt(task.text, searchBy) && task.isCompleted === true)
       .map((task: any): JSX.Element => TodoJsx(task.id, task)); 
     default:
-      return data && data.filter((task: any) => searchIt(task.text, searchBy))
+      return data && data.filter((task: any) => 
+      searchIt(task.text, searchBy))
       .map((task: any): JSX.Element => TodoJsx(task.id, task));
   };
 }
@@ -118,14 +126,14 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
                 alignSelf: 'baseline',
                 marginTop: 2
               }} >
-                <Select sx={optionBox} defaultValue="Show all" onChange={(e) => filtered(e.target.value)}>
+                <Select sx={optionBox} defaultValue="Show all" onChange={(e) => filteredStatus(e.target.value)}>
                   <option value="Show all" >{`Show all`}</option>
                   <option value="In progress only" >In progress only</option>
                   <option value="Completed only" >Completed only</option>           
                 </Select>
-                {/* <Select sx={optionBox} defaultValue="New first">
-                  <option>New first</option>
-                  <option>Oldest first</option>             
+                {/* <Select sx={optionBox} defaultValue="New" onChange={(e) => filteredDate(e.target.value)}>
+                  <option value="New">New</option>
+                  <option value="Old">Old</option>             
                 </Select> */}
               </Flex>
 

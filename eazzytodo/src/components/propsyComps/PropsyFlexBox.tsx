@@ -2,7 +2,7 @@ import { Button, Flex } from "theme-ui";
 import { boxBorderRadius, itemBoxShadow } from "../../styles/elements";
 
 
-const PropsyFlexBox = ({animation, click, content, opacity}: any) => {
+const PropsyFlexBox = ({animation, transition, click, content, opacity}: any) => {
 
     return (
         <Flex 
@@ -13,8 +13,7 @@ const PropsyFlexBox = ({animation, click, content, opacity}: any) => {
             color: 'todoText',
             width: '80vw',
             wordBreak: 'break-word',
-            position: 'relative',    
-            marginLeft: '10px',
+            position: 'relative',             
             padding: 2, 
             marginTop: 50,
             marginBottom: 80,
@@ -22,7 +21,7 @@ const PropsyFlexBox = ({animation, click, content, opacity}: any) => {
             boxShadow: itemBoxShadow,
             opacity: `${opacity}`,
             animation: `${animation}`,
-            transition: '2s'         
+            transition: `${transition}`, 
                 }}
           onClick={click}
         >{content}</Flex>
