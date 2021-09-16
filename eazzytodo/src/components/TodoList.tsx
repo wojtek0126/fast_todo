@@ -51,7 +51,7 @@ function TodoList() {
 
     const [filterCompleted, setFilterCompleted] = useState("Show");
 
-    const [filterDate, setFilterDate] = useState("New");
+    // const [filterDate, setFilterDate] = useState("New");
 
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
@@ -103,6 +103,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
         text: formValue,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         isCompleted: false,
+        updatedAt: "Not updated yet",
         uid,
         photoURL
       })

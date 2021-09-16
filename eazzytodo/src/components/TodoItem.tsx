@@ -51,9 +51,15 @@ function TodoItem(props: AppProps) {
       }, 1000)
     };
 
-    const onComplete = () => {
-      firestore.collection('todos').doc(props.todo.id).update({isCompleted: true});
-      setBtnCompletedColor(btnSecondGradient);
+    const onComplete = () => {      
+        if (props.todo.isCompleted === false) {
+          firestore.collection('todos').doc(props.todo.id).update({isCompleted: true});
+          setBtnCompletedColor(btnSecondGradient);
+        }        
+        else {
+          firestore.collection('todos').doc(props.todo.id).update({isCompleted: false});
+          setBtnCompletedColor(btnGradient);
+           }            
     };
 
     const onDelete = () => {
