@@ -7,7 +7,7 @@ const PropsyBtn = ({animTime, background, animation, click, content, isDisabled,
     return (
         <Button disabled={isDisabled} 
         sx={{
-          background: `${background}`,
+          backgroundImage: `${background}`,
           cursor: 'pointer',
           margin: '10px',
           padding: '15px',

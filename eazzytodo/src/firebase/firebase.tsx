@@ -3,8 +3,11 @@ import 'firebase/firestore';
 import 'firebase/auth';
 require('firebase/auth');
 
+type FireConfig = {
+    [key: string]: string;
+  };
 
-export const config = {
+export const config: FireConfig = {
     apiKey: "AIzaSyDNbdVmZVmzNzEWw_eqHT6jMLeAa788Rgk",
     authDomain: "eazzy-todo.firebaseapp.com",
     projectId: "eazzy-todo",
@@ -19,5 +22,25 @@ export const config = {
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();  
 
+let instance: any;
 
+export default function getFirebase() {
+  if (typeof window !== "undefined") {
+    if (instance) return instance;
+    if (!firebase.apps.length) {
+        instance = firebase.initializeApp(config);
+     }else {
+        instance = firebase.app(); 
+     }
+    return instance;
+  }
+
+  return null;
+}
+
+// if (!firebase.apps.length) {
+//     instance = firebase.initializeApp(config);
+//  }else {
+//     instance = firebase.app(); // if already initialized, use that one
+//  }
 

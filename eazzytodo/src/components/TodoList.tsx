@@ -35,6 +35,7 @@ import { addTaskContainer,
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import SignOut from './SignOut';
 import { iconAddTaskBtn } from '../content/icons';
+import SignOutButton from './UserAuth/SignOutButton';
 require('firebase/auth');  
 
 
@@ -99,11 +100,17 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       const { uid, photoURL } = auth.currentUser!;
   
       await todosRef.add({
+        userName: "To be set",
         id: getId(),
+        type: "task",
+        assignedTo: "Not assigned yet",
+        assignedBy: "Not set yet",
         text: formValue,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         isCompleted: false,
         updatedAt: "Not updated yet",
+        completedAt: "Not completed yet",
+        deadline: "No deadline set",
         uid,
         photoURL
       })
@@ -114,7 +121,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   
     return (<>          
           <Box sx={btnContainer} >
-            <SignOut />  
+            <SignOutButton />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>
             <Flex sx={todoFiltersContainer} >

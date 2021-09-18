@@ -1,40 +1,70 @@
 /** @jsxImportSource theme-ui */
 import './App.css';
 
-// recoil ready for filters and search
-import {  RecoilRoot } from 'recoil';
-
 import SignIn from './components/SignIn';
 import TodoList from './components/TodoList';
-import { ThemeProvider } from 'theme-ui';
+import { Flex, Paragraph, ThemeProvider } from 'theme-ui';
 import theme from './styles/theme';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
+import styled from "styled-components";
+
+import { useAuthState } from 'react-firebase-hooks/auth';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { auth } from './firebase/firebase';
-import { appContainer, headerContainer } from './styles/elements';
+import getFirebase, { auth } from './firebase/firebase';
+import { appContainer, headerContainer, smallTitleTxt } from './styles/elements';
+import { useEffect, useState } from 'react';
+import SignUpForm from './components/UserAuth/SignUpForm';
+import SignInForm from './components/UserAuth/SignInForm';
+import SignOutButton from './components/UserAuth/SignOutButton';
 require('firebase/auth');
 
 
 function App() {
 
   const [user] = useAuthState(auth);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  return (
-    <RecoilRoot>
+  useEffect(() => {
+    const firebase = getFirebase();
+
+    if (firebase) {
+      firebase.auth().onAuthStateChanged((authUser: any) => {
+        if (authUser) {
+          setCurrentUser(authUser.email);
+        } else {
+          setCurrentUser(null);
+        }
+      });
+    }
+  }, []);
+
+  return (  
       <ThemeProvider theme={theme}>    
       <div sx={appContainer} >
         <header sx={headerContainer} >
+          
 
-        <section>
-            {user ? <TodoList /> : <SignIn />}
-          </section>
+        <section>     
+
+            {currentUser ? <TodoList /> : <>
+                <Flex>
+                  <Flex sx={{color: 'text2'}}>
+                    {currentUser
+                      ? `The current logged in user is: ${currentUser}.`
+                      : "No user is currently logged in."}
+                  </Flex>
+                <SignUpForm />
+                <SignInForm />
+                {/* <SignOutButton /> */}
+              </Flex>
+         </>}
+
+         </section>
 
         </header>
       </div>
-      </ThemeProvider>
-    </RecoilRoot>
+      </ThemeProvider>  
   );
 }
 

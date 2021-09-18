@@ -224,7 +224,19 @@ export const btnPrimary: Styles = {
     position: 'fixed',
     right: 0,
     bottom: 0   
-  }
+  };
+
+  export const inputGeneral: Styles = {    
+    wordWrap: 'wrap',
+    fontFamily: 'body',
+    backgroundColor: 'inputBackground',
+    color: 'text2',   
+    borderRadius: inputBorderRadius,
+    margin: 2,
+    padding: 2,
+    width: '100%',
+    alignSelf: 'center'
+  };
 
   export const inputTodoAdd: Styles = {
     position: 'fixed',
@@ -286,6 +298,15 @@ export const btnPrimary: Styles = {
     marginTop: 60,
     marginBottom: 60 
     };
+
+    export const loginSignupTxt: Styles = {
+      width: '100%',
+      color: 'text2',
+      fontWeight: '600',
+      textShadow: txtShadow,
+      marginTop: 10,
+      marginBottom: 10 
+      };
 
 // images    
   export const userImg: Styles = {

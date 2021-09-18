@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { Image, Flex, Textarea } from 'theme-ui'; 
 
@@ -16,6 +16,7 @@ import { firestore } from '../firebase/firebase';
 import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
 import PropsyFlexBox from './propsyComps/PropsyFlexBox';
+import firebase from 'firebase';
 require('firebase/auth');  
 
 type AppProps = {
@@ -40,38 +41,53 @@ function TodoItem(props: AppProps) {
       }
     });    
 
-    const {  photoURL }: any = props.todo;      
+    const {  photoURL }: any = props.todo;    
+
     
+    const onUpdate = useCallback(
+      () => {
+        firestore.collection('todos').doc(props.todo.id).update({text: todoTxt,
+           updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        setAnimBtn1(clickedBtnAnimJump);
+        setTimeout(() => {
+          setAnimBtn1("");
+        }, 1000)
+      },
+      [props],
+    );  
 
-    const onUpdate = () =>  {
-      firestore.collection('todos').doc(props.todo.id).update({text:  todoTxt});
-      setAnimBtn1(clickedBtnAnimJump);
-      setTimeout(() => {
-        setAnimBtn1("");
-      }, 1000)
-    };
-
-    const onComplete = () => {      
+    const onComplete = useCallback(
+      () => {
         if (props.todo.isCompleted === false) {
-          firestore.collection('todos').doc(props.todo.id).update({isCompleted: true});
+          firestore.collection('todos').doc(props.todo.id).update({isCompleted: true,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp(),            
+          });
           setBtnCompletedColor(btnSecondGradient);
         }        
         else {
-          firestore.collection('todos').doc(props.todo.id).update({isCompleted: false});
+          firestore.collection('todos').doc(props.todo.id).update({isCompleted: false,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          });
           setBtnCompletedColor(btnGradient);
-           }            
-    };
-
-    const onDelete = () => {
-      setAnimBtn2(clickedBtnAnimShrink);
-      setTimeout(() => {
-        setAnimBtn2("");
-      }, 1000);
-      setOpacity1(0);
-      setTimeout(() => {
-        firestore.collection('todos').doc(props.todo.id).delete();   
-      }, 2000);
-    };
+           }  
+      },
+      [props],
+    );
+    
+    const onDelete = useCallback(
+      () => {
+        setAnimBtn2(clickedBtnAnimShrink);
+        setTimeout(() => {
+          setAnimBtn2("");
+        }, 1000);
+        setOpacity1(0);
+        setTimeout(() => {
+          firestore.collection('todos').doc(props.todo.id).delete();   
+        }, 2000);
+      },
+      [props],
+    )   
     
     
     return (<>  
