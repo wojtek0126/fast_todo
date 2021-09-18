@@ -30,6 +30,23 @@
     backgroundColor: 'transparent'
   };
 
+  export const signInFormContainer: Styles = {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: 'transparent',
+    alignSelf: 'center'
+  };
+
+  export const signLogContainer: Styles = {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    "@media (max-width: 780px)": { 
+      flexDirection: 'column'            
+   }
+  };
+
   export const headerContainer: Styles = {
     display: 'flex',
     justtifyContent: 'center',
@@ -49,7 +66,7 @@
   export const waveEffectContainer: Styles = {  
     width: '100vw',
     position: 'absolute',
-    top: 140,
+    top: 200,
     left: 0,
     maxWidth: '100%',
     zIndex: 0
@@ -229,10 +246,11 @@ export const btnPrimary: Styles = {
   export const inputGeneral: Styles = {    
     wordWrap: 'wrap',
     fontFamily: 'body',
-    backgroundColor: 'inputBackground',
+    background: 'inputBackground',
     color: 'text2',   
     borderRadius: inputBorderRadius,
-    margin: 2,
+    margin: 0,
+    marginTop: 2,
     padding: 2,
     width: '100%',
     alignSelf: 'center'

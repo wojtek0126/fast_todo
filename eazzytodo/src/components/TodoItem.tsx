@@ -87,12 +87,13 @@ function TodoItem(props: AppProps) {
         }, 2000);
       },
       [props],
-    )   
+    );   
     
     
     return (<>  
       <PropsyFlexBox 
         opacity={opacity1}
+        width={'80vw'}
         transition={'1s'}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
@@ -106,19 +107,19 @@ function TodoItem(props: AppProps) {
           <Flex sx={itemsBtnsContainer}>      
               <PropsyBtn 
                 background={btnCompletedColor}
-                click={onComplete}
+                onClick={onComplete}
                 content={iconCompleteTaskBtn}
               />       
               <PropsyBtn 
                  background={btnGradient}
-                 click={onUpdate}
+                 onClick={onUpdate}
                  content={iconEditTaskBtn}
                  animation={animBtn1} 
                  animTime={'1s'}               
               />
               <PropsyBtn 
                  background={btnGradient}
-                 click={onDelete}
+                 onClick={onDelete}
                  content={iconDeleteTaskBtn}
                  animation={animBtn2}
                  animTime={'2s'}

@@ -1,28 +1,25 @@
 /** @jsxImportSource theme-ui */
 import './App.css';
 
-import SignIn from './components/SignIn';
 import TodoList from './components/TodoList';
-import { Flex, Paragraph, ThemeProvider } from 'theme-ui';
+import { Box, Flex, Heading, Paragraph, ThemeProvider } from 'theme-ui';
 import theme from './styles/theme';
 
-import styled from "styled-components";
-
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { Wave as WaveTxt } from 'react-animated-text';
+import Wave from 'react-wavify';
 import 'firebase/firestore';
 import 'firebase/auth';
 import getFirebase, { auth } from './firebase/firebase';
-import { appContainer, headerContainer, smallTitleTxt } from './styles/elements';
+import { appContainer, bigTitleTxt, headerContainer, signInContainer, signInFormContainer, signLogContainer, smallTitleTxt, waveEffectContainer } from './styles/elements';
 import { useEffect, useState } from 'react';
 import SignUpForm from './components/UserAuth/SignUpForm';
 import SignInForm from './components/UserAuth/SignInForm';
-import SignOutButton from './components/UserAuth/SignOutButton';
+import { txtTitleBigEng, txtTitleSmallEng } from './content/content';
 require('firebase/auth');
 
 
 function App() {
 
-  const [user] = useAuthState(auth);
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -48,16 +45,32 @@ function App() {
         <section>     
 
             {currentUser ? <TodoList /> : <>
-                <Flex>
-                  <Flex sx={{color: 'text2'}}>
+                <Flex sx={signInFormContainer}>
+                  {/* <Flex sx={{color: 'text2'}}>
                     {currentUser
                       ? `The current logged in user is: ${currentUser}.`
                       : "No user is currently logged in."}
-                  </Flex>
-                <SignUpForm />
-                <SignInForm />
-                {/* <SignOutButton /> */}
+                  </Flex> */}
+                  <Flex sx={signLogContainer}>
+                    <SignUpForm />
+                    <SignInForm /> 
+                  </Flex>                                   
               </Flex>
+              <Box sx={waveEffectContainer}>
+                  <Wave mask="url(#mask)" fill="#1277b0" >
+                    <defs>
+                      <linearGradient id="gradient" gradientTransform="rotate(90)">
+                        <stop offset="0" stopColor="white" />
+                        <stop offset="0.5" stopColor="black" />
+                      </linearGradient>
+                      <mask id="mask">
+                        <rect x="0" y="0" width="2000" height="200" fill="url(#gradient)"  />
+                      </mask>
+                    </defs>
+                  </Wave> 
+              </Box>  
+                <Paragraph sx={smallTitleTxt}><WaveTxt text={txtTitleSmallEng} effect="stretch" effectChange={2.2}/></Paragraph>
+                <Heading sx={bigTitleTxt}><WaveTxt text={txtTitleBigEng} effect="stretch" effectChange={2.2}/></Heading>  
          </>}
 
          </section>

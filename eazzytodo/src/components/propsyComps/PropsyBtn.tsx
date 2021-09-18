@@ -2,7 +2,7 @@ import { Button } from "theme-ui";
 import { btnBorderRadius } from "../../styles/elements";
 
 
-const PropsyBtn = ({animTime, background, animation, click, content, isDisabled, opacity, transition}: any ) => {
+const PropsyBtn = ({animTime, background, animation, onClick, content, isDisabled, opacity, transition}: any ) => {
 
     return (
         <Button disabled={isDisabled} 
@@ -26,7 +26,7 @@ const PropsyBtn = ({animTime, background, animation, click, content, isDisabled,
             textDecoration: 'none'
          }
         }}
-          onClick={click}
+          onClick={onClick}
         >{content}</Button>
     )
     
