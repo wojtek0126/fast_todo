@@ -1,22 +1,30 @@
 
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+
 import { iconSignInBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
+import { recoilUser } from "../../recoil/recoil";
 import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
 
 import PropsySignLogForm from "../propsyComps/PropsySignLogForm";
 
 const SignInForm = () => {
+
   const [emailValue, setEmailValue] = useState("");
   const [passwordlValue, setPasswordValue] = useState("");
 
   const [alertDisplay, setAlertDiaspaly] = useState('none');
   const [alertContent, setAlerContent] = useState("");
 
+  const [recoilUserGet, setRecoilUserGet] = useRecoilState(recoilUser);
+
+
   
   const handleChangeEmail = (event: any) => {
     setEmailValue(event.target.value);
+    // setRecoilUserGet(event.target.value);
   };
 
   const handleChangePassword = (event: any) => {
@@ -35,6 +43,7 @@ const SignInForm = () => {
         const user = await firebaseInstance
           .auth()
           .signInWithEmailAndPassword(email, password);
+          setRecoilUserGet(email);
         console.log("user", user);     
       }
     } catch (error: any) {
@@ -47,12 +56,13 @@ const SignInForm = () => {
     }
   };
 
+
   return (<>
     <PropsySignLogForm 
         textHead={'Log in'}
         buttonContent={iconSignInBtn}
-        emailInputTxt={email}
-        passInputTxt={password}
+        emailInputTxt={emailValue}
+        passInputTxt={passwordlValue}
         onChangeEmail={handleChangeEmail}
         onChangePass ={handleChangePassword}
         onSubmit={signIn}

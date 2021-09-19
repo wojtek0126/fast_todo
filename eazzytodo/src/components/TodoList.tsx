@@ -5,8 +5,11 @@ import {
   Box, 
   Textarea,
   Input,
-  Select
+  Select,
+  Paragraph
   } from 'theme-ui';  
+// trouble with recoil value child bla bla is here
+  import { useRecoilValue } from 'recoil';
 
 import ScrollTop from "react-scrolltop-button";  
 import { BsArrowBarUp } from 'react-icons/bs'; 
@@ -22,6 +25,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import { addTaskContainer,
          addTodoForm,
+          bigTitleTxt,
           btnAddTask,
           btnContainer,
           btnScrollUp,
@@ -33,9 +37,9 @@ import { addTaskContainer,
           todosContainer,
           todoStatusContainer } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
-import SignOut from './SignOut';
 import { iconAddTaskBtn } from '../content/icons';
 import SignOutButton from './UserAuth/SignOutButton';
+import { loggedUserText } from '../recoil/recoil';
 require('firebase/auth');  
 
 
@@ -52,8 +56,8 @@ function TodoList() {
 
     const [filterCompleted, setFilterCompleted] = useState("Show");
 
-    // const [filterDate, setFilterDate] = useState("New");
-
+    const loggedWelcome = useRecoilValue(loggedUserText);
+    console.log(loggedUserText)
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;
@@ -121,6 +125,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   
     return (<>          
           <Box sx={btnContainer} >
+            <Paragraph sx={bigTitleTxt}>{loggedWelcome}</Paragraph>
             <SignOutButton />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>

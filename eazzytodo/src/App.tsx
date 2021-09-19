@@ -1,5 +1,7 @@
 /** @jsxImportSource theme-ui */
 import './App.css';
+// all ok for recoil
+import {  RecoilRoot } from 'recoil';
 
 import TodoList from './components/TodoList';
 import { Box, Flex, Heading, Paragraph, ThemeProvider } from 'theme-ui';
@@ -10,11 +12,12 @@ import Wave from 'react-wavify';
 import 'firebase/firestore';
 import 'firebase/auth';
 import getFirebase, { auth } from './firebase/firebase';
-import { appContainer, bigTitleTxt, headerContainer, signInContainer, signInFormContainer, signLogContainer, smallTitleTxt, waveEffectContainer } from './styles/elements';
+import { appContainer, bigTitleTxt, headerContainer, signInFormContainer, signLogContainer, smallTitleTxt, waveEffectContainer } from './styles/elements';
 import { useEffect, useState } from 'react';
 import SignUpForm from './components/UserAuth/SignUpForm';
 import SignInForm from './components/UserAuth/SignInForm';
 import { txtTitleBigEng, txtTitleSmallEng } from './content/content';
+import { recoilUser } from './recoil/recoil';
 require('firebase/auth');
 
 
@@ -38,6 +41,7 @@ function App() {
 
   return (  
       <ThemeProvider theme={theme}>    
+      <RecoilRoot>
       <div sx={appContainer} >
         <header sx={headerContainer} >
           
@@ -77,6 +81,7 @@ function App() {
 
         </header>
       </div>
+      </RecoilRoot>
       </ThemeProvider>  
   );
 }
