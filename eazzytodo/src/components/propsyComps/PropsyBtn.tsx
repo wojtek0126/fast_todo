@@ -1,8 +1,17 @@
+import React from "react";
 import { Button } from "theme-ui";
 import { btnBorderRadius } from "../../styles/elements";
 
 
-const PropsyBtn = ({animTime, background, animation, onClick, content, isDisabled, opacity, transition}: any ) => {
+const PropsyBtn = React.memo(({animTime,
+                               background,
+                               animation, 
+                               onClick, 
+                               content, 
+                               isDisabled, 
+                               opacity, 
+                               transition
+                              }: any ) => {
 
     return (
         <Button disabled={isDisabled} 
@@ -30,6 +39,6 @@ const PropsyBtn = ({animTime, background, animation, onClick, content, isDisable
         >{content}</Button>
     )
     
-}
+});
 
-export default PropsyBtn;
+export default PropsyBtn 

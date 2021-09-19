@@ -1,21 +1,23 @@
+import React from "react";
 import { Input, Paragraph } from "theme-ui";
 import { btnGradient, btnPrimary, inputGeneral, loginSignupTxt } from "../../styles/elements";
 import PropsyBtn from "./PropsyBtn";
 import PropsyFlexBox from "./PropsyFlexBox";
 
 
-const PropsySignLogForm = ({textHead,
-                            buttonContent,
-                            onSubmit,
-                            onChangeEmail,
-                            onChangePass, 
-                            emailInputTxt,
-                            passInputTxt,
-                            margin
-                            }: any) => {
-
+const PropsySignLogForm = React.memo(({textHead,
+                                       display,
+                                       buttonContent,
+                                       onSubmit,
+                                       onChangeEmail,
+                                       onChangePass, 
+                                       emailInputTxt,
+                                       passInputTxt,
+                                       margin
+                                       }: any) => {
     return (
         <PropsyFlexBox 
+        display={display}
         margin={margin}
         content={<>
             <form onSubmit={onSubmit}>
@@ -31,6 +33,6 @@ const PropsySignLogForm = ({textHead,
          </>} />   
     )
     
-}
+});
 
 export default PropsySignLogForm;

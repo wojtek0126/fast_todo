@@ -66,7 +66,7 @@
   export const waveEffectContainer: Styles = {  
     width: '100vw',
     position: 'absolute',
-    top: 200,
+    top: 240,
     left: 0,
     maxWidth: '100%',
     zIndex: 0

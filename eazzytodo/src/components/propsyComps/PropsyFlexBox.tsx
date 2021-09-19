@@ -1,13 +1,24 @@
-import { Button, Flex } from "theme-ui";
+import React from "react";
+import { Flex } from "theme-ui";
 import { boxBorderRadius, itemBoxShadow } from "../../styles/elements";
 
 
-const PropsyFlexBox = ({margin, marginTop = 50, marginBottom = 80, width, animation, transition, onClick, content, opacity}: any) => {
+const PropsyFlexBox = React.memo(({display,
+                                   margin,
+                                   marginTop = 50,
+                                   marginBottom = 80,
+                                   width, 
+                                   animation, 
+                                   transition, 
+                                   onClick, 
+                                   content, 
+                                   opacity = 0.8}: any) => {
 
     return (
         <Flex 
         sx={{
             flexDirection: 'column',
+            display: `${display}`,
             borderRadius: boxBorderRadius,
             backgroundColor: `todoBackground`,
             color: 'todoText',
@@ -26,8 +37,7 @@ const PropsyFlexBox = ({margin, marginTop = 50, marginBottom = 80, width, animat
                 }}
           onClick={onClick}
         >{content}</Flex>
-    )
-    
-}
+    )    
+});
 
 export default PropsyFlexBox;

@@ -2,11 +2,16 @@ import { useState } from "react";
 import { iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
+import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
 import PropsySignLogForm from "../propsyComps/PropsySignLogForm";
 
 const SignUpForm = () => {    
     const [emailValue, setEmailValue] = useState("");
     const [passwordlValue, setPasswordValue] = useState("");
+
+    const [alertDisplay, setAlertDiaspaly] = useState('none');
+    const [alertContent, setAlerContent] = useState("");
+
 
 
     const handleChangeEmail = (event: any) => {
@@ -23,30 +28,28 @@ const SignUpForm = () => {
   console.log(email, "email check");
 
   const signUp = async (event: any) => {
-    event.preventDefault();
-
-    if(typeof email == "string") 
-        console.log("String value");
-    else 
-        console.log("Not a string");  
-    
+    event.preventDefault();   
 
     try {
       if (firebaseInstance) {
         const user = await firebaseInstance
           .auth()
           .createUserWithEmailAndPassword(email, password);
-        console.log("user", user);
-        alert(`Welcome ${email}!`);
+        console.log("user", user);        
       }
     } catch (error: any) {
       console.log("error", error);
-      alert(error.message);
+      setAlertDiaspaly('flex');
+      setAlerContent(`${error.message}`);
+      setTimeout(() => {
+        setAlertDiaspaly('none');
+      }, 2000);
+     
     }
   };
 
 
-  return (
+  return (<>
     <PropsySignLogForm 
     textHead={'Sign up'}
     buttonContent={iconSignUpBtn}
@@ -57,7 +60,10 @@ const SignUpForm = () => {
     onSubmit={signUp}
     margin={2}
 />
-  );
+<PropsyAlertBox display={alertDisplay}
+                    content={alertContent}
+    />
+  </>);
 };
 
 export default SignUpForm;
