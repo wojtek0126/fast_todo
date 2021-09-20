@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
-import { recoilUser } from "../../recoil/recoil";
+import { displayStateValue, recoilUser } from "../../recoil/recoil";
 import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
 import PropsySignLogForm from "../propsyComps/PropsySignLogForm";
 
@@ -16,6 +16,8 @@ const SignUpForm = () => {
     const [alertContent, setAlerContent] = useState("");
 
     const [recoilUserGet, setRecoilUserGet] = useRecoilState(recoilUser);
+    const isEnabled = useRecoilValue(displayStateValue);
+
 
     const handleChangeEmail = (event: any) => {
         setEmailValue(event.target.value);
@@ -56,6 +58,7 @@ const SignUpForm = () => {
 
   return (<>
     <PropsySignLogForm 
+    display={isEnabled}
     textHead={'Sign up'}
     buttonContent={iconSignUpBtn}
     emailInputTxt={emailValue}

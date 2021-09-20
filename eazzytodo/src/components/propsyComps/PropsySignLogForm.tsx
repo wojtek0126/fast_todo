@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Paragraph } from "theme-ui";
+import { Flex, Input, Paragraph } from "theme-ui";
 import { btnGradient, btnPrimary, inputGeneral, loginSignupTxt } from "../../styles/elements";
 import PropsyBtn from "./PropsyBtn";
 import PropsyFlexBox from "./PropsyFlexBox";
@@ -13,7 +13,8 @@ const PropsySignLogForm = React.memo(({textHead,
                                        onChangePass, 
                                        emailInputTxt,
                                        passInputTxt,
-                                       margin
+                                       margin, 
+                                       extraContent
                                        }: any) => {
     return (
         <PropsyFlexBox 
@@ -22,14 +23,19 @@ const PropsySignLogForm = React.memo(({textHead,
         content={<>
             <form onSubmit={onSubmit}>
                <Paragraph sx={loginSignupTxt}>{textHead}</Paragraph>
-               <Input sx={inputGeneral} onChange={onChangeEmail} placeholder="Email" {...emailInputTxt} />
-               <Input sx={inputGeneral} onChange={onChangePass} placeholder="Password" type="password" {...passInputTxt} />
-               <PropsyBtn sx={btnPrimary}
+               <Input  sx={inputGeneral} onChange={onChangeEmail} placeholder="Email" {...emailInputTxt} />
+               <Input sx={inputGeneral} onChange={onChangePass} placeholder="Password" type="password" {...passInputTxt} />                          
+           
+             <Flex>
+             <PropsyBtn sx={btnPrimary}
                           type="submit"
                           background={btnGradient}
                           content={buttonContent}
+                          onSubmit={onSubmit}
                           >Sign in</PropsyBtn>
-             </form>
+                {extraContent}
+             </Flex>
+               </form>
          </>} />   
     )
     

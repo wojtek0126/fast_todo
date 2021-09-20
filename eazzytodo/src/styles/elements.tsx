@@ -66,7 +66,7 @@
   export const waveEffectContainer: Styles = {  
     width: '100vw',
     position: 'absolute',
-    top: 240,
+    top: 280,
     left: 0,
     maxWidth: '100%',
     zIndex: 0
@@ -246,7 +246,7 @@ export const btnPrimary: Styles = {
   export const inputGeneral: Styles = {    
     wordWrap: 'wrap',
     fontFamily: 'body',
-    background: 'inputBackground',
+    backgroundColor: 'inputBackground',
     color: 'text2',   
     borderRadius: inputBorderRadius,
     margin: 0,

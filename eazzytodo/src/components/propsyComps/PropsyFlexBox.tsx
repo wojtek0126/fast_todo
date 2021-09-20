@@ -1,9 +1,9 @@
 import React from "react";
-import { Flex } from "theme-ui";
+import { Box } from "theme-ui";
 import { boxBorderRadius, itemBoxShadow } from "../../styles/elements";
 
 
-const PropsyFlexBox = React.memo(({display,
+const PropsyFlexBox = React.memo(({display = 'flex',
                                    margin,
                                    marginTop = 50,
                                    marginBottom = 80,
@@ -15,7 +15,7 @@ const PropsyFlexBox = React.memo(({display,
                                    opacity = 0.8}: any) => {
 
     return (
-        <Flex 
+        <Box 
         sx={{
             flexDirection: 'column',
             display: `${display}`,
@@ -36,7 +36,7 @@ const PropsyFlexBox = React.memo(({display,
             transition: `${transition}`, 
                 }}
           onClick={onClick}
-        >{content}</Flex>
+        >{content}</Box>
     )    
 });
 

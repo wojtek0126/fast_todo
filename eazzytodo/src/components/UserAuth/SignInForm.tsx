@@ -2,11 +2,13 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 
-import { iconSignInBtn } from "../../content/icons";
+import { iconSignInBtn, iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
-import { recoilUser } from "../../recoil/recoil";
+import { displayState, recoilUser } from "../../recoil/recoil";
+import { btnGradient, btnPrimary } from "../../styles/elements";
 import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
+import PropsyBtn from "../propsyComps/PropsyBtn";
 
 import PropsySignLogForm from "../propsyComps/PropsySignLogForm";
 
@@ -19,8 +21,17 @@ const SignInForm = () => {
   const [alertContent, setAlerContent] = useState("");
 
   const [recoilUserGet, setRecoilUserGet] = useRecoilState(recoilUser);
+  const [recoilDisplay, setRecoilDisplay] = useRecoilState(displayState);
 
 
+  const handleEnableDisableSignUp = () => {
+    if (recoilDisplay === 'none') {
+      setRecoilDisplay('flex');
+    }
+    else {
+      setRecoilDisplay('none');
+    }
+  }
   
   const handleChangeEmail = (event: any) => {
     setEmailValue(event.target.value);
@@ -59,6 +70,7 @@ const SignInForm = () => {
 
   return (<>
     <PropsySignLogForm 
+        // display={'none'}
         textHead={'Log in'}
         buttonContent={iconSignInBtn}
         emailInputTxt={emailValue}
@@ -67,6 +79,13 @@ const SignInForm = () => {
         onChangePass ={handleChangePassword}
         onSubmit={signIn}
         margin={2}
+        extraContent={
+        <PropsyBtn background={btnGradient}
+                   content={iconSignUpBtn}
+                   type={'button'} 
+                   onClick={handleEnableDisableSignUp}
+        />
+        }
     />
     <PropsyAlertBox display={alertDisplay}
                     content={alertContent}

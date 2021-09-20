@@ -10,13 +10,15 @@ const PropsyBtn = React.memo(({animTime,
                                content, 
                                isDisabled, 
                                opacity, 
-                               transition
+                               transition, type
                               }: any ) => {
 
     return (
         <Button disabled={isDisabled} 
+                type={type}
         sx={{
           backgroundImage: `${background}`,
+          display: 'flex',
           cursor: 'pointer',
           margin: '10px',
           padding: '15px',
