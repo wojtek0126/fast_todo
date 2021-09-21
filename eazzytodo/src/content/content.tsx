@@ -4,8 +4,7 @@ export const txtSignOutEng: string = "Sign out";
 
 export const txtSearchInputEng: string = "Search for task..";
 
-export const txtTitleSmallEng: string = "Welcome to my personal Todo list. Happy list. Also my first TS app. Weekend work, \
-I can do faster than that. Loads of time available now :) So far it is supporting Android and desktop, IOS wip";
+export const txtTitleSmallEng: string = "Welcome to my personal Todo list. Happy list. With this thing I am honing my React skills.";
 
 export const txtTitleBigEng: string = "This is my personal todo list app made with React.js and several of it's libraries.\
  Feel free to sign in, assign Yourself some task and of course try to make it done. This app is evolving so next time around\

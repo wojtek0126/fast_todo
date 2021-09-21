@@ -11,7 +11,6 @@ const SignOutButton = () => {
     try {
       if (firebaseInstance) {
         await firebaseInstance.auth().signOut();   
-        localStorage.clear();    
       }
     } catch (error) {
       console.log("error", error);
