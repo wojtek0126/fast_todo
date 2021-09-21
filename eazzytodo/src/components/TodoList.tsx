@@ -131,11 +131,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
                   <option value="Show all" >{`Show all`}</option>
                   <option value="In progress only" >In progress only</option>
                   <option value="Completed only" >Completed only</option>           
-                </Select>
-                {/* <Select sx={optionBox} defaultValue="New" onChange={(e) => filteredDate(e.target.value)}>
-                  <option value="New">New</option>
-                  <option value="Old">Old</option>             
-                </Select> */}
+                </Select>              
               </Flex>
 
          
