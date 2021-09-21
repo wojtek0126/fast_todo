@@ -22,8 +22,7 @@ import { auth, firestore } from '../firebase/firebase';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import { addTaskContainer,
-         addTodoForm,
-          bigTitleTxt,
+         addTodoForm,          
           btnAddTask,
           btnContainer,
           btnScrollUp,
@@ -33,10 +32,13 @@ import { addTaskContainer,
           optionBox,
           todoFiltersContainer,
           todosContainer,
-          todoStatusContainer } from '../styles/elements';
+          todoStatusContainer, 
+          userWelcomeTxt,    
+          waveEffectContainer2} from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
 import SignOutButton from './UserAuth/SignOutButton';
+import Wave from 'react-wavify';
 require('firebase/auth');  
 
 
@@ -101,8 +103,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       const { uid, photoURL } = auth.currentUser!;
   
       await todosRef.add({
-        userName: "To be set",
-        id: getId(),
+        userName: userEmail,        
         type: "task",
         assignedTo: "Not assigned yet",
         assignedBy: "Not set yet",
@@ -120,9 +121,22 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
     }
   
-    return (<>          
+    return (<>   
+            <Box sx={waveEffectContainer2}>
+          <Wave mask="url(#mask)" fill="#1277b0" >
+            <defs>
+              <linearGradient id="gradient" gradientTransform="rotate(90)">
+                <stop offset="0" stopColor="white" />
+                <stop offset="0.5" stopColor="black" />
+              </linearGradient>
+              <mask id="mask">
+                <rect x="0" y="0" width="2000" height="200" fill="url(#gradient)"  />
+              </mask>
+            </defs>
+          </Wave> 
+        </Box>         
           <Box sx={btnContainer} >
-            <Paragraph sx={bigTitleTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
+            <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
             <SignOutButton />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>
@@ -204,8 +218,3 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       
 export default TodoList;     
 
-
-let id = 0
-const getId = () => {
-  return id++
-}

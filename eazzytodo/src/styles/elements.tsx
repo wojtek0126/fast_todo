@@ -72,6 +72,15 @@
     zIndex: 0
   };
 
+  export const waveEffectContainer2: Styles = {  
+    width: '100vw',
+    position: 'absolute',
+    top: 200,
+    left: 0,
+    maxWidth: '100%',
+    zIndex: 0
+  };
+
   export const todoFiltersContainer: Styles = {  
     flexDirection: 'column',
     justifyContent: 'center',
@@ -307,6 +316,18 @@ export const btnPrimary: Styles = {
     marginTop: 40,
     marginBottom: 40,
     };
+
+    export const userWelcomeTxt: Styles = {
+      alignSelf: 'center',
+      fontSize: [12, 14, 16, 20],
+      maxWidth: '100vw',
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-word',
+      textShadow: txtShadow,
+      color: 'text2',
+      marginTop: 40,
+      marginBottom: 40,
+      };
 
   export const smallTitleTxt: Styles = {
     width: '100%',

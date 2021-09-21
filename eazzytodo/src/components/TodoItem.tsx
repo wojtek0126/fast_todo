@@ -100,7 +100,7 @@ function TodoItem(props: AppProps) {
         marginBottom={"60px"}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
-  <Paragraph sx={userName}>{userEmail}</Paragraph>
+  <Paragraph sx={userName}>{props.todo.userName}</Paragraph>
         <Textarea sx={inputTodoEdit}
              defaultValue={todoTxt}
              placeholder={todoTxt}
