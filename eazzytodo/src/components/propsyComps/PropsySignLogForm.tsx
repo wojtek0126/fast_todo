@@ -6,6 +6,8 @@ import PropsyFlexBox from "./PropsyFlexBox";
 
 
 const PropsySignLogForm = React.memo(({textHead,
+                                       transition,
+                                       opacity,
                                        display,
                                        buttonContent,
                                        onSubmit,
@@ -14,10 +16,13 @@ const PropsySignLogForm = React.memo(({textHead,
                                        emailInputTxt,
                                        passInputTxt,
                                        margin, 
-                                       extraContent
+                                       extraContent,
+                                       animationBtn
                                        }: any) => {
     return (
         <PropsyFlexBox 
+        transition={transition}
+        opacity={opacity}
         display={display}
         margin={margin}
         content={<>
@@ -32,6 +37,7 @@ const PropsySignLogForm = React.memo(({textHead,
                           background={btnGradient}
                           content={buttonContent}
                           onSubmit={onSubmit}
+                          animation={animationBtn}
                           >Sign in</PropsyBtn>
                 {extraContent}
              </Flex>

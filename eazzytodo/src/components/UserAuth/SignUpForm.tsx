@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
-import { displayStateValue, recoilUser } from "../../recoil/recoil";
+import { displayStateValue } from "../../recoil/recoil";
 import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
 import PropsySignLogForm from "../propsyComps/PropsySignLogForm";
 
@@ -15,13 +15,11 @@ const SignUpForm = () => {
     const [alertDisplay, setAlertDiaspaly] = useState('none');
     const [alertContent, setAlerContent] = useState("");
 
-    const [recoilUserGet, setRecoilUserGet] = useRecoilState(recoilUser);
-    const isEnabled = useRecoilValue(displayStateValue);
 
+    const isEnabled = useRecoilValue(displayStateValue);
 
     const handleChangeEmail = (event: any) => {
         setEmailValue(event.target.value);
-        // setRecoilUserGet(event.target.value);
       };
 
       const handleChangePassword = (event: any) => {
@@ -31,7 +29,6 @@ const SignUpForm = () => {
   const firebaseInstance = getFirebase();
   const email = emailValue;
   const password = passwordlValue;
-  console.log(recoilUserGet, "email check");
 
   const signUp = async (event: any) => {
     event.preventDefault();   
@@ -41,8 +38,8 @@ const SignUpForm = () => {
         const user = await firebaseInstance
           .auth()
           .createUserWithEmailAndPassword(email, password);
-          setRecoilUserGet(email);
-        console.log("user", user);        
+          localStorage.setItem('userEmail', email);
+          console.log("user", user);        
       }
     } catch (error: any) {
       console.log("error", error);

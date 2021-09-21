@@ -1,5 +1,4 @@
 
-
 import { iconSignOutBtn } from "../../content/icons";
 import getFirebase from "../../firebase/firebase";
 import { btnGradient } from "../../styles/elements";
@@ -11,7 +10,8 @@ const SignOutButton = () => {
   const signOut = async () => {
     try {
       if (firebaseInstance) {
-        await firebaseInstance.auth().signOut();       
+        await firebaseInstance.auth().signOut();   
+        localStorage.clear();    
       }
     } catch (error) {
       console.log("error", error);

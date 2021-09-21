@@ -66,7 +66,7 @@
   export const waveEffectContainer: Styles = {  
     width: '100vw',
     position: 'absolute',
-    top: 280,
+    top: 260,
     left: 0,
     maxWidth: '100%',
     zIndex: 0
@@ -326,7 +326,7 @@ export const btnPrimary: Styles = {
       marginBottom: 10 
       };
 
-// images    
+// avatar and user details 
   export const userImg: Styles = {
     borderRadius: '50%',
     width: '40px',
@@ -334,6 +334,18 @@ export const btnPrimary: Styles = {
     position: 'absolute',
     left: '-16px',
     top: '-20px'
+  };
+
+  export const userName: Styles = {
+    borderRadius: boxBorderRadius,
+    width: '200px',
+    maxWidth: '240px',
+    overflow: 'hidden',
+    padding: 1,
+    position: 'absolute',
+    left: '40px',
+    top: '-20px',
+    backgroundColor: 'userBackground'
   };
 
 // animations

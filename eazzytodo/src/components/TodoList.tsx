@@ -8,8 +8,6 @@ import {
   Select,
   Paragraph
   } from 'theme-ui';  
-// trouble with recoil value child bla bla is here
-  import { useRecoilValue } from 'recoil';
 
 import ScrollTop from "react-scrolltop-button";  
 import { BsArrowBarUp } from 'react-icons/bs'; 
@@ -39,7 +37,6 @@ import { addTaskContainer,
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
 import SignOutButton from './UserAuth/SignOutButton';
-import { loggedUserText } from '../recoil/recoil';
 require('firebase/auth');  
 
 
@@ -54,10 +51,10 @@ function TodoList() {
 
     const [searchByTxt, setSearchByTxt] = useState('');  
 
-    const [filterCompleted, setFilterCompleted] = useState("Show");
+    const [filterCompleted, setFilterCompleted] = useState("Show"); 
 
-    const loggedWelcome = useRecoilValue(loggedUserText);
-    console.log(loggedUserText)
+    const userEmail = localStorage.getItem('userEmail');    
+    
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;
@@ -125,7 +122,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   
     return (<>          
           <Box sx={btnContainer} >
-            <Paragraph sx={bigTitleTxt}>{loggedWelcome}</Paragraph>
+            <Paragraph sx={bigTitleTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
             <SignOutButton />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>
@@ -143,11 +140,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
                   <option value="Show all" >{`Show all`}</option>
                   <option value="In progress only" >In progress only</option>
                   <option value="Completed only" >Completed only</option>           
-                </Select>
-                {/* <Select sx={optionBox} defaultValue="New" onChange={(e) => filteredDate(e.target.value)}>
-                  <option value="New">New</option>
-                  <option value="Old">Old</option>             
-                </Select> */}
+                </Select>           
               </Flex>
 
          
@@ -211,7 +204,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       
 export default TodoList;     
 
-// utility for creating unique Id
+
 let id = 0
 const getId = () => {
   return id++

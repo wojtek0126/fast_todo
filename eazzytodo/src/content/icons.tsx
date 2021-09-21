@@ -1,4 +1,4 @@
-import { AiOutlineAppstoreAdd, AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineAppstoreAdd, AiOutlineDelete, AiOutlinePlus } from 'react-icons/ai';
 import { FaFlagCheckered } from 'react-icons/fa';
 import { MdSystemUpdateAlt } from 'react-icons/md';
 import { BiLogOutCircle, BiLogInCircle, BiUserPlus } from 'react-icons/bi';
@@ -16,5 +16,6 @@ export const iconSignInBtn: JSX.Element = <BiLogInCircle />;
 
 export const iconSignUpBtn: JSX.Element = <BiUserPlus />;
 
-export const iconSignOutBtn: JSX.Element = <BiLogOutCircle />;
+export const iconAddUser: JSX.Element = <AiOutlinePlus />;
 
+export const iconSignOutBtn: JSX.Element = <BiLogOutCircle />;

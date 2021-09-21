@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { useState, useCallback } from 'react';
 
-import { Image, Flex, Textarea } from 'theme-ui'; 
+import { Image, Flex, Textarea, Paragraph } from 'theme-ui'; 
 
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -11,7 +11,8 @@ import { btnGradient,
          clickedBtnAnimShrink,
          inputTodoEdit,
          itemsBtnsContainer,         
-         userImg } from '../styles/elements';
+         userImg, 
+         userName} from '../styles/elements';
 import { firestore } from '../firebase/firebase';
 import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
@@ -89,7 +90,8 @@ function TodoItem(props: AppProps) {
       [props],
     );   
     
-    
+    const userEmail = localStorage.getItem('userEmail');
+
     return (<>  
       <PropsyFlexBox 
         opacity={opacity1}
@@ -98,6 +100,7 @@ function TodoItem(props: AppProps) {
         marginBottom={"60px"}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
+  <Paragraph sx={userName}>{userEmail}</Paragraph>
         <Textarea sx={inputTodoEdit}
              defaultValue={todoTxt}
              placeholder={todoTxt}
