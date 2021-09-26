@@ -48,7 +48,7 @@ function SignIn() {
             <Button sx={btnPrimary} onClick={signInWithGoogle} >{iconSignInBtn}</Button>
         </Box>   
         <Paragraph sx={smallTitleTxt}><WaveTxt text={txtTitleSmallEng} effect="stretch" effectChange={2.2}/></Paragraph>
-        <Heading sx={bigTitleTxt}><WaveTxt text={txtTitleBigEng} effect="stretch" effectChange={2.2}/></Heading>             
+        <Heading sx={bigTitleTxt}><WaveTxt text={txtTitleBigEng} effect="stretch" effectChange={2.2}/></Heading>                    
       </Flex>
     )
   
