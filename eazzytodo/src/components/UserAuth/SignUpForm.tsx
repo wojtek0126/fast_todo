@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { iconSignUpBtn } from "../../content/icons";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { iconCloseBtn, iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
-import { displayStateValue } from "../../recoil/recoil";
+import { displayAlertBoxValue, displayLoginBoxState, displaySignupBoxState } from "../../recoil/recoil";
+import { btnGradient } from "../../styles/elements";
 import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
+import PropsyBtn from "../propsyComps/PropsyBtn";
 import PropsySignLogForm from "../propsyComps/PropsySignLogForm";
 
 const SignUpForm = () => {      
@@ -15,8 +17,14 @@ const SignUpForm = () => {
     const [alertDisplay, setAlertDiaspaly] = useState('none');
     const [alertContent, setAlerContent] = useState("");
 
+    const setLoginBoxDisplay = useSetRecoilState(displayLoginBoxState);
 
-    const isEnabled = useRecoilValue(displayStateValue);
+    const [SignupBoxDisplay, setSignupBoxDisplay] = useRecoilState(displaySignupBoxState);
+
+
+  
+
+    const alertBoxDisplay = useRecoilValue(displayAlertBoxValue);
 
     const handleChangeEmail = (event: any) => {
         setEmailValue(event.target.value);
@@ -24,7 +32,13 @@ const SignUpForm = () => {
 
       const handleChangePassword = (event: any) => {
         setPasswordValue(event.target.value);
-      };      
+      };  
+     
+      
+    const setLoginOn = () => {
+      setLoginBoxDisplay('flex');
+      setSignupBoxDisplay('none');
+    };  
 
   const firebaseInstance = getFirebase();
   const email = emailValue;
@@ -55,7 +69,7 @@ const SignUpForm = () => {
 
   return (<>
     <PropsySignLogForm 
-    display={isEnabled}
+    display={SignupBoxDisplay}
     textHead={'Sign up'}
     buttonContent={iconSignUpBtn}
     emailInputTxt={emailValue}
@@ -64,6 +78,7 @@ const SignUpForm = () => {
     onChangePass ={handleChangePassword}
     onSubmit={signUp}
     margin={2}
+    extraContent={<PropsyBtn type='button' content={iconCloseBtn} background={btnGradient} onClick={setLoginOn} />}
 />
 <PropsyAlertBox display={alertDisplay}
                     content={alertContent}

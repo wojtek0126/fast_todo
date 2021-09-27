@@ -10,7 +10,9 @@ const PropsyBtn = React.memo(({animTime,
                                content, 
                                isDisabled, 
                                opacity, 
-                               transition, type
+                               transition,
+                               type,
+                               display = 'flex'
                               }: any ) => {
 
     return (
@@ -18,7 +20,7 @@ const PropsyBtn = React.memo(({animTime,
                 type={type}
         sx={{
           backgroundImage: `${background}`,
-          display: 'flex',
+          display: display,
           cursor: 'pointer',
           margin: '10px',
           padding: '15px',

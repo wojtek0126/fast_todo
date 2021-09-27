@@ -6,7 +6,7 @@ import { Image, Flex, Textarea, Paragraph } from 'theme-ui';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { btnGradient,        
-         btnSecondGradient,
+         btnCheckedGradient,
          clickedBtnAnimJump,
          clickedBtnAnimShrink,
          inputTodoEdit,
@@ -35,7 +35,7 @@ function TodoItem(props: AppProps) {
 
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
       if (props.todo.isCompleted === true) {
-        return btnSecondGradient;
+        return btnCheckedGradient;
       }
       else {
         return btnGradient;
@@ -64,7 +64,7 @@ function TodoItem(props: AppProps) {
           firestore.collection('todos').doc(props.todo.id).update({isCompleted: true,
             updatedAt: firebase.firestore.FieldValue.serverTimestamp(),            
           });
-          setBtnCompletedColor(btnSecondGradient);
+          setBtnCompletedColor(btnCheckedGradient);
         }        
         else {
           firestore.collection('todos').doc(props.todo.id).update({isCompleted: false,
@@ -90,7 +90,12 @@ function TodoItem(props: AppProps) {
       [props],
     );   
     
-    const userEmail = localStorage.getItem('userEmail');
+    // const userEmail = localStorage.getItem('userEmail');
+
+    const userNameParsedFunc = useCallback(() => {
+      const userNameParsed = props.todo.userName.match(/^(.+)@/)[1];
+      return userNameParsed;
+    },[props])
 
     return (<>  
       <PropsyFlexBox 
@@ -100,7 +105,7 @@ function TodoItem(props: AppProps) {
         marginBottom={"60px"}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
-  <Paragraph sx={userName}>{props.todo.userName}</Paragraph>
+  <Paragraph sx={userName}>{userNameParsedFunc()}</Paragraph>
         <Textarea sx={inputTodoEdit}
              defaultValue={todoTxt}
              placeholder={todoTxt}

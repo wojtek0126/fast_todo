@@ -5,8 +5,18 @@ import { atom, selector } from 'recoil';
     default: '', // default value (aka initial value)
   });
 
-  export const displayState = atom({
-    key: 'displayState', // unique ID (with respect to other atoms/selectors)
+  export const displayAlertBoxState = atom({
+    key: 'displayAlertBoxState', // unique ID (with respect to other atoms/selectors)
+    default: 'none', // default value (aka initial value)
+  });
+
+  export const displayLoginBoxState = atom({
+    key: 'displayLoginBoxState', // unique ID (with respect to other atoms/selectors)
+    default: 'flex', // default value (aka initial value)
+  });
+
+  export const displaySignupBoxState = atom({
+    key: 'displaySignupBoxState', // unique ID (with respect to other atoms/selectors)
     default: 'none', // default value (aka initial value)
   });
 
@@ -28,10 +38,28 @@ import { atom, selector } from 'recoil';
     },
   });
 
-  export const displayStateValue = selector({
-    key: 'displayStateValue', // unique ID (with respect to other atoms/selectors)
+  export const displayAlertBoxValue = selector({
+    key: 'displayAlertBoxValue', // unique ID (with respect to other atoms/selectors)
     get: ({get}) => {
-      const displayed = get(displayState);
+      const displayed = get(displayAlertBoxState);
+  
+      return displayed;
+    },
+  });
+
+  export const displayLoginBoxValue = selector({
+    key: 'displayLoginBoxValue', // unique ID (with respect to other atoms/selectors)
+    get: ({get}) => {
+      const displayed = get(displayAlertBoxState);
+  
+      return displayed;
+    },
+  });
+
+  export const displaySignupBoxValue = selector({
+    key: 'displaySignupBoxValue', // unique ID (with respect to other atoms/selectors)
+    get: ({get}) => {
+      const displayed = get(displayAlertBoxState);
   
       return displayed;
     },

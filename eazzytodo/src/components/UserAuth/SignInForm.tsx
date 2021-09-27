@@ -1,12 +1,14 @@
 
+import { Link } from "@theme-ui/components";
+import firebase from "firebase";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-import { iconAddUser, iconSignInBtn } from "../../content/icons";
+import { iconAddUser, iconCloseBtn, iconForgotpassBtn, iconSignInBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
-import { displayState } from "../../recoil/recoil";
-import { btnGradient, btnSecondGradient } from "../../styles/elements";
+import { displayAlertBoxState, displayLoginBoxState, displaySignupBoxState } from "../../recoil/recoil";
+import { btnGradient } from "../../styles/elements";
 import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
 import PropsyBtn from "../propsyComps/PropsyBtn";
 
@@ -19,27 +21,40 @@ const SignInForm = () => {
 
   const [alertDisplay, setAlertDiaspaly] = useState('none');
   const [alertContent, setAlerContent] = useState("");
+
+  const [forgotPasswordDisplay, setForgotPasswordDisplay] = useState('none');
   
-  const [recoilDisplay, setRecoilDisplay] = useRecoilState(displayState);
+  const setRecoilAlertBoxDisplay = useSetRecoilState(displayAlertBoxState);
 
-  const [ btnSignupColor, setBtnSignupColor ] = useState(btnGradient);
+  const [loginBoxDisplay, setLoginBoxDisplay] = useRecoilState(displayLoginBoxState);
 
-  const [ opacity1, setOpacity1 ] = useState(1);
+  const setSignupBoxDisplay = useSetRecoilState(displaySignupBoxState);
+
+
+  
+
+  // const [ btnSignupColor, setBtnSignupColor ] = useState(btnGradient);
+  // const [ btnSignupDisplay, setBtnSignupDisplay ] = useState("flex");
+
+
+  // const [ opacity1, setOpacity1 ] = useState(1);
 
 
   const handleEnableDisableSignUp = () => {
-    if (recoilDisplay === 'none') {
-      setRecoilDisplay('flex');
-      setBtnSignupColor(btnSecondGradient);
-      setOpacity1(0.5);
-    }
-    else {
-      setRecoilDisplay('none');
-      setBtnSignupColor(btnGradient);
-      setOpacity1(1);
+    // if (recoilAlertBoxDisplay === 'none') {
+      setRecoilAlertBoxDisplay('flex');
+      // setBtnSignupColor(btnCheckedGradient);
+      // setBtnSignupDisplay('none');
+      setLoginBoxDisplay('none');
+      setSignupBoxDisplay('flex');
+    // }
+    // else {
+    //   setRecoilAlertBoxDisplay('none');
+    //   setBtnSignupColor(btnGradient);
+    //   setLoginBoxDisplay('flex');
 
-    }
-  }
+    // }
+  };
   
   const handleChangeEmail = (event: any) => {
     setEmailValue(event.target.value);
@@ -48,6 +63,21 @@ const SignInForm = () => {
   const handleChangePassword = (event: any) => {
     setPasswordValue(event.target.value);
   };  
+
+  const handleForgotPassword = () => {
+    setForgotPasswordDisplay('flex');
+  };
+
+  const handleForgotPasswordClose = () => {
+    setForgotPasswordDisplay('none');
+  };
+
+  const handleForgotPasswordSend = () => {
+    firebase.auth().sendPasswordResetEmail(emailValue);
+    setTimeout(() => {
+      setForgotPasswordDisplay('none');
+    }, 2000);
+  };
  
   const firebaseInstance = getFirebase();
   const email = emailValue;
@@ -74,11 +104,19 @@ const SignInForm = () => {
     }
   };
 
+  const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
+    return <PropsyAlertBox  display={display}  content={<> 
+    <Link href="#!" sx={{color: 'text2', textDecoration: 'none'}} onClick={onClick} >
+      send reset password request to email typed into login form</Link>
+      <PropsyBtn content={iconCloseBtn} onClick={onClickClose} background={btnGradient} />
+      </>} />
+  };
 
-  return (<>
+
+  return (<>   
     <PropsySignLogForm 
         transition={'2s'}
-        opacity={opacity1}
+        display={loginBoxDisplay}
         textHead={'Log in'}
         buttonContent={iconSignInBtn}
         emailInputTxt={emailValue}
@@ -87,17 +125,26 @@ const SignInForm = () => {
         onChangePass ={handleChangePassword}
         onSubmit={signIn}
         margin={2}
-        extraContent={
-        <PropsyBtn background={btnSignupColor}
+        extraContent={<>
+        <PropsyBtn background={btnGradient}
+                  //  display={btnSignupDisplay}
                    content={iconAddUser}
                    type={'button'} 
                    onClick={handleEnableDisableSignUp}
         />
-        }
-    />
+        <PropsyBtn background={btnGradient}
+                   content={iconForgotpassBtn}
+                   type={'button'} 
+                   onClick={handleForgotPassword} />
+        </>}
+    />   
     <PropsyAlertBox display={alertDisplay}
                     content={alertContent}
-    />
+    />   
+    <ResetPasswordPopup display={forgotPasswordDisplay} 
+    onClick={handleForgotPasswordSend}
+    onClickClose={handleForgotPasswordClose}
+     />
   </>);
 };
 

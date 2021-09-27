@@ -12,10 +12,14 @@
   export const inputBorderRadius: string = '10px';
   export const boxBorderRadius: string = '10px';
   export const btnGradient: string = 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)';
-  export const btnSecondGradient: string = 'linear-gradient(to right, #50C9C3 0%, #96DEDA  51%, #50C9C3  100%)';
+  export const btnCheckedGradient: string = 'linear-gradient(to right, #50C9C3 0%, #96DEDA  51%, #50C9C3  100%)';
+  export const btnAlertgradient: string = 'linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%)}';
   export const txtShadow: string = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
   export const itemBoxShadow: string = '24px 33px 46px 3px rgba(0,0,0,0.92)';
  
+   
+
+  
   //containers
   export const appContainer: Styles = {
     background: `url(${background})`,
@@ -43,7 +47,8 @@
     justifyContent: 'center',
     alignItems: 'center',
     "@media (max-width: 780px)": { 
-      flexDirection: 'column'            
+      flexDirection: 'column',
+      position: 'relative'            
    }
   };
 
@@ -66,7 +71,7 @@
   export const waveEffectContainer: Styles = {  
     width: '100vw',
     position: 'absolute',
-    top: 260,
+    top: 220,
     left: 0,
     maxWidth: '100%',
     zIndex: 0

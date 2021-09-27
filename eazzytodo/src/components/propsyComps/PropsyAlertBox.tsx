@@ -20,7 +20,8 @@ const PropsyAlertBox = React.memo(({content, display = 'none'}: any ) => {
         boxShadow: itemBoxShadow,
         transition: '1s',
         position: 'absolute',
-        top:'50%',        
+        top:'50%',    
+        zIndex: 20    
     }}       
         >{content}</Box>
     )
