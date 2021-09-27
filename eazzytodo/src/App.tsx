@@ -42,11 +42,11 @@ function App() {
               color: 'text3'
             }}>Eazzy</Paragraph><Paragraph sx={{
               color: 'text4'
-            }}>Chat</Paragraph></Flex>
+            }}>Todo</Paragraph></Flex>
 
         <Header sx={headerContainer} >          
 
-        <section sx={{margin: 'auto'}}>     
+        <Box sx={{margin: 'auto'}}>     
 
             {currentUser ? <TodoList /> : <>
                 <Flex sx={signInFormContainer}>
@@ -63,7 +63,7 @@ function App() {
                 <Heading sx={bigTitleTxt}><WaveTxt text={txtTitleBigEng} effect="stretch" effectChange={2.2}/></Heading>  
          </>}
 
-         </section>
+         </Box>
 
         </Header>
       </Box>
