@@ -34,11 +34,10 @@ import { addTaskContainer,
           todosContainer,
           todoStatusContainer, 
           userWelcomeTxt,    
-          waveEffectContainer2} from '../styles/elements';
+          } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
 import SignOutButton from './UserAuth/SignOutButton';
-import Wave from 'react-wavify';
 require('firebase/auth');  
 
 
@@ -118,23 +117,10 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       })
   
       setFormValue('');
-      dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
+      if (dummy) dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
     }
   
-    return (<>   
-            <Box sx={waveEffectContainer2}>
-          <Wave mask="url(#mask)" fill="#1277b0" >
-            <defs>
-              <linearGradient id="gradient" gradientTransform="rotate(90)">
-                <stop offset="0" stopColor="white" />
-                <stop offset="0.5" stopColor="black" />
-              </linearGradient>
-              <mask id="mask">
-                <rect x="0" y="0" width="2000" height="200" fill="url(#gradient)"  />
-              </mask>
-            </defs>
-          </Wave> 
-        </Box>         
+    return (<>           
           <Box sx={btnContainer} >
             <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
             <SignOutButton />  
@@ -156,7 +142,6 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
                   <option value="Completed only" >Completed only</option>           
                 </Select>           
               </Flex>
-
          
             </Flex>
             <Flex sx={todoStatusContainer} >

@@ -15,9 +15,7 @@
   export const btnCheckedGradient: string = 'linear-gradient(to right, #50C9C3 0%, #96DEDA  51%, #50C9C3  100%)';
   export const btnAlertgradient: string = 'linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%)}';
   export const txtShadow: string = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
-  export const itemBoxShadow: string = '24px 33px 46px 3px rgba(0,0,0,0.92)';
- 
-   
+  export const itemBoxShadow: string = '24px 33px 46px 3px rgba(0,0,0,0.92)';   
 
   
   //containers
@@ -52,12 +50,24 @@
    }
   };
 
+  export const titleContainer: Styles = {
+    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+    color: 'text2',
+    paddingTop: 60,
+    marginBottom: 20,
+    fontSize: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap'      
+    };
+
   export const headerContainer: Styles = {
     display: 'flex',
     justtifyContent: 'center',
     alignItems: 'center',
-    padding: 30,
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: 'auto'
   };
 
   export const todosContainer: Styles = {          
@@ -87,16 +97,16 @@
   };
 
   export const todoFiltersContainer: Styles = {  
+    margin: 'auto',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: boxBorderRadius,
     backgroundColor: `todoBackground`,
     color: 'todoText',
-    width: '80vw',
+    width: '100%',
     wordBreak: 'break-word',
     position: 'relative',    
-    marginLeft: '10px',
     padding: 2, 
     marginTop: 50,    
     minHeight: 100,
@@ -108,10 +118,10 @@
     borderRadius: boxBorderRadius,
     backgroundColor: `todoBackground`,
     color: 'todoText',
-    width: '80vw',
+    width: '100%',
     wordBreak: 'break-word',
-    position: 'relative',    
-    marginLeft: '10px',
+    position: 'relative',   
+    margin: 'auto', 
     padding: 2, 
     marginTop: 50,
     marginBottom: 40,
@@ -130,14 +140,14 @@
   };
 
   export const todoItemContainer: Styles = {
+    margin: 'auto', 
     flexDirection: 'column',
     borderRadius: boxBorderRadius,
     backgroundColor: `todoBackground`,
     color: 'todoText',
-    width: '80vw',
+    width: '100%',
     wordBreak: 'break-word',
     position: 'relative',    
-    marginLeft: '10px',
     padding: 2, 
     marginTop: 50,
     marginBottom: 80,
@@ -317,9 +327,8 @@ export const btnPrimary: Styles = {
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word',
     textShadow: txtShadow,
-    color: 'underwater',
-    marginTop: 40,
-    marginBottom: 40,
+    color: 'text2',    
+    padding: 2
     };
 
     export const userWelcomeTxt: Styles = {
@@ -336,11 +345,11 @@ export const btnPrimary: Styles = {
 
   export const smallTitleTxt: Styles = {
     width: '100%',
-    color: 'underwater',
+    color: 'text2',
     fontWeight: '600',
-    textShadow: txtShadow,
-    marginTop: 60,
-    marginBottom: 60 
+    textShadow: txtShadow,  
+    marginTop: '40px',    
+    padding: 2
     };
 
     export const loginSignupTxt: Styles = {

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { iconCloseBtn, iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
-import { displayAlertBoxValue, displayLoginBoxState, displaySignupBoxState } from "../../recoil/recoil";
+import {  displayLoginBoxState, displaySignupBoxState } from "../../recoil/recoil";
 import { btnGradient } from "../../styles/elements";
 import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
 import PropsyBtn from "../propsyComps/PropsyBtn";
@@ -19,12 +19,7 @@ const SignUpForm = () => {
 
     const setLoginBoxDisplay = useSetRecoilState(displayLoginBoxState);
 
-    const [SignupBoxDisplay, setSignupBoxDisplay] = useRecoilState(displaySignupBoxState);
-
-
-  
-
-    const alertBoxDisplay = useRecoilValue(displayAlertBoxValue);
+    const [SignupBoxDisplay, setSignupBoxDisplay] = useRecoilState(displaySignupBoxState);  
 
     const handleChangeEmail = (event: any) => {
         setEmailValue(event.target.value);
@@ -32,20 +27,19 @@ const SignUpForm = () => {
 
       const handleChangePassword = (event: any) => {
         setPasswordValue(event.target.value);
-      };  
-     
+      };       
       
-    const setLoginOn = () => {
-      setLoginBoxDisplay('flex');
-      setSignupBoxDisplay('none');
-    };  
+      const setLoginOn = () => {
+        setLoginBoxDisplay('flex');
+        setSignupBoxDisplay('none');
+      };  
 
-  const firebaseInstance = getFirebase();
-  const email = emailValue;
-  const password = passwordlValue;
+    const firebaseInstance = getFirebase();
+    const email = emailValue;
+    const password = passwordlValue;
 
-  const signUp = async (event: any) => {
-    event.preventDefault();   
+    const signUp = async (event: any) => {
+      event.preventDefault();   
 
     try {
       if (firebaseInstance) {

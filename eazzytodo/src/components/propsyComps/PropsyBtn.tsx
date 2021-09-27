@@ -12,7 +12,8 @@ const PropsyBtn = React.memo(({animTime,
                                opacity, 
                                transition,
                                type,
-                               display = 'flex'
+                               display = 'flex',
+                               borderRadius = btnBorderRadius
                               }: any ) => {
 
     return (
@@ -21,16 +22,16 @@ const PropsyBtn = React.memo(({animTime,
         sx={{
           backgroundImage: `${background}`,
           display: display,
+          fontSize: [16, 20],
           cursor: 'pointer',
           margin: '10px',
           padding: '15px',
-          textAlign: 'center',
-          textTransform: 'uppercase',
+          textAlign: 'center',          
           transition: `${transition}`,
           backgroundSize: '200% auto',
           color: 'white',            
           boxShadow: '0 0 20px #eee',
-          borderRadius: btnBorderRadius,
+          borderRadius: borderRadius,
           animation: `${animation} ${animTime} ease 1`,
           opacity: `${opacity}`,
           '&:hover, &:focus': {  

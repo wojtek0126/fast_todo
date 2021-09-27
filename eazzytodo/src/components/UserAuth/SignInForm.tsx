@@ -1,5 +1,3 @@
-
-import { Link } from "@theme-ui/components";
 import firebase from "firebase";
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -31,29 +29,12 @@ const SignInForm = () => {
   const setSignupBoxDisplay = useSetRecoilState(displaySignupBoxState);
 
 
-  
-
-  // const [ btnSignupColor, setBtnSignupColor ] = useState(btnGradient);
-  // const [ btnSignupDisplay, setBtnSignupDisplay ] = useState("flex");
-
-
-  // const [ opacity1, setOpacity1 ] = useState(1);
-
-
   const handleEnableDisableSignUp = () => {
-    // if (recoilAlertBoxDisplay === 'none') {
       setRecoilAlertBoxDisplay('flex');
-      // setBtnSignupColor(btnCheckedGradient);
-      // setBtnSignupDisplay('none');
+    
       setLoginBoxDisplay('none');
       setSignupBoxDisplay('flex');
-    // }
-    // else {
-    //   setRecoilAlertBoxDisplay('none');
-    //   setBtnSignupColor(btnGradient);
-    //   setLoginBoxDisplay('flex');
-
-    // }
+  
   };
   
   const handleChangeEmail = (event: any) => {
@@ -106,8 +87,8 @@ const SignInForm = () => {
 
   const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
     return <PropsyAlertBox  display={display}  content={<> 
-    <Link href="#!" sx={{color: 'text2', textDecoration: 'none'}} onClick={onClick} >
-      send reset password request to email typed into login form</Link>
+    <PropsyBtn onClick={onClick} borderRadius={'10px'}
+    content={`send reset password request to ${emailValue}`} background={btnGradient} />
       <PropsyBtn content={iconCloseBtn} onClick={onClickClose} background={btnGradient} />
       </>} />
   };

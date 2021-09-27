@@ -1,4 +1,3 @@
-
 import { iconSignOutBtn } from "../../content/icons";
 import getFirebase from "../../firebase/firebase";
 import { btnGradient } from "../../styles/elements";

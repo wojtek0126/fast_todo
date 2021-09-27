@@ -1,25 +1,20 @@
 /** @jsxImportSource theme-ui */
 import './App.css';
-// all ok for recoil
 import {  RecoilRoot } from 'recoil';
-
 import TodoList from './components/TodoList';
 import { Box, Flex, Heading, Paragraph, ThemeProvider } from 'theme-ui';
 import theme from './styles/theme';
-
 import { Wave as WaveTxt } from 'react-animated-text';
-import Wave from 'react-wavify';
 import 'firebase/firestore';
 import 'firebase/auth';
-import getFirebase, { auth } from './firebase/firebase';
-import { appContainer, bigTitleTxt, headerContainer, signInFormContainer, signLogContainer, smallTitleTxt, waveEffectContainer } from './styles/elements';
+import getFirebase from './firebase/firebase';
+import { appContainer, bigTitleTxt, headerContainer, signInFormContainer, signLogContainer, smallTitleTxt, titleContainer, waveEffectContainer } from './styles/elements';
 import { useEffect, useState } from 'react';
 import SignUpForm from './components/UserAuth/SignUpForm';
 import SignInForm from './components/UserAuth/SignInForm';
 import { txtTitleBigEng, txtTitleSmallEng } from './content/content';
-import { recoilUser } from './recoil/recoil';
+import { Header } from 'semantic-ui-react';
 require('firebase/auth');
-
 
 function App() {
 
@@ -42,36 +37,27 @@ function App() {
   return (  
       <ThemeProvider theme={theme}>    
       <RecoilRoot>
-      <div sx={appContainer} >
-        <header sx={headerContainer} >
-          
+      <Box sx={appContainer} >
+      <Flex sx={titleContainer}><Paragraph>The</Paragraph><Paragraph sx={{
+              color: 'text3'
+            }}>Eazzy</Paragraph><Paragraph sx={{
+              color: 'text4'
+            }}>Chat</Paragraph></Flex>
 
-        <section>     
+        <Header sx={headerContainer} >          
+
+        <section sx={{margin: 'auto'}}>     
 
             {currentUser ? <TodoList /> : <>
                 <Flex sx={signInFormContainer}>
-                  {/* <Flex sx={{color: 'text2'}}>
-                    {currentUser
-                      ? `The current logged in user is: ${currentUser}.`
-                      : "No user is currently logged in."}
-                  </Flex> */}
+                
                   <Flex sx={signLogContainer}>
                     <SignUpForm />
                     <SignInForm /> 
                   </Flex>                                   
               </Flex>
               <Box sx={waveEffectContainer}>
-                  <Wave mask="url(#mask)" fill="#1277b0" >
-                    <defs>
-                      <linearGradient id="gradient" gradientTransform="rotate(90)">
-                        <stop offset="0" stopColor="white" />
-                        <stop offset="0.5" stopColor="black" />
-                      </linearGradient>
-                      <mask id="mask">
-                        <rect x="0" y="0" width="2000" height="200" fill="url(#gradient)"  />
-                      </mask>
-                    </defs>
-                  </Wave> 
+                 
               </Box>  
                 <Paragraph sx={smallTitleTxt}><WaveTxt text={txtTitleSmallEng} effect="stretch" effectChange={2.2}/></Paragraph>
                 <Heading sx={bigTitleTxt}><WaveTxt text={txtTitleBigEng} effect="stretch" effectChange={2.2}/></Heading>  
@@ -79,8 +65,8 @@ function App() {
 
          </section>
 
-        </header>
-      </div>
+        </Header>
+      </Box>
       </RecoilRoot>
       </ThemeProvider>  
   );

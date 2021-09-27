@@ -24,7 +24,6 @@ type AppProps = {
   todo: any;     
 }; 
 
-
 function TodoItem(props: AppProps) {  
     const [ todoTxt, setTodoTxt ] = useState(props.todo.text);
 
@@ -90,8 +89,6 @@ function TodoItem(props: AppProps) {
       [props],
     );   
     
-    // const userEmail = localStorage.getItem('userEmail');
-
     const userNameParsedFunc = useCallback(() => {
       const userNameParsed = props.todo.userName.match(/^(.+)@/)[1];
       return userNameParsed;
