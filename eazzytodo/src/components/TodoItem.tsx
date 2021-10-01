@@ -99,7 +99,7 @@ function TodoItem(props: AppProps) {
         opacity={opacity1}
         width={'80vw'}
         transition={'1s'}
-        marginBottom={"60px"}
+        marginBottom={"80px"}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
   <Paragraph sx={userName}>{userNameParsedFunc()}</Paragraph>

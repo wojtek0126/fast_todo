@@ -1,6 +1,5 @@
 /** @jsxImportSource theme-ui */
 import { 
-  Button,
   Flex,  
   Box, 
   Textarea,
@@ -23,8 +22,8 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import { addTaskContainer,
          addTodoForm,          
-          btnAddTask,
           btnContainer,
+          btnGradient,         
           btnScrollUp,
           displayBar,
           inputTodoAdd,
@@ -38,6 +37,7 @@ import { addTaskContainer,
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
 import SignOutButton from './UserAuth/SignOutButton';
+import PropsyBtn from './propsyComps/PropsyBtn';
 require('firebase/auth');  
 
 
@@ -180,9 +180,12 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
                       placeholder={txtTodoInputEng}               
                 >{formValue}
                 </Textarea>               
-                  <Button type="submit" disabled={!formValue}
-                sx={btnAddTask}
-                >{iconAddTaskBtn}</Button>
+                  <PropsyBtn type={"submit"}
+                             tooltipId={'add'}
+                             tooltipTxt={'add this task'} 
+                             isDisabled={!formValue}
+                             background={btnGradient}
+                             content={iconAddTaskBtn} />               
                 </Box>             
               <Flex>            
           </Flex>         

@@ -202,8 +202,8 @@ export const btnPrimary: Styles = {
     boxShadow: '0 0 20px #eee',
     borderRadius: '50%',
     position: 'fixed',
-    right: 0,
-    bottom: 61,      
+    right: 8,
+    bottom: 65,      
     '&:hover, &:focus': {  
       backgroundPosition: 'right center', 
       color: '#fff',
