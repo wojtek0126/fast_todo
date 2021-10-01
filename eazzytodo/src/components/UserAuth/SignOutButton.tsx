@@ -19,6 +19,8 @@ const SignOutButton = () => {
   return (
     <div>    
       <PropsyBtn onClick={() => signOut()}
+                 tooltipId={'logout'}
+                 tooltipTxt={'log out and exit'}
                  content={iconSignOutBtn}
                  background={btnGradient}
                  />

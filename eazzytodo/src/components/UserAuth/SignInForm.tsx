@@ -2,7 +2,9 @@ import firebase from "firebase";
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
-import { iconAddUser, iconCloseBtn, iconForgotpassBtn, iconSignInBtn } from "../../content/icons";
+import ReactTooltip from 'react-tooltip';
+
+import { iconAddUser, iconCloseBtn, iconForgotpassBtn, iconSendMailBtn, iconSignInBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
 import { displayAlertBoxState, displayLoginBoxState, displaySignupBoxState } from "../../recoil/recoil";
@@ -86,16 +88,26 @@ const SignInForm = () => {
   };
 
   const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
-    return <PropsyAlertBox  display={display}  content={<> 
-    <PropsyBtn onClick={onClick} borderRadius={'10px'}
-    content={`send reset password request to ${emailValue}`} background={btnGradient} />
-      <PropsyBtn content={iconCloseBtn} onClick={onClickClose} background={btnGradient} />
+    return <PropsyAlertBox  display={display}  
+                            content={<> 
+    <PropsyBtn onClick={onClick}
+              tooltipId={'reset-password'}
+              tooltipTxt={`send reset password request to(enter email above): ${emailValue}`}
+               content={iconSendMailBtn}
+               background={btnGradient} />
+      <PropsyBtn content={iconCloseBtn}
+       tooltipId={'reset-password-close'}
+       tooltipTxt={`close reset password window`}
+                 onClick={onClickClose}
+                 background={btnGradient} />
       </>} />
   };
 
 
   return (<>   
     <PropsySignLogForm 
+        tooltipId={'login'}
+        tooltipTxt={'login'}
         transition={'2s'}
         display={loginBoxDisplay}
         textHead={'Log in'}
@@ -108,13 +120,18 @@ const SignInForm = () => {
         margin={2}
         extraContent={<>
         <PropsyBtn background={btnGradient}
-                  //  display={btnSignupDisplay}
+                   tooltipId={'register'}
+                   tooltipTxt={'open register window'}
                    content={iconAddUser}
                    type={'button'} 
                    onClick={handleEnableDisableSignUp}
         />
         <PropsyBtn background={btnGradient}
+                   size={'0.5'}
+                   tooltipId={'forgot-password'}
+                   tooltipTxt={'forgot password'}
                    content={iconForgotpassBtn}
+                   tooltipText={"forgotPassword"}
                    type={'button'} 
                    onClick={handleForgotPassword} />
         </>}

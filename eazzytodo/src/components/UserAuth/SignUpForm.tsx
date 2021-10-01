@@ -63,6 +63,8 @@ const SignUpForm = () => {
 
   return (<>
     <PropsySignLogForm 
+    tooltipId={'register-new'}
+    tooltipTxt={'register new user'}
     display={SignupBoxDisplay}
     textHead={'Sign up'}
     buttonContent={iconSignUpBtn}
@@ -72,7 +74,12 @@ const SignUpForm = () => {
     onChangePass ={handleChangePassword}
     onSubmit={signUp}
     margin={2}
-    extraContent={<PropsyBtn type='button' content={iconCloseBtn} background={btnGradient} onClick={setLoginOn} />}
+    extraContent={<PropsyBtn type='button'
+                             tooltipId={'register-close'}
+                             tooltipTxt={'close register window'}
+                             content={iconCloseBtn}
+                             background={btnGradient}
+                              onClick={setLoginOn} />}
 />
 <PropsyAlertBox display={alertDisplay}
                     content={alertContent}

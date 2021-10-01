@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "theme-ui";
 import { btnBorderRadius } from "../../styles/elements";
-
+import ReactTooltip from 'react-tooltip';
 
 const PropsyBtn = React.memo(({animTime,
                                background,
@@ -13,13 +13,18 @@ const PropsyBtn = React.memo(({animTime,
                                transition,
                                type,
                                display = 'flex',
-                               borderRadius = btnBorderRadius
-                              }: any ) => {
+                               borderRadius = btnBorderRadius,
+                               tooltipId,
+                               tooltipTxt,
+                               size = '1'
+                              }: any ) => {                      
+                               
 
-    return (
+    return (<>
         <Button disabled={isDisabled} 
-                type={type}
+                type={type}                
         sx={{
+          transform: `scale(${size})`,
           backgroundImage: `${background}`,
           display: display,
           fontSize: [16, 20],
@@ -41,9 +46,11 @@ const PropsyBtn = React.memo(({animTime,
          }
         }}
           onClick={onClick}
-        >{content}</Button>
-    )
-    
+        >{<div style={{display: 'flex'}} data-tip data-for={tooltipId}>{content}</div>}</Button>
+        <ReactTooltip id={tooltipId} place="bottom" effect="solid">
+       {tooltipTxt}
+      </ReactTooltip>
+    </>)    
 });
 
 export default PropsyBtn 

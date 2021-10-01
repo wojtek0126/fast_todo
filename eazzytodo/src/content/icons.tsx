@@ -2,7 +2,7 @@ import { AiOutlineAppstoreAdd, AiOutlineClose, AiOutlineDelete, AiOutlinePlus } 
 import { FaFlagCheckered } from 'react-icons/fa';
 import { MdSystemUpdateAlt } from 'react-icons/md';
 import { BiLogOutCircle, BiLogInCircle, BiUserPlus } from 'react-icons/bi';
-import { RiLockPasswordLine } from 'react-icons/ri';
+import { RiLockPasswordLine, RiMailSendLine } from 'react-icons/ri';
 
 
 
@@ -26,5 +26,6 @@ export const iconCloseBtn: JSX.Element = <AiOutlineClose />;
 
 export const iconForgotpassBtn: JSX.Element = <RiLockPasswordLine />;
 
+export const iconSendMailBtn: JSX.Element = <RiMailSendLine />;
 
 

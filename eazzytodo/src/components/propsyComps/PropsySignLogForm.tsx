@@ -17,7 +17,9 @@ const PropsySignLogForm = React.memo(({textHead,
                                        passInputTxt,
                                        margin, 
                                        extraContent,
-                                       animationBtn
+                                       animationBtn,
+                                       tooltipId,
+                                       tooltipTxt
                                        }: any) => {
     return (
         <PropsyFlexBox 
@@ -33,6 +35,8 @@ const PropsySignLogForm = React.memo(({textHead,
            
              <Flex>
              <PropsyBtn sx={btnPrimary}
+                          tooltipTxt={tooltipTxt}
+                          tooltipId={tooltipId}
                           type="submit"
                           background={btnGradient}
                           content={buttonContent}

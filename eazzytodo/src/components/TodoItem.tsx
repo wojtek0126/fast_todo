@@ -112,11 +112,15 @@ function TodoItem(props: AppProps) {
         />
           <Flex sx={itemsBtnsContainer}>      
               <PropsyBtn 
+               tooltipId={'status'}
+               tooltipTxt={'switch completion status'}
                 background={btnCompletedColor}
                 onClick={onComplete}
                 content={iconCompleteTaskBtn}
               />       
               <PropsyBtn 
+                 tooltipId={'update'}
+                 tooltipTxt={'confirm content update'}
                  background={btnGradient}
                  onClick={onUpdate}
                  content={iconEditTaskBtn}
@@ -124,12 +128,13 @@ function TodoItem(props: AppProps) {
                  animTime={'1s'}               
               />
               <PropsyBtn 
+                 tooltipId={'delete'}
+                 tooltipTxt={'delete this task'}
                  background={btnGradient}
                  onClick={onDelete}
                  content={iconDeleteTaskBtn}
                  animation={animBtn2}
                  animTime={'2s'}
-
               />     
           </Flex>  
         </>}

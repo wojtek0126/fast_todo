@@ -171,6 +171,7 @@
 
 // buttons
 export const btnPrimary: Styles = {
+    display: 'flex',
     backgroundImage: btnGradient,
     cursor: 'pointer',
     margin: '10px',
@@ -229,7 +230,7 @@ export const btnPrimary: Styles = {
       textDecoration: 'none'
    },
        "@media (max-width: 780px)": { 
-      bottom: 0,
+      bottom: 1,
       opacity: 0.9              
    }
   };
