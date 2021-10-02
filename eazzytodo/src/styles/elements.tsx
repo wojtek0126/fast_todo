@@ -324,9 +324,9 @@ export const btnPrimary: Styles = {
 
   //text
   export const bigTitleTxt: Styles = {
-    alignSelf: 'center',
+    alignText: 'center',
     fontSize: [20, 14, 16, 20],
-    // width: '80vw',
+    // maxWidth: '80vw',
     // whiteSpace: 'pre-wrap',
     // wordBreak: 'break-word',
     textShadow: txtShadow,

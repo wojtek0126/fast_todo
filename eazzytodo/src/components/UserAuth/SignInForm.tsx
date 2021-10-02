@@ -1,8 +1,7 @@
+import { Box, Flex } from "@theme-ui/components";
 import firebase from "firebase";
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-
-import ReactTooltip from 'react-tooltip';
 
 import { iconAddUser, iconCloseBtn, iconForgotpassBtn, iconSendMailBtn, iconSignInBtn } from "../../content/icons";
 
@@ -104,8 +103,9 @@ const SignInForm = () => {
   };
 
 
-  return (<>   
-    <PropsySignLogForm 
+  return (<Flex sx={{width: '100vw'}}>   
+    <PropsySignLogForm
+        width={'20vw'} 
         tooltipId={'login'}
         tooltipTxt={'login'}
         transition={'2s'}
@@ -117,7 +117,7 @@ const SignInForm = () => {
         onChangeEmail={handleChangeEmail}
         onChangePass ={handleChangePassword}
         onSubmit={signIn}
-        margin={2}
+        margin={'0 auto'}
         extraContent={<>
         <PropsyBtn background={btnGradient}
                    tooltipId={'register'}
@@ -143,7 +143,7 @@ const SignInForm = () => {
     onClick={handleForgotPasswordSend}
     onClickClose={handleForgotPasswordClose}
      />
-  </>);
+  </Flex>);
 };
 
 export default SignInForm;

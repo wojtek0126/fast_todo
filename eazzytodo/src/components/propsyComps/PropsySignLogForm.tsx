@@ -19,10 +19,12 @@ const PropsySignLogForm = React.memo(({textHead,
                                        extraContent,
                                        animationBtn,
                                        tooltipId,
-                                       tooltipTxt
+                                       tooltipTxt,
+                                       width
                                        }: any) => {
     return (
         <PropsyFlexBox 
+        width={width}
         transition={transition}
         opacity={opacity}
         display={display}
