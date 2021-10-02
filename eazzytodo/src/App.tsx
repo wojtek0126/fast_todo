@@ -4,11 +4,12 @@ import {  RecoilRoot } from 'recoil';
 import TodoList from './components/TodoList';
 import { Box, Flex, Heading, Paragraph, ThemeProvider } from 'theme-ui';
 import theme from './styles/theme';
-import { Wave as WaveTxt } from 'react-animated-text';
+import ScrollText from 'react-scroll-text';
+import Typist from 'react-typist';
 import 'firebase/firestore';
 import 'firebase/auth';
 import getFirebase from './firebase/firebase';
-import { appContainer, bigTitleTxt, headerContainer, signInFormContainer, signLogContainer, smallTitleTxt, titleContainer, waveEffectContainer } from './styles/elements';
+import { appContainer, bigTitleTxt, copyrightTxt, headerContainer, signInFormContainer, signLogContainer, smallTitleTxt, titleContainer, waveEffectContainer } from './styles/elements';
 import { useEffect, useState } from 'react';
 import SignUpForm from './components/UserAuth/SignUpForm';
 import SignInForm from './components/UserAuth/SignInForm';
@@ -42,7 +43,9 @@ function App() {
               color: 'text3'
             }}>Eazzy</Paragraph><Paragraph sx={{
               color: 'text4'
-            }}>Todo</Paragraph></Flex>
+            }}>Todo</Paragraph>
+            <Paragraph  sx={copyrightTxt}>© 2021 HFM</Paragraph>            
+            </Flex>
 
         <Header sx={headerContainer} >          
 
@@ -59,8 +62,10 @@ function App() {
               <Box sx={waveEffectContainer}>
                  
               </Box>  
-                <Paragraph sx={smallTitleTxt}><WaveTxt text={txtTitleSmallEng} effect="stretch" effectChange={2.2}/></Paragraph>            
-                <Heading sx={bigTitleTxt}><WaveTxt text={txtTitleBigEng} effect="stretch" effectChange={2.2}/></Heading>  
+              <Typist>
+                <Paragraph sx={smallTitleTxt}>{txtTitleSmallEng}</Paragraph>                  
+              </Typist>
+              <ScrollText><Heading sx={bigTitleTxt}>{txtTitleBigEng}</Heading></ScrollText>  
          </>}
 
          </Box>

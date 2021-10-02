@@ -12,6 +12,7 @@ export default {
       text2: '#fff',
       text3: 'red',
       text4: 'blue',
+      appMainbackground: '#000',
       todoBackground: 'rgba(0, 153, 51, 0.8)',
       inputBackground: '#000',
       userBackground: 'rgba(255, 255, 0, 0.8)',

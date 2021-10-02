@@ -10,6 +10,8 @@ import {
 
 import ScrollTop from "react-scrolltop-button";  
 import { BsArrowBarUp } from 'react-icons/bs'; 
+import Typist from 'react-typist';
+
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
 
@@ -122,7 +124,10 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   
     return (<>           
           <Box sx={btnContainer} >
-            <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
+            <Typist>
+             <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
+            </Typist>
+            
             <SignOutButton />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>

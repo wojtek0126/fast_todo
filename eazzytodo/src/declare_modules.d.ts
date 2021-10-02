@@ -8,6 +8,7 @@ declare module 'react-awesome-button/src/components/AwesomeButton';
 declare module 'semantic-ui-react';
 declare module 'styled-components';
 declare module 'react-tooltip';
+declare module 'react-typist';
 
 
 

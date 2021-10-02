@@ -23,6 +23,7 @@
     "react-scrolltop-button": "^0.1.9",
     "react-sky": "^1.1.0",
     "react-tooltip": "^4.2.21",
+    "react-typist": "^2.0.5",
     "react-wavify": "^1.5.4",
     "recoil": "^0.4.1",
     "rxjs": "^7.3.0",

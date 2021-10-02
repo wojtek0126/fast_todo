@@ -4,12 +4,11 @@ export const txtSignOutEng: string = "Sign out";
 
 export const txtSearchInputEng: string = "Search for task..";
 
-export const txtTitleSmallEng: string = "Welcome to my personal Todo list. Happy list. With this thing I am honing my React skills.";
+export const txtTitleSmallEng: string = "Welcome to eazzy Todo list. Set a goal and make it done. Multipurpose usage. Have a happy todoing!";
 
-export const txtTitleBigEng: string = "This is my personal todo list app made with React.js and several of it's libraries.\
- Feel free to sign in, assign Yourself some task and of course try to make it done.\
- This app is in test mode, login with mock email recommended.\
- Maximum number of tasks is currently set to 50...have fun! "
+export const txtTitleBigEng: string = "This app is currently in test mode. mock email recommended.\
+ Feel free to sign in, assign Yourself some task, modify it at will, and of course try to make it completed.\
+  Maximum number of tasks is currently set to 50...have fun! "
 
 export const txtAddTaskBtnEng: string = "Add Task";
 

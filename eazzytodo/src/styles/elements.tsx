@@ -16,12 +16,14 @@
   export const btnAlertgradient: string = 'linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%)}';
   export const txtShadow: string = '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000';
   export const itemBoxShadow: string = '24px 33px 46px 3px rgba(0,0,0,0.92)';   
-
-  
+   
+   
   //containers
   export const appContainer: Styles = {
-    background: `url(${background})`,
-    maxWidth: '100vw',
+    // background: `url(${background})`,
+    backgroundColor: 'appMainbackground',
+    // backgroundBlendMode:'multiply,multiply',
+    axWidth: '100vw',
     minHeight: '100vh'    
   };
 
@@ -323,10 +325,10 @@ export const btnPrimary: Styles = {
   //text
   export const bigTitleTxt: Styles = {
     alignSelf: 'center',
-    fontSize: [12, 14, 16, 20],
-    maxWidth: '100vw',
-    whiteSpace: 'pre-wrap',
-    wordBreak: 'break-word',
+    fontSize: [20, 14, 16, 20],
+    // maxWidth: '100vw',
+    // whiteSpace: 'pre-wrap',
+    // wordBreak: 'break-word',
     textShadow: txtShadow,
     color: 'text2',    
     padding: 2
@@ -352,6 +354,17 @@ export const btnPrimary: Styles = {
     marginTop: '40px',    
     padding: 2
     };
+
+    export const copyrightTxt: Styles = {
+      width: '100%',
+      color: 'text2',
+      // alignSelf: 'center',
+      fontSize: 1,
+      textAlign: 'center',
+      textShadow: txtShadow,  
+      // marginTop: '20px',    
+      padding: 1
+      };
 
     export const loginSignupTxt: Styles = {
       width: '100%',
