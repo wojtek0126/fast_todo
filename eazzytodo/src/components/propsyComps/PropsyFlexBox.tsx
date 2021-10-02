@@ -12,7 +12,9 @@ const PropsyFlexBox = React.memo(({display = 'flex',
                                    transition, 
                                    onClick, 
                                    content, 
-                                   opacity = 0.8}: any) => {
+                                   opacity = 0.8,
+                                   backgroundColor = 'todoTaskBackground' 
+                                }: any) => {
 
     return (
         <Box 
@@ -20,7 +22,7 @@ const PropsyFlexBox = React.memo(({display = 'flex',
             flexDirection: 'column',
             display: `${display}`,
             borderRadius: boxBorderRadius,
-            backgroundColor: `todoBackground`,
+            backgroundColor: `${backgroundColor}`,
             color: 'todoText',
             width: `${width}`,
             wordBreak: 'break-word',

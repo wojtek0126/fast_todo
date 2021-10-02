@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
-import { Image, Flex, Textarea, Paragraph } from 'theme-ui'; 
+import { Image, Flex, Textarea, Paragraph, Select } from 'theme-ui'; 
 
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -12,7 +12,8 @@ import { btnGradient,
          inputTodoEdit,
          itemsBtnsContainer,         
          userImg, 
-         userName} from '../styles/elements';
+         userName,
+         optionBox} from '../styles/elements';
 import { firestore } from '../firebase/firebase';
 import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
@@ -31,6 +32,27 @@ function TodoItem(props: AppProps) {
     const [ animBtn2, setAnimBtn2 ] = useState("");
 
     const [ opacity1, setOpacity1 ] = useState(1);
+
+    const [ taskTypeColor, setTaskTypeColor ] = useState("todoTaskBackground");
+
+    useEffect(() => {
+      if (props.todo.type === "Task") {
+        setTaskTypeColor("todoTaskBackground"); 
+      }
+      else if (props.todo.type === "Idea") {
+        setTaskTypeColor("todoIdeaBackground"); 
+      }
+      else if (props.todo.type === "Problem") {
+        setTaskTypeColor("todoProblemBackground"); 
+      }
+      else if (props.todo.type === "Recipe") {
+        setTaskTypeColor("todoRecipeBackground");
+      }
+      else if (props.todo.type === "Schedule") {
+        setTaskTypeColor("todoScheduleBackground");        
+      } 
+    }, [])
+
 
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
       if (props.todo.isCompleted === true) {
@@ -54,8 +76,9 @@ function TodoItem(props: AppProps) {
           setAnimBtn1("");
         }, 1000)
       },
-      [props],
+      [todoTxt],
     );  
+
 
     const onComplete = useCallback(
       () => {
@@ -74,6 +97,7 @@ function TodoItem(props: AppProps) {
       },
       [props],
     );
+
     
     const onDelete = useCallback(
       () => {
@@ -87,12 +111,48 @@ function TodoItem(props: AppProps) {
         }, 2000);
       },
       [props],
-    );   
+    );  
+
     
     const userNameParsedFunc = useCallback(() => {
       const userNameParsed = props.todo.userName.match(/^(.+)@/)[1];
       return userNameParsed;
-    },[props])
+    },[props]);
+
+  
+    const handleTaskTypeChange = useCallback((e: any) => {
+      if (e.target.value === "Task") {
+        setTaskTypeColor("todoTaskBackground");
+        firestore.collection('todos').doc(props.todo.id).update({type: "Task",
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+      }
+      else if (e.target.value === "Idea") {
+        setTaskTypeColor("todoIdeaBackground");
+        firestore.collection('todos').doc(props.todo.id).update({type: "Idea",
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      }
+      else if (e.target.value === "Problem") {
+        setTaskTypeColor("todoProblemBackground");
+        firestore.collection('todos').doc(props.todo.id).update({type: "Problem",
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      }
+      else if (e.target.value === "Recipe") {
+        setTaskTypeColor("todoRecipeBackground");
+        firestore.collection('todos').doc(props.todo.id).update({type: "Recipe",
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      }
+      else if (e.target.value === "Schedule") {
+        setTaskTypeColor("todoScheduleBackground");
+        firestore.collection('todos').doc(props.todo.id).update({type: "Schedule",
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      }
+    },[props]);
+
 
     return (<>  
       <PropsyFlexBox 
@@ -100,6 +160,7 @@ function TodoItem(props: AppProps) {
         width={'80vw'}
         transition={'1s'}
         marginBottom={"80px"}
+        backgroundColor={taskTypeColor}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
   <Paragraph sx={userName}>{userNameParsedFunc()}</Paragraph>
@@ -135,7 +196,15 @@ function TodoItem(props: AppProps) {
                  content={iconDeleteTaskBtn}
                  animation={animBtn2}
                  animTime={'2s'}
-              />     
+              />    
+               <Select sx={optionBox} defaultValue={props.todo.type}
+                                      onChange={handleTaskTypeChange} >
+                  <option value="Task" >Task</option>
+                  <option value="Idea" >Idea</option>
+                  <option value="Problem" >Problem</option> 
+                  <option value="Schedule" >Schedule</option> 
+                  <option value="Recipe" >Recipe</option>           
+                </Select>     
           </Flex>  
         </>}
       />   

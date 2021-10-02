@@ -12,7 +12,7 @@ const PropsyAlertBox = React.memo(({content, display = 'none'}: any ) => {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: boxBorderRadius,
-        backgroundColor: `todoBackground`,
+        backgroundColor: `todoTaskBackground`,
         color: 'todoText',     
         wordBreak: 'break-word',        
         padding: 2,        

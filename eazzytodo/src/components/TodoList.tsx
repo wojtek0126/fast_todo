@@ -105,7 +105,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   
       await todosRef.add({
         userName: userEmail,        
-        type: "task",
+        type: "Task",
         assignedTo: "Not assigned yet",
         assignedBy: "Not set yet",
         text: formValue,
@@ -126,8 +126,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
           <Box sx={btnContainer} >
             <Typist>
              <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
-            </Typist>
-            
+            </Typist>            
             <SignOutButton />  
           </Box>        
           <Flex id={'main'} sx={todosContainer}>
