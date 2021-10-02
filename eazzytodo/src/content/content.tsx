@@ -4,7 +4,7 @@ export const txtSignOutEng: string = "Sign out";
 
 export const txtSearchInputEng: string = "Search for task..";
 
-export const txtTitleSmallEng: string = "Welcome to eazzy Todo list. Set a goal and make it done. Multipurpose usage. Have a happy todoing!";
+export const txtTitleSmallEng: string = "Welcome to ever evolving Eazzy Todo List. Set Yourself a goal and make it done. Multipurpose usage. Have a happy todoing!";
 
 export const txtTitleBigEng: string = "This app is currently in test mode. mock email recommended.\
  Feel free to sign in, assign Yourself some task, modify it at will, and of course try to make it completed.\
