@@ -3,6 +3,8 @@ import { useState, useCallback, useEffect } from 'react';
 
 import { Image, Flex, Textarea, Paragraph, Select } from 'theme-ui'; 
 
+import ReactTooltip from 'react-tooltip';
+
 import 'firebase/firestore';
 import 'firebase/auth';
 import { btnGradient,        
@@ -19,6 +21,7 @@ import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../cont
 import PropsyBtn from './propsyComps/PropsyBtn';
 import PropsyFlexBox from './propsyComps/PropsyFlexBox';
 import firebase from 'firebase';
+import PropsyInput from './propsyComps/PropsyInput';
 require('firebase/auth');  
 
 type AppProps = {
@@ -26,7 +29,8 @@ type AppProps = {
 }; 
 
 function TodoItem(props: AppProps) {  
-    const [ todoTxt, setTodoTxt ] = useState(props.todo.text);
+    const [ todoTxt, setTodoTxt ] = useState("");
+    // const [ todoCompletion, setTodoCompletion ] = useState(props.todo.isCompleted);
 
     const [ animBtn1, setAnimBtn1 ] = useState("");
     const [ animBtn2, setAnimBtn2 ] = useState("");
@@ -34,6 +38,17 @@ function TodoItem(props: AppProps) {
     const [ opacity1, setOpacity1 ] = useState(1);
 
     const [ taskTypeColor, setTaskTypeColor ] = useState("todoTaskBackground");
+
+    const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
+      if (props.todo.isCompleted === true) {
+        return btnCheckedGradient;
+      }
+      else {
+        return btnGradient;
+      }
+    });    
+
+    const {  photoURL }: any = props.todo;    
 
     useEffect(() => {
       if (props.todo.type === "Task") {
@@ -51,30 +66,24 @@ function TodoItem(props: AppProps) {
       else if (props.todo.type === "Schedule") {
         setTaskTypeColor("todoScheduleBackground");        
       } 
-    }, [])
+      setTodoTxt(props.todo.text);
+    }, []);
 
-
-    const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
-      if (props.todo.isCompleted === true) {
-        return btnCheckedGradient;
-      }
-      else {
-        return btnGradient;
-      }
-    });    
-
-    const {  photoURL }: any = props.todo;    
-
+    // const updateFirestoreData = (collection: string, item: any, dataKeyValue: any) => {
+    //   firestore.collection(collection).doc(item).update({dataKeyValue,
+    //     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    //   });
+    // }
     
     const onUpdate = useCallback(
       () => {
         firestore.collection('todos').doc(props.todo.id).update({text: todoTxt,
-           updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-          });
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        }); 
         setAnimBtn1(clickedBtnAnimJump);
         setTimeout(() => {
           setAnimBtn1("");
-        }, 1000)
+        }, 1000);
       },
       [todoTxt],
     );  
@@ -84,14 +93,14 @@ function TodoItem(props: AppProps) {
       () => {
         if (props.todo.isCompleted === false) {
           firestore.collection('todos').doc(props.todo.id).update({isCompleted: true,
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp(),            
-          });
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });       
           setBtnCompletedColor(btnCheckedGradient);
         }        
-        else {
+        else if (props.todo.isCompleted === true){
           firestore.collection('todos').doc(props.todo.id).update({isCompleted: false,
             updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-          });
+          }); 
           setBtnCompletedColor(btnGradient);
            }  
       },
@@ -159,7 +168,7 @@ function TodoItem(props: AppProps) {
         opacity={opacity1}
         width={'80vw'}
         transition={'1s'}
-        marginBottom={"80px"}
+        marginBottom={"100px"}
         backgroundColor={taskTypeColor}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
@@ -197,14 +206,18 @@ function TodoItem(props: AppProps) {
                  animation={animBtn2}
                  animTime={'2s'}
               />    
-               <Select sx={optionBox} defaultValue={props.todo.type}
+               <Select data-tip data-for="task-type" sx={optionBox} defaultValue={props.todo.type}
                                       onChange={handleTaskTypeChange} >
                   <option value="Task" >Task</option>
                   <option value="Idea" >Idea</option>
                   <option value="Problem" >Problem</option> 
                   <option value="Schedule" >Schedule</option> 
                   <option value="Recipe" >Recipe</option>           
-                </Select>     
+                </Select>  
+                <ReactTooltip id="task-type" place="bottom" effect="solid">
+                  change type of task
+                </ReactTooltip> 
+                {/* <PropsyInput type={'date'} />  */}
           </Flex>  
         </>}
       />   
