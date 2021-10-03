@@ -62,12 +62,12 @@ function App() {
               <Box sx={waveEffectContainer}>
                  
               </Box> 
-              <Box sx={{position: 'absolute', bottom: 0, opacity: 0.6}}>
+              {/* <Box sx={{position: 'absolute', bottom: 0, opacity: 0.6}}>
              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" 
              d="M0,192L60,186.7C120,181,240,171,360,186.7C480,203,600,245,720,266.7C840,288,
              960,288,1080,240C1200,192,1320,96,1380,48L1440,0L1440,320L1380,320C1320,320,1200,320,1080,320C960,
              320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
-              </Box>           
+              </Box>            */}
               <Typist>
                 <Paragraph sx={smallTitleTxt}>{txtTitleSmallEng}</Paragraph>                  
               </Typist>

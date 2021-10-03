@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { Flex } from "theme-ui";
 import { iconCloseBtn, iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
@@ -73,10 +74,10 @@ const SignUpForm = () => {
     onChangeEmail={handleChangeEmail}
     onChangePass ={handleChangePassword}
     onSubmit={signUp}
-    margin={2}
+    // margin={'0 auto'}
     extraContent={<PropsyBtn type='button'
                              tooltipId={'register-close'}
-                             tooltipTxt={'close register window'}
+                             tooltipTxt={'open register window'}
                              content={iconCloseBtn}
                              background={btnGradient}
                               onClick={setLoginOn} />}

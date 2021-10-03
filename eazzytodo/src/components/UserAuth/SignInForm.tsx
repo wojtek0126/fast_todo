@@ -87,7 +87,8 @@ const SignInForm = () => {
   };
 
   const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
-    return <PropsyAlertBox  display={display}  
+    return <PropsyAlertBox  display={display} 
+                            margin={'0 auto'} 
                             content={<> 
     <PropsyBtn onClick={onClick}
               tooltipId={'reset-password'}
@@ -103,9 +104,9 @@ const SignInForm = () => {
   };
 
 
-  return (<Flex sx={{width: '100vw'}}>   
+  return (<>   
     <PropsySignLogForm
-        width={'20vw'} 
+        // width={'20vw'} 
         tooltipId={'login'}
         tooltipTxt={'login'}
         transition={'2s'}
@@ -117,7 +118,7 @@ const SignInForm = () => {
         onChangeEmail={handleChangeEmail}
         onChangePass ={handleChangePassword}
         onSubmit={signIn}
-        margin={'0 auto'}
+        // margin={'0 auto'}
         extraContent={<>
         <PropsyBtn background={btnGradient}
                    tooltipId={'register'}
@@ -143,7 +144,7 @@ const SignInForm = () => {
     onClick={handleForgotPasswordSend}
     onClickClose={handleForgotPasswordClose}
      />
-  </Flex>);
+  </>);
 };
 
 export default SignInForm;
