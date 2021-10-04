@@ -92,7 +92,7 @@ const SignInForm = () => {
                             content={<> 
     <PropsyBtn onClick={onClick}
               tooltipId={'reset-password'}
-              tooltipTxt={`send reset password request to(enter email above): ${emailValue}`}
+              tooltipTxt={`send reset password request(enter email above): ${emailValue}`}
                content={iconSendMailBtn}
                background={btnGradient} />
       <PropsyBtn content={iconCloseBtn}

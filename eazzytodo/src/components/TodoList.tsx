@@ -192,7 +192,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
                 </Textarea>               
                   <PropsyBtn type={"submit"}
                              tooltipId={'add'}
-                             tooltipTxt={'add this task'} 
+                             tooltipTxt={'add task'} 
                              isDisabled={!formValue}
                              background={btnGradient}
                              content={iconAddTaskBtn} />               

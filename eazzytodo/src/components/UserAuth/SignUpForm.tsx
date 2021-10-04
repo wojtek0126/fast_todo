@@ -77,7 +77,7 @@ const SignUpForm = () => {
     // margin={'0 auto'}
     extraContent={<PropsyBtn type='button'
                              tooltipId={'register-close'}
-                             tooltipTxt={'open register window'}
+                             tooltipTxt={'close register window'}
                              content={iconCloseBtn}
                              background={btnGradient}
                               onClick={setLoginOn} />}
