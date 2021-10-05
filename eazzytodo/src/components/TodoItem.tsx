@@ -223,11 +223,9 @@ function TodoItem(props: AppProps) {
                            paddingLeft: 3,
                            marginLeft: 1,
                            position: 'relative',
-                           border:'1px solid',
-                           borderColor: 'borderColor'
-                           }}>
+                                    }}>
                       <PropsyInput type={'date'}
-                                   width={'150px'} 
+                                   width={'130px'} 
                                    onChange={handleSetDeadline}
                                    value={props.todo.deadline}
                                             />                             
@@ -239,19 +237,16 @@ function TodoItem(props: AppProps) {
                                  animTime={'2s'}
                                  content={iconDateBtn}
                                  size={0.8}
+                                 margin={0}
                                 
                                           />
                     <Box sx={{position: 'absolute',
                               height: '30px',
-                              width: '30px',
+                              width: '22px',
                               backgroundColor: 'patch',
-                              top: 16, right: 71}}></Box>
-                </Flex>
-
-            
-              </Flex>
-             
-              
+                              top: 16, right: 76}}></Box>
+                </Flex>            
+              </Flex>              
           </Flex>  
         </>}
       />   

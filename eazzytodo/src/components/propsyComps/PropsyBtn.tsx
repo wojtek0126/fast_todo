@@ -20,7 +20,8 @@ const PropsyBtn = React.memo(({animTime,
                                position,
                                top,
                                right,
-                               fontSize = '[16, 20]'
+                               fontSize = '[16, 20]',
+                               margin = '10px'
                               }: any ) => {                      
                                
 
@@ -33,7 +34,7 @@ const PropsyBtn = React.memo(({animTime,
           display: display,
           fontSize: fontSize,
           cursor: 'pointer',
-          margin: '10px',
+          margin: margin,
           padding: '15px',
           textAlign: 'center',          
           transition: `${transition}`,

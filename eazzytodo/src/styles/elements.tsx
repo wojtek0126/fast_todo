@@ -315,7 +315,11 @@ export const btnPrimary: Styles = {
     border: 'none',
     maxWidth: '100%',
     paddingTop: 20,
-    paddingLeft: 20
+    paddingLeft: 20,
+    "@media (max-width: 780px)": { 
+      marginTop: 20,
+      marginBottom: 30            
+   }
   } 
 
   export const optionBox: Styles = {    
@@ -326,6 +330,9 @@ export const btnPrimary: Styles = {
     borderRadius: inputBorderRadius,
     margin: '0 auto' ,
     alignSelf: 'center',
+    "@media (max-width: 780px)": { 
+     fontSize: 'small',              
+   }
   };
 
   //text

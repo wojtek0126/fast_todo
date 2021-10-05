@@ -26,6 +26,10 @@ const PropsyInput = React.memo(({text,
                     padding: 2,
                     width: `${width}`,
                     alignSelf: 'center',
+                    "@media (max-width: 780px)": { 
+                        fontSize: "12px",
+                        width: '103px'             
+                      }
                   //   WebkitAppearance: 'none'
             }} onChange={onChange} placeholder={placeholder}{...text} value={value} />
 )});
