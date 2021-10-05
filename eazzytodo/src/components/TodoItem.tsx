@@ -16,7 +16,8 @@ import { btnGradient,
          userName,
          optionBox,
          boxBorderRadius,
-         clickedBtnAnimShrink} from '../styles/elements';
+         clickedBtnAnimShrink,
+         editItemDateAndTaskTypeWrapper} from '../styles/elements';
 import { firestore } from '../firebase/firebase';
 import { iconCompleteTaskBtn, iconDateBtn,  iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
@@ -69,6 +70,7 @@ function TodoItem(props: AppProps) {
         setTaskTypeColor("todoScheduleBackground");        
       } 
       setTodoTxt(props.todo.text);
+      setDeadline(props.todo.deadline);
     }, []);
 
     const updateFirestoreData = (collection: string, item: any, data: any, keyValue: any) => {
@@ -158,7 +160,7 @@ function TodoItem(props: AppProps) {
        
     },[deadline]);
 
-    
+        
     return (<>  
       <PropsyFlexBox 
         opacity={opacity1}
@@ -217,17 +219,11 @@ function TodoItem(props: AppProps) {
                 <ReactTooltip id="deadline" place="bottom" effect="solid">
                   set date marker/date due
                 </ReactTooltip> 
-                <Flex sx={{flexDirection: 'row',                           
-                           backgroundColor: 'dateSetBackground1',
-                           borderRadius: boxBorderRadius,
-                           paddingLeft: 3,
-                           marginLeft: 1,
-                           position: 'relative',
-                                    }}>
+                <Flex sx={editItemDateAndTaskTypeWrapper}>
                       <PropsyInput type={'date'}
                                    width={'130px'} 
                                    onChange={handleSetDeadline}
-                                   value={props.todo.deadline}
+                                   value={deadline}
                                             />                             
                       <PropsyBtn onClick={handleDeadline}
                                  tooltipId={'set-date'}
@@ -237,14 +233,9 @@ function TodoItem(props: AppProps) {
                                  animTime={'2s'}
                                  content={iconDateBtn}
                                  size={0.8}
-                                 margin={0}
-                                
+                                 margin={0}                                
                                           />
-                    <Box sx={{position: 'absolute',
-                              height: '30px',
-                              width: '22px',
-                              backgroundColor: 'patch',
-                              top: 16, right: 76}}></Box>
+                
                 </Flex>            
               </Flex>              
           </Flex>  

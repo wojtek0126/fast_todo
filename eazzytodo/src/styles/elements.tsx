@@ -175,6 +175,19 @@
     marginTop: 1,
     padding: 2     
   };
+  
+  export const todoLisTWrapper: Styles= {
+    width: '100vw'
+  };
+
+  export const editItemDateAndTaskTypeWrapper: Styles= {
+    flexDirection: 'row',                           
+    backgroundColor: 'dateSetBackground1',
+    borderRadius: boxBorderRadius,
+    paddingLeft: 3,
+    marginLeft: 1,
+    position: 'relative',
+           };
 
 // buttons
 export const btnPrimary: Styles = {

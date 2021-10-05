@@ -1,4 +1,3 @@
-import { Box, Flex } from "@theme-ui/components";
 import firebase from "firebase";
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
