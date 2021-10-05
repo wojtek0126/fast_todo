@@ -22,9 +22,7 @@ const PropsyBtn = React.memo(({animTime,
                                right,
                                fontSize = '[16, 20]',
                                margin = '10px'
-                              }: any ) => {                      
-                               
-
+                              }: any ) => {  
     return (<>
         <Button disabled={isDisabled} 
                 type={type}                

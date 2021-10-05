@@ -32,9 +32,15 @@ const PropsySignLogForm = React.memo(({textHead,
         content={<>
             <form onSubmit={onSubmit}>
                <Paragraph sx={loginSignupTxt}>{textHead}</Paragraph>
-               <Input  sx={inputGeneral} onChange={onChangeEmail} placeholder="Email" {...emailInputTxt} />
-               <Input sx={inputGeneral} onChange={onChangePass} placeholder="Password" type="password" {...passInputTxt} />                          
-           
+               <Input  sx={inputGeneral}
+                       onChange={onChangeEmail}
+                       placeholder="Email" 
+                       {...emailInputTxt} />
+               <Input sx={inputGeneral}
+                      onChange={onChangePass}
+                      placeholder="Password" 
+                      type="password"
+                      {...passInputTxt} />              
              <Flex>
              <PropsyBtn sx={btnPrimary}
                           tooltipTxt={tooltipTxt}

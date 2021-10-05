@@ -30,8 +30,10 @@ const PropsyInput = React.memo(({text,
                         fontSize: "12px",
                         width: '103px'             
                       }
-                  //   WebkitAppearance: 'none'
-            }} onChange={onChange} placeholder={placeholder}{...text} value={value} />
+            }} onChange={onChange}
+               placeholder={placeholder}
+               {...text}
+                value={value} />
 )});
 
 export default PropsyInput;

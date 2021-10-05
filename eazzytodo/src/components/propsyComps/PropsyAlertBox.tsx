@@ -16,7 +16,6 @@ const PropsyAlertBox = React.memo(({content, display = 'none'}: any ) => {
         color: 'todoText',     
         wordBreak: 'break-word',        
         padding: 2,        
-        // minHeight: 100,
         boxShadow: itemBoxShadow,
         transition: '1s',
         position: 'absolute',

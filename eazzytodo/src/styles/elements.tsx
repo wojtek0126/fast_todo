@@ -56,7 +56,6 @@
     textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
     color: 'text2',
     paddingTop: 60,
-    marginBottom: 20,
     fontSize: 50,
     flexDirection: 'row',
     alignItems: 'center',
@@ -162,8 +161,8 @@
     boxShadow: itemBoxShadow
   };
 
-  export const btnContainer: Styles = {
-    margin: '40px 0px'
+  export const welcomeUserWrapper: Styles = {
+    margin: '0 auto'
   };
 
   export const displayBar: Styles = {    
@@ -175,14 +174,15 @@
     marginTop: 1,
     padding: 2     
   };
-  
+
   export const todoLisTWrapper: Styles= {
+    flexDirection: 'column',
     width: '100vw'
   };
 
   export const editItemDateAndTaskTypeWrapper: Styles= {
     flexDirection: 'row',                           
-    backgroundColor: 'dateSetBackground1',
+    backgroundColor: 'buttonsBackground',
     borderRadius: boxBorderRadius,
     paddingLeft: 3,
     marginLeft: 1,
@@ -384,11 +384,10 @@ export const btnPrimary: Styles = {
     export const copyrightTxt: Styles = {
       width: '100%',
       color: 'text2',
-      // alignSelf: 'center',
       fontSize: 1,
       textAlign: 'center',
       textShadow: txtShadow,  
-      // marginTop: '20px',    
+      marginBottom: 10,
       padding: 1
       };
 

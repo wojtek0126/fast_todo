@@ -5,7 +5,7 @@ import {
   Textarea,
   Input,
   Select,
-  Paragraph
+  Paragraph  
   } from 'theme-ui';  
 
 import ScrollTop from "react-scrolltop-button";  
@@ -24,7 +24,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import { addTaskContainer,
          addTodoForm,          
-          btnContainer,
+          welcomeUserWrapper,
           btnGradient,         
           btnScrollUp,
           displayBar,
@@ -32,6 +32,7 @@ import { addTaskContainer,
           inputTodoSearch,         
           optionBox,
           todoFiltersContainer,
+          todoLisTWrapper,
           todosContainer,
           todoStatusContainer, 
           userWelcomeTxt,    
@@ -122,19 +123,15 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       if (dummy) dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
     }
   
-    return (<Box sx={{width: '100vw'}}>   
-     <Box sx={{position: 'absolute', top: 0, opacity: 0.6, zIndex: 0}}>
-     {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1"
-      d="M0,256L60,218.7C120,181,240,107,360,69.3C480,32,600,32,720,37.3C840,43,960,53,1080,85.3C1200,117,
-      1320,171,1380,197.3L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,
-      360,0C240,0,120,0,60,0L0,0Z"></path></svg> */}
-              </Box>          
-          <Box sx={btnContainer} >
+    return (<Flex sx={todoLisTWrapper}>                 
+          <Box sx={welcomeUserWrapper} >
             <Typist>
              <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
-            </Typist>            
+            </Typist>              
+          </Box> 
+          <Flex sx={{alignSelf: 'center'}}>
             <SignOutButton />  
-          </Box>        
+          </Flex>  
           <Flex id={'main'} sx={todosContainer}>
             <Flex sx={todoFiltersContainer} >
               <Input sx={inputTodoSearch}
@@ -211,7 +208,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
         target={75}
         icon={<BsArrowBarUp />}
       />          
-        </Box>)
+        </Flex>)
   }  
       
 export default TodoList;     

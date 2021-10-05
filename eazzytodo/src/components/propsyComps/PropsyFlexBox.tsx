@@ -15,7 +15,6 @@ const PropsyFlexBox = React.memo(({display = 'flex',
                                    opacity = 0.8,
                                    backgroundColor = 'todoTaskBackground' 
                                 }: any) => {
-
     return (
         <Box 
         sx={{
