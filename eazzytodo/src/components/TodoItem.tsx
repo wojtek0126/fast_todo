@@ -217,8 +217,7 @@ function TodoItem(props: AppProps) {
                 <ReactTooltip id="deadline" place="bottom" effect="solid">
                   set date marker/date due
                 </ReactTooltip> 
-                <Flex sx={{flexDirection: 'row',
-                           flexWrap: 'wrap',
+                <Flex sx={{flexDirection: 'row',                           
                            backgroundColor: 'dateSetBackground1',
                            borderRadius: boxBorderRadius,
                            paddingLeft: 3,
