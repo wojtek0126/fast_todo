@@ -138,7 +138,8 @@
   export const itemsBtnsContainer: Styles = {      
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start'    
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',    
   };
 
   export const todoItemContainer: Styles = {

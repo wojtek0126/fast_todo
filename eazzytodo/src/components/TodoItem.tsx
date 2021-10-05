@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { useState, useCallback, useEffect } from 'react';
 
-import { Image, Flex, Textarea, Paragraph, Select } from 'theme-ui'; 
+import { Image, Textarea, Paragraph, Select, Flex } from 'theme-ui'; 
 
 import ReactTooltip from 'react-tooltip';
 
@@ -206,7 +206,8 @@ function TodoItem(props: AppProps) {
                  animation={animBtn2}
                  animTime={'2s'}
               />    
-               <Select data-tip data-for="task-type" sx={optionBox} defaultValue={props.todo.type}
+              <Flex sx={{flexDirection: 'row', flexWrap: 'wrap'}}>
+              <Select data-tip data-for="task-type" sx={optionBox} defaultValue={props.todo.type}
                                       onChange={handleTaskTypeChange} >
                   <option value="Task" >Task</option>
                   <option value="Idea" >Idea</option>
@@ -217,7 +218,12 @@ function TodoItem(props: AppProps) {
                 <ReactTooltip id="task-type" place="bottom" effect="solid">
                   change type of task
                 </ReactTooltip> 
-                {/* <PropsyInput type={'date'} />  */}
+                <PropsyInput type={'date'}
+                             width={'150px'}                           
+                             /> 
+              </Flex>
+             
+                <PropsyBtn />
           </Flex>  
         </>}
       />   
