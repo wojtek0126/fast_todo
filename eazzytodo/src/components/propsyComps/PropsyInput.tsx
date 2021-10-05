@@ -9,7 +9,8 @@ const PropsyInput = React.memo(({text,
                                  type,
                                  marginTop =  0,
                                  width = '100%',
-                                 placeholder="Email"
+                                 placeholder="...",
+                                 value
                                        }: any) => {
     return (
                <Input type={type}                     
@@ -24,8 +25,9 @@ const PropsyInput = React.memo(({text,
                     marginTop: marginTop,
                     padding: 2,
                     width: `${width}`,
-                    alignSelf: 'center'
-            }} onChange={onChange} placeholder={placeholder}{...text} />
+                    alignSelf: 'center',
+                  //   WebkitAppearance: 'none'
+            }} onChange={onChange} placeholder={placeholder}{...text} value={value} />
 )});
 
 export default PropsyInput;

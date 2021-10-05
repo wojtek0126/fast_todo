@@ -16,7 +16,11 @@ const PropsyBtn = React.memo(({animTime,
                                borderRadius = btnBorderRadius,
                                tooltipId,
                                tooltipTxt,
-                               size = '1'
+                               size = '1',
+                               position,
+                               top,
+                               right,
+                               fontSize = '[16, 20]'
                               }: any ) => {                      
                                
 
@@ -27,7 +31,7 @@ const PropsyBtn = React.memo(({animTime,
           transform: `scale(${size})`,
           backgroundImage: `${background}`,
           display: display,
-          fontSize: [16, 20],
+          fontSize: fontSize,
           cursor: 'pointer',
           margin: '10px',
           padding: '15px',
@@ -39,6 +43,9 @@ const PropsyBtn = React.memo(({animTime,
           borderRadius: borderRadius,
           animation: `${animation} ${animTime} ease 1`,
           opacity: `${opacity}`,
+          position: position,
+          top: top,
+          right: right,
           '&:hover, &:focus': {  
             backgroundPosition: 'right center', 
             color: '#fff',

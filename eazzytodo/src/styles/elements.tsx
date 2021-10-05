@@ -139,7 +139,11 @@
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    flexWrap: 'wrap',    
+    flexWrap: 'wrap', 
+    borderRadius: boxBorderRadius,
+    backgroundColor: 'buttonsBackground' ,
+    border:'1px solid',
+    borderColor: 'borderColor'
   };
 
   export const todoItemContainer: Styles = {
@@ -320,7 +324,8 @@ export const btnPrimary: Styles = {
     backgroundColor: 'inputBackground',
     color: 'text2',   
     borderRadius: inputBorderRadius,
-    margin: 0
+    margin: '0 auto' ,
+    alignSelf: 'center',
   };
 
   //text

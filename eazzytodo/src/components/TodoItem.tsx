@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { useState, useCallback, useEffect } from 'react';
 
-import { Image, Textarea, Paragraph, Select, Flex } from 'theme-ui'; 
+import { Image, Textarea, Paragraph, Select, Flex, Box } from 'theme-ui'; 
 
 import ReactTooltip from 'react-tooltip';
 
@@ -9,15 +9,16 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import { btnGradient,        
          btnCheckedGradient,
-         clickedBtnAnimJump,
-         clickedBtnAnimShrink,
+         clickedBtnAnimJump,         
          inputTodoEdit,
          itemsBtnsContainer,         
          userImg, 
          userName,
-         optionBox} from '../styles/elements';
+         optionBox,
+         boxBorderRadius,
+         clickedBtnAnimShrink} from '../styles/elements';
 import { firestore } from '../firebase/firebase';
-import { iconCompleteTaskBtn, iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
+import { iconCompleteTaskBtn, iconDateBtn,  iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
 import PropsyFlexBox from './propsyComps/PropsyFlexBox';
 import firebase from 'firebase';
@@ -30,10 +31,11 @@ type AppProps = {
 
 function TodoItem(props: AppProps) {  
     const [ todoTxt, setTodoTxt ] = useState("");
-    // const [ todoCompletion, setTodoCompletion ] = useState(props.todo.isCompleted);
+    const [ deadline, setDeadline ] = useState("");
 
     const [ animBtn1, setAnimBtn1 ] = useState("");
     const [ animBtn2, setAnimBtn2 ] = useState("");
+    const [ animBtn3, setAnimBtn3 ] = useState("");
 
     const [ opacity1, setOpacity1 ] = useState(1);
 
@@ -69,17 +71,20 @@ function TodoItem(props: AppProps) {
       setTodoTxt(props.todo.text);
     }, []);
 
-    // const updateFirestoreData = (collection: string, item: any, dataKeyValue: any) => {
-    //   firestore.collection(collection).doc(item).update({dataKeyValue,
-    //     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    //   });
-    // }
+    const updateFirestoreData = (collection: string, item: any, data: any, keyValue: any) => {
+      firestore.collection(collection).doc(item).update({[data]: keyValue,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    };
+
+    const userNameParsedFunc = useCallback(() => {
+      const userNameParsed = props.todo.userName.match(/^(.+)@/)[1];
+      return userNameParsed;
+    },[props]);
     
     const onUpdate = useCallback(
       () => {
-        firestore.collection('todos').doc(props.todo.id).update({text: todoTxt,
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        }); 
+          updateFirestoreData('todos', props.todo.id, 'text', todoTxt);       
         setAnimBtn1(clickedBtnAnimJump);
         setTimeout(() => {
           setAnimBtn1("");
@@ -88,25 +93,19 @@ function TodoItem(props: AppProps) {
       [todoTxt],
     );  
 
-
     const onComplete = useCallback(
       () => {
         if (props.todo.isCompleted === false) {
-          firestore.collection('todos').doc(props.todo.id).update({isCompleted: true,
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        });       
+          updateFirestoreData('todos', props.todo.id, 'isCompleted', true);           
           setBtnCompletedColor(btnCheckedGradient);
         }        
         else if (props.todo.isCompleted === true){
-          firestore.collection('todos').doc(props.todo.id).update({isCompleted: false,
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-          }); 
+          updateFirestoreData('todos', props.todo.id, 'isCompleted', false);
           setBtnCompletedColor(btnGradient);
            }  
       },
       [props],
     );
-
     
     const onDelete = useCallback(
       () => {
@@ -121,48 +120,45 @@ function TodoItem(props: AppProps) {
       },
       [props],
     );  
-
-    
-    const userNameParsedFunc = useCallback(() => {
-      const userNameParsed = props.todo.userName.match(/^(.+)@/)[1];
-      return userNameParsed;
-    },[props]);
-
   
     const handleTaskTypeChange = useCallback((e: any) => {
       if (e.target.value === "Task") {
         setTaskTypeColor("todoTaskBackground");
-        firestore.collection('todos').doc(props.todo.id).update({type: "Task",
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        });
+        updateFirestoreData('todos', props.todo.id, 'type', "Task");       
       }
       else if (e.target.value === "Idea") {
         setTaskTypeColor("todoIdeaBackground");
-        firestore.collection('todos').doc(props.todo.id).update({type: "Idea",
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      });
+        updateFirestoreData('todos', props.todo.id, 'type', "Idea");    
       }
       else if (e.target.value === "Problem") {
         setTaskTypeColor("todoProblemBackground");
-        firestore.collection('todos').doc(props.todo.id).update({type: "Problem",
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      });
+        updateFirestoreData('todos', props.todo.id, 'type', "Problem");    
       }
       else if (e.target.value === "Recipe") {
         setTaskTypeColor("todoRecipeBackground");
-        firestore.collection('todos').doc(props.todo.id).update({type: "Recipe",
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      });
+        updateFirestoreData('todos', props.todo.id, 'type', "Recipe");   
       }
       else if (e.target.value === "Schedule") {
         setTaskTypeColor("todoScheduleBackground");
-        firestore.collection('todos').doc(props.todo.id).update({type: "Schedule",
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      });
+        updateFirestoreData('todos', props.todo.id, 'type', "Schedule");
       }
     },[props]);
 
+    const handleSetDeadline = useCallback((e: any) => {
+      setDeadline(e.target.value);
+    },[deadline]);
 
+    const handleDeadline = useCallback((e: any) => {
+      console.log(deadline);
+      updateFirestoreData('todos', props.todo.id, 'deadline', deadline);  
+      setAnimBtn3(clickedBtnAnimShrink);
+      setTimeout(() => {
+        setAnimBtn3("");
+      }, 1000);
+       
+    },[deadline]);
+
+    
     return (<>  
       <PropsyFlexBox 
         opacity={opacity1}
@@ -218,12 +214,45 @@ function TodoItem(props: AppProps) {
                 <ReactTooltip id="task-type" place="bottom" effect="solid">
                   change type of task
                 </ReactTooltip> 
-                <PropsyInput type={'date'}
-                             width={'150px'}                           
-                             /> 
+                <ReactTooltip id="deadline" place="bottom" effect="solid">
+                  set date marker/date due
+                </ReactTooltip> 
+                <Flex sx={{flexDirection: 'row',
+                           flexWrap: 'wrap',
+                           backgroundColor: 'dateSetBackground1',
+                           borderRadius: boxBorderRadius,
+                           paddingLeft: 3,
+                           marginLeft: 1,
+                           position: 'relative',
+                           border:'1px solid',
+                           borderColor: 'borderColor'
+                           }}>
+                      <PropsyInput type={'date'}
+                                   width={'150px'} 
+                                   onChange={handleSetDeadline}
+                                   value={props.todo.deadline}
+                                            />                             
+                      <PropsyBtn onClick={handleDeadline}
+                                 tooltipId={'set-date'}
+                                 tooltipTxt={'confirm date marker/due date setting'}
+                                 background={btnGradient}
+                                 animation={animBtn3}
+                                 animTime={'2s'}
+                                 content={iconDateBtn}
+                                 size={0.8}
+                                
+                                          />
+                    <Box sx={{position: 'absolute',
+                              height: '30px',
+                              width: '30px',
+                              backgroundColor: 'patch',
+                              top: 16, right: 71}}></Box>
+                </Flex>
+
+            
               </Flex>
              
-                <PropsyBtn />
+              
           </Flex>  
         </>}
       />   
