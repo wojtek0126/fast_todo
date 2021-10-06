@@ -151,13 +151,11 @@ function TodoItem(props: AppProps) {
     },[deadline]);
 
     const handleDeadline = useCallback((e: any) => {
-      console.log(deadline);
       updateFirestoreData('todos', props.todo.id, 'deadline', deadline);  
       setAnimBtn3(clickedBtnAnimShrink);
       setTimeout(() => {
         setAnimBtn3("");
-      }, 1000);
-       
+      }, 1000);       
     },[deadline]);
 
         
@@ -234,8 +232,7 @@ function TodoItem(props: AppProps) {
                                  content={iconDateBtn}
                                  size={0.8}
                                  margin={0}                                
-                                          />
-                
+                                          />                
                 </Flex>            
               </Flex>              
           </Flex>  
