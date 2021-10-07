@@ -35,7 +35,8 @@ import { addTaskContainer,
           todoLisTWrapper,
           todosContainer,
           todoStatusContainer, 
-          userWelcomeTxt,    
+          userWelcomeTxt,
+          userName,    
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
@@ -57,7 +58,14 @@ function TodoList() {
 
     const [filterCompleted, setFilterCompleted] = useState("Show"); 
 
-    const userEmail = localStorage.getItem('userEmail');    
+    const userEmail = localStorage.getItem('userEmail'); 
+
+  
+    const RenderUserName = ({userName}: any) => {
+      return  <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} >
+                <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userName}`}</Paragraph>
+              </Typist>  
+    };
     
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
@@ -125,9 +133,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   
     return (<Flex sx={todoLisTWrapper}>                 
           <Box sx={welcomeUserWrapper} >
-            <Typist>
-             <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
-            </Typist>              
+            <RenderUserName userName={userEmail} />             
           </Box> 
           <Flex sx={{alignSelf: 'center'}}>
             <SignOutButton />  

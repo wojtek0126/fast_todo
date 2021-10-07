@@ -69,7 +69,7 @@ function App() {
                 </Flex>
                 <Box sx={waveEffectContainer}>                 
                 </Box>           
-                <Typist>
+                <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }}>
                   <Paragraph sx={smallTitleTxt}>{txtTitleSmallEng}</Paragraph>                  
                 </Typist>
                 <ScrollText><Heading sx={bigTitleTxt}>{txtTitleBigEng}</Heading></ScrollText>  

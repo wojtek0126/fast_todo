@@ -105,7 +105,6 @@ const SignInForm = () => {
 
   return (<>   
     <PropsySignLogForm
-        // width={'20vw'} 
         tooltipId={'login'}
         tooltipTxt={'login'}
         transition={'2s'}
