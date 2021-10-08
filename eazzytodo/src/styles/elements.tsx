@@ -353,10 +353,7 @@ export const btnPrimary: Styles = {
   //text
   export const bigTitleTxt: Styles = {
     alignText: 'center',
-    fontSize: [20, 14, 16, 20],
-    // maxWidth: '80vw',
-    // whiteSpace: 'pre-wrap',
-    // wordBreak: 'break-word',
+    fontSize: [20, 14, 16, 20],   
     textShadow: txtShadow,
     color: 'text2',    
     padding: 2
@@ -380,7 +377,8 @@ export const btnPrimary: Styles = {
         maxWidth: '100vw',
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word',
-        color: 'transparent',
+        color: 'text2',
+        // opacity: 0,
         marginTop: 40,
         marginBottom: 40,
         };

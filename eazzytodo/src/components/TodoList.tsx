@@ -11,6 +11,7 @@ import {
 import ScrollTop from "react-scrolltop-button";  
 import { BsArrowBarUp } from 'react-icons/bs'; 
 import Typist from 'react-typist';
+import ReactLoading from 'react-loading';
 
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
@@ -36,7 +37,6 @@ import { addTaskContainer,
           todosContainer,
           todoStatusContainer, 
           userWelcomeTxt,
-          userName,
           mockText,    
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
@@ -66,20 +66,23 @@ function TodoList() {
     const RenderUserName = ({userName}: any) => {
       const [loadingDisplay, setLoadingDisplay] = useState('flex');
       const [userDisplay, setUserDisplay] = useState('none');
-
+      const timeoutTime = 1500;
       useEffect(() => {
         setTimeout(() => {
           setLoadingDisplay('none');
           setUserDisplay('flex');
-        }, 300);
+        }, timeoutTime);
       }, []);
 
 
       return  (<>
                 <div sx={{display: loadingDisplay}}>
-                     <Paragraph sx={mockText}>..</Paragraph>
+                     <Paragraph sx={mockText}>
+                     <ReactLoading type={'spin'} height={30} width={30} />
+                     </Paragraph>
                </div>
-
+              
+              
                 <div sx={{display: userDisplay}}>
                   <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} >
                      <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userName}`}</Paragraph>

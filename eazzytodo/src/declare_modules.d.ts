@@ -9,6 +9,8 @@ declare module 'semantic-ui-react';
 declare module 'styled-components';
 declare module 'react-tooltip';
 declare module 'react-typist';
+declare module 'react-loading';
+
 
 
 
