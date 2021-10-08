@@ -329,6 +329,8 @@ export const btnPrimary: Styles = {
     maxWidth: '100%',
     paddingTop: 20,
     paddingLeft: 20,
+    marginTop: 15,
+    marginBottom: 20,  
     "@media (max-width: 780px)": { 
       marginTop: 20,
       marginBottom: 30            
