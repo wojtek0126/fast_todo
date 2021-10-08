@@ -17,7 +17,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import TodoItem from './TodoItem';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
@@ -36,12 +36,14 @@ import { addTaskContainer,
           todosContainer,
           todoStatusContainer, 
           userWelcomeTxt,
-          userName,    
+          userName,
+          mockText,    
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
 import SignOutButton from './UserAuth/SignOutButton';
 import PropsyBtn from './propsyComps/PropsyBtn';
+import { setTimeout } from 'timers';
 require('firebase/auth');  
 
 
@@ -62,11 +64,30 @@ function TodoList() {
 
   
     const RenderUserName = ({userName}: any) => {
-      return  <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} >
-                <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userName}`}</Paragraph>
-              </Typist>  
-    };
-    
+      const [loadingDisplay, setLoadingDisplay] = useState('flex');
+      const [userDisplay, setUserDisplay] = useState('none');
+
+      useEffect(() => {
+        setTimeout(() => {
+          setLoadingDisplay('none');
+          setUserDisplay('flex');
+        }, 300);
+      }, []);
+
+
+      return  (<>
+                <div sx={{display: loadingDisplay}}>
+                     <Paragraph sx={mockText}>..</Paragraph>
+               </div>
+
+                <div sx={{display: userDisplay}}>
+                  <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} >
+                     <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userName}`}</Paragraph>
+                  </Typist>
+                </div>
+
+              </>);  
+    };       
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;

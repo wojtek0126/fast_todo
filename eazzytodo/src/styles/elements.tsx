@@ -372,6 +372,17 @@ export const btnPrimary: Styles = {
       marginBottom: 40,
       };
 
+      export const mockText: Styles = {
+        alignSelf: 'center',
+        fontSize: [12, 14, 16, 20],
+        maxWidth: '100vw',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word',
+        color: 'transparent',
+        marginTop: 40,
+        marginBottom: 40,
+        };
+
   export const smallTitleTxt: Styles = {
     width: '100%',
     color: 'text2',
