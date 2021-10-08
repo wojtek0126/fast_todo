@@ -37,7 +37,8 @@ import { addTaskContainer,
           todosContainer,
           todoStatusContainer, 
           userWelcomeTxt,
-          mockText,    
+          mockText,
+          clickedBtnAnimShrink,    
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
@@ -48,6 +49,7 @@ require('firebase/auth');
 
 
 function TodoList() {
+    const userEmail = localStorage.getItem('userEmail'); 
     const dummy = useRef<null | HTMLDivElement>(null); 
     const todosRef = firestore.collection('todos');
     const query = todosRef.orderBy('createdAt').limit(100);
@@ -58,9 +60,9 @@ function TodoList() {
 
     const [searchByTxt, setSearchByTxt] = useState('');  
 
-    const [filterCompleted, setFilterCompleted] = useState("Show"); 
-
-    const userEmail = localStorage.getItem('userEmail'); 
+    const [filterCompleted, setFilterCompleted] = useState("Show");   
+    
+    const [animBtn1, setAnimBtn1] = useState("");
 
   
     const RenderUserName = ({userName}: any) => {
@@ -76,18 +78,18 @@ function TodoList() {
 
 
       return  (<>
-                <div sx={{display: loadingDisplay}}>
+                <Box sx={{display: loadingDisplay}}>
                      <Paragraph sx={mockText}>
-                     <ReactLoading type={'spin'} height={30} width={30} />
+                       <ReactLoading type={'spin'} height={30} width={30} />
                      </Paragraph>
-               </div>
+               </Box>
               
               
-                <div sx={{display: userDisplay}}>
-                  <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} >
+                <Box sx={{display: userDisplay}}>
+                  {/* <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} > */}
                      <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userName}`}</Paragraph>
-                  </Typist>
-                </div>
+                  {/* </Typist> */}
+                </Box>
 
               </>);  
     };       
@@ -149,11 +151,18 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
         deadline: "No deadline set",
         uid,
         photoURL
-      })
-  
-      setFormValue('');
+      });    
+      setFormValue(""); 
+      
       if (dummy) dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
-    }
+    };
+
+    const handleAddTaskButtonClick = () => {
+      setAnimBtn1(clickedBtnAnimShrink);
+      setTimeout(() => {
+        setAnimBtn1("");        
+      }, 1000);   
+    };
   
     return (<Flex sx={todoLisTWrapper}>                 
           <Box sx={welcomeUserWrapper} >
@@ -220,6 +229,9 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
                   <PropsyBtn type={"submit"}
                              tooltipId={'add'}
                              tooltipTxt={'add task'} 
+                             animation={animBtn1} 
+                             animTime={'1s'} 
+                             onClick={handleAddTaskButtonClick}   
                              isDisabled={!formValue}
                              background={btnGradient}
                              content={iconAddTaskBtn} />               

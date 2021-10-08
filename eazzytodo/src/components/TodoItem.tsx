@@ -15,7 +15,6 @@ import { btnGradient,
          userImg, 
          userName,
          optionBox,
-         boxBorderRadius,
          clickedBtnAnimShrink,
          editItemDateAndTaskTypeWrapper} from '../styles/elements';
 import { firestore } from '../firebase/firebase';
@@ -178,8 +177,8 @@ function TodoItem(props: AppProps) {
         />
           <Flex sx={itemsBtnsContainer}>      
               <PropsyBtn 
-               tooltipId={'status'}
-               tooltipTxt={'switch completion status'}
+                tooltipId={'status'}
+                tooltipTxt={'switch completion status'}
                 background={btnCompletedColor}
                 onClick={onComplete}
                 content={iconCompleteTaskBtn}
