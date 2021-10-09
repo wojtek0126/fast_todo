@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { useState, useCallback, useEffect } from 'react';
 
-import { Image, Textarea, Paragraph, Select, Flex, Box } from 'theme-ui'; 
+import { Image, Textarea, Paragraph, Select, Flex } from 'theme-ui'; 
 
 import ReactTooltip from 'react-tooltip';
 
@@ -12,24 +12,25 @@ import { btnGradient,
          clickedBtnAnimJump,         
          inputTodoEdit,
          itemsBtnsContainer,         
-         userImg, 
-         userName,
+         userImg,         
          optionBox,
          clickedBtnAnimShrink,
-         editItemDateAndTaskTypeWrapper} from '../styles/elements';
+         editItemDateAndTaskTypeWrapper,
+         userNameInTask} from '../styles/elements';
 import { firestore } from '../firebase/firebase';
 import { iconCompleteTaskBtn, iconDateBtn,  iconDeleteTaskBtn, iconEditTaskBtn } from '../content/icons';
 import PropsyBtn from './propsyComps/PropsyBtn';
 import PropsyFlexBox from './propsyComps/PropsyFlexBox';
 import firebase from 'firebase';
 import PropsyInput from './propsyComps/PropsyInput';
+import React from 'react';
 require('firebase/auth');  
 
 type AppProps = {
   todo: any;     
 }; 
 
-function TodoItem(props: AppProps) {  
+const TodoItem = (props: AppProps) => {  
     const [ todoTxt, setTodoTxt ] = useState("");
     const [ deadline, setDeadline ] = useState("");
 
@@ -77,11 +78,6 @@ function TodoItem(props: AppProps) {
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
     };
-
-    const userNameParsedFunc = useCallback(() => {
-      const userNameParsed = props.todo.userName.match(/^(.+)@/)[1];
-      return userNameParsed;
-    },[props]);
     
     const onUpdate = useCallback(
       () => {
@@ -167,7 +163,7 @@ function TodoItem(props: AppProps) {
         backgroundColor={taskTypeColor}
         content={<>
   <Image src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} sx={userImg} />
-  <Paragraph sx={userName}>{userNameParsedFunc()}</Paragraph>
+  <Paragraph sx={userNameInTask}>{props.todo.userName}</Paragraph>
         <Textarea sx={inputTodoEdit}
              defaultValue={todoTxt}
              placeholder={todoTxt}
@@ -240,4 +236,4 @@ function TodoItem(props: AppProps) {
     </>)
   }
 
-  export default TodoItem;
+  export default React.memo(TodoItem);

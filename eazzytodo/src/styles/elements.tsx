@@ -421,15 +421,15 @@ export const btnPrimary: Styles = {
     top: '-20px'
   };
 
-  export const userName: Styles = {
+  export const userNameInTask: Styles = {
     borderRadius: boxBorderRadius,
     width: '200px',
     maxWidth: '240px',
     overflow: 'hidden',
     padding: 1,
-    position: 'absolute',
-    left: '40px',
-    top: '-20px',
+    // position: 'absolute',
+    // left: '40px',
+    // top: '-20px',
     backgroundColor: 'userBackground'
   };
 

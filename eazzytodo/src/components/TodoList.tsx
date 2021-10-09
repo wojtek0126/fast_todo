@@ -4,21 +4,19 @@ import {
   Box, 
   Textarea,
   Input,
-  Select,
-  Paragraph  
+  Select  
   } from 'theme-ui';  
 
 import ScrollTop from "react-scrolltop-button";  
 import { BsArrowBarUp } from 'react-icons/bs'; 
-import Typist from 'react-typist';
-import ReactLoading from 'react-loading';
+
 
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
 
 import TodoItem from './TodoItem';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
@@ -35,9 +33,7 @@ import { addTaskContainer,
           todoFiltersContainer,
           todoLisTWrapper,
           todosContainer,
-          todoStatusContainer, 
-          userWelcomeTxt,
-          mockText,
+          todoStatusContainer,          
           clickedBtnAnimShrink,    
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
@@ -45,6 +41,7 @@ import { iconAddTaskBtn } from '../content/icons';
 import SignOutButton from './UserAuth/SignOutButton';
 import PropsyBtn from './propsyComps/PropsyBtn';
 import { setTimeout } from 'timers';
+import RenderUserName from './propsyComps/RenderUserName';
 require('firebase/auth');  
 
 
@@ -63,36 +60,7 @@ function TodoList() {
     const [filterCompleted, setFilterCompleted] = useState("Show");   
     
     const [animBtn1, setAnimBtn1] = useState("");
-
-  
-    const RenderUserName = ({userName}: any) => {
-      const [loadingDisplay, setLoadingDisplay] = useState('flex');
-      const [userDisplay, setUserDisplay] = useState('none');
-      const timeoutTime = 1500;
-      useEffect(() => {
-        setTimeout(() => {
-          setLoadingDisplay('none');
-          setUserDisplay('flex');
-        }, timeoutTime);
-      }, []);
-
-
-      return  (<>
-                <Box sx={{display: loadingDisplay}}>
-                     <Paragraph sx={mockText}>
-                       <ReactLoading type={'spin'} height={30} width={30} />
-                     </Paragraph>
-               </Box>
-              
-              
-                <Box sx={{display: userDisplay}}>
-                  {/* <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} > */}
-                     <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userName}`}</Paragraph>
-                  {/* </Typist> */}
-                </Box>
-
-              </>);  
-    };       
+     
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;
@@ -131,7 +99,12 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       searchIt(task.text, searchBy))
       .map((task: any): JSX.Element => TodoJsx(task.id, task));
   };
-}
+};
+
+const userNameParsedFunc = (userEmail: any) => {
+  const userNameParsed = userEmail.match(/^(.+)@/)[1];
+  return userNameParsed;
+};
 
     const sendTodo = async (e: any) => {
       e.preventDefault();
@@ -139,7 +112,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       const { uid, photoURL } = auth.currentUser!;
   
       await todosRef.add({
-        userName: userEmail,        
+        userName: userNameParsedFunc(userEmail),        
         type: "Task",
         assignedTo: "Not assigned yet",
         assignedBy: "Not set yet",
@@ -166,7 +139,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   
     return (<Flex sx={todoLisTWrapper}>                 
           <Box sx={welcomeUserWrapper} >
-            <RenderUserName userName={userEmail} />             
+            <RenderUserName />             
           </Box> 
           <Flex sx={{alignSelf: 'center'}}>
             <SignOutButton />  
