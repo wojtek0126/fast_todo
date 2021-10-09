@@ -10,6 +10,8 @@ declare module 'styled-components';
 declare module 'react-tooltip';
 declare module 'react-typist';
 declare module 'react-loading';
+declare module 'react-progress-meter';
+
 
 
 

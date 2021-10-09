@@ -165,7 +165,8 @@
     margin: '0 auto'
   };
 
-  export const displayBar: Styles = {    
+  export const displayBar: Styles = { 
+    position: 'relative',   
     wordWrap: 'wrap',
     fontFamily: 'body',
     backgroundColor: 'inputBackground',
@@ -173,7 +174,7 @@
     borderRadius: inputBorderRadius,  
     marginTop: 1,
     padding: 2     
-  };
+  }; 
 
   export const todoLisTWrapper: Styles= {
     flexDirection: 'column',

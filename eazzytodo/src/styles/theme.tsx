@@ -23,6 +23,8 @@ export default {
       userBackground: 'rgba(255, 255, 0, 0.8)',
       dateSetBackground1: 'rgb(0, 102, 102)',
       buttonsBackground: 'rgb(0, 51, 51)',
+      progressBarColor: 'green',
+      progressBarFullColor: 'gold',
       patch: '#000',
       primary: '#33e',
       sent: 'teal',

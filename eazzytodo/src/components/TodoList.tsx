@@ -4,13 +4,11 @@ import {
   Box, 
   Textarea,
   Input,
-  Select  
+  Select,  
   } from 'theme-ui';  
 
 import ScrollTop from "react-scrolltop-button";  
 import { BsArrowBarUp } from 'react-icons/bs'; 
-
-
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
 
@@ -34,7 +32,7 @@ import { addTaskContainer,
           todoLisTWrapper,
           todosContainer,
           todoStatusContainer,          
-          clickedBtnAnimShrink,    
+          clickedBtnAnimShrink,             
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
@@ -42,6 +40,9 @@ import SignOutButton from './UserAuth/SignOutButton';
 import PropsyBtn from './propsyComps/PropsyBtn';
 import { setTimeout } from 'timers';
 import RenderUserName from './propsyComps/RenderUserName';
+import ProgressBar from './propsyComps/ProgressBar';
+import { useSetRecoilState } from 'recoil';
+import { todosRecoil } from '../recoil/recoil';
 require('firebase/auth');  
 
 
@@ -60,13 +61,18 @@ function TodoList() {
     const [filterCompleted, setFilterCompleted] = useState("Show");   
     
     const [animBtn1, setAnimBtn1] = useState("");
-     
+
+   const setTodosRecoil = useSetRecoilState(todosRecoil);
+
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;
   let completed: any = data?.filter((item: any) => item.isCompleted).length;
   let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100
-      return  parseFloat(percentage.toFixed(precision));  
+  let resultPercent = parseFloat(percentage.toFixed(precision));
+  setTodosRecoil(resultPercent);    
+  return  resultPercent
+      
 };
 
 const filteredStatus = (status: string): any => {
@@ -180,8 +186,11 @@ const userNameParsedFunc = (userEmail: any) => {
              
              </Box>
              <Box sx={displayBar}>
+
+               <ProgressBar progress={getPrecentCompleted(todos)} />
+            
+             {`You have finished ${getPrecentCompleted(todos)}% of the job`}  
                
-               {`You have finished ${getPrecentCompleted(todos)}% of the job`}            
              
              </Box>
             </Flex>             
