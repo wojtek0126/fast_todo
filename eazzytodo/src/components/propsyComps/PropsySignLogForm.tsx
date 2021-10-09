@@ -17,7 +17,8 @@ const PropsySignLogForm = React.memo(({textHead,
                                        passInputTxt,
                                        margin, 
                                        extraContent,
-                                       animationBtn,
+                                       btnAnimation,
+                                       btnAnimTime,
                                        tooltipId,
                                        tooltipTxt,
                                        width
@@ -49,7 +50,8 @@ const PropsySignLogForm = React.memo(({textHead,
                           background={btnGradient}
                           content={buttonContent}
                           onSubmit={onSubmit}
-                          animation={animationBtn}
+                          animation={btnAnimation}
+                          animTime={btnAnimTime}
                           >Sign in</PropsyBtn>
                 {extraContent}
              </Flex>

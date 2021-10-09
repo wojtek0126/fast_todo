@@ -41,7 +41,7 @@ const TodoItem = (props: AppProps) => {
     const [ opacity1, setOpacity1 ] = useState(1);
 
     const [ taskTypeColor, setTaskTypeColor ] = useState("todoTaskBackground");
-
+ //use reducer below useReducer(isCompleted => !isCompleted, false) check it out
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
       if (props.todo.isCompleted === true) {
         return btnCheckedGradient;

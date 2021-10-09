@@ -1,9 +1,8 @@
-import { Box, Paragraph } from "@theme-ui/components";
+import { Container, Flex, Paragraph } from "@theme-ui/components";
 import { useEffect, useState } from "react";
-import { mockText, userWelcomeTxt } from "../../styles/elements";
+import { loadingBox, userWelcomeTxt } from "../../styles/elements";
 
 import ReactLoading from 'react-loading';
-
 
 const RenderUserName = () => {
     const userEmail = localStorage.getItem('userEmail'); 
@@ -19,18 +18,16 @@ const RenderUserName = () => {
 
 
     return  (<>
-              <Box sx={{display: loadingDisplay}}>
-                   <Paragraph sx={mockText}>
+
+              <Container sx={{display: loadingDisplay}}>
+                   <Flex sx={loadingBox}>
                      <ReactLoading type={'spin'} height={30} width={30} />
-                   </Paragraph>
-             </Box>
+                   </Flex>
+             </Container>            
             
-            
-              <Box sx={{display: userDisplay}}>
-                {/* <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }} > */}
+              <Container sx={{display: userDisplay}}>
                    <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
-                {/* </Typist> */}
-              </Box>
+              </Container>
 
             </>);  
   };       

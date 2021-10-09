@@ -11,6 +11,7 @@
   export const btnBorderRadius: string = '50%';
   export const inputBorderRadius: string = '10px';
   export const boxBorderRadius: string = '10px';
+  export const userNameMinHeight: string = '85px';
   export const btnGradient: string = 'linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)';
   export const btnCheckedGradient: string = 'linear-gradient(to right, #50C9C3 0%, #96DEDA  51%, #50C9C3  100%)';
   export const btnAlertgradient: string = 'linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%)}';
@@ -361,27 +362,27 @@ export const btnPrimary: Styles = {
     };
 
     export const userWelcomeTxt: Styles = {
-      alignSelf: 'center',
-      fontSize: [12, 14, 16, 20],
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: [14, 16,20],
       maxWidth: '100vw',
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-word',
       textShadow: txtShadow,
       color: 'text2',
-      marginTop: 40,
-      marginBottom: 40,
+      minHeight: userNameMinHeight
       };
 
-      export const mockText: Styles = {
-        alignSelf: 'center',
-        fontSize: [12, 14, 16, 20],
+      export const loadingBox: Styles = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         maxWidth: '100vw',
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word',
         color: 'text2',
-        // opacity: 0,
-        marginTop: 40,
-        marginBottom: 40,
+        minHeight: userNameMinHeight
         };
 
   export const smallTitleTxt: Styles = {
