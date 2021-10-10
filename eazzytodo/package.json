@@ -20,6 +20,7 @@
     "react-firebase-hooks": "^3.0.4",
     "react-icons": "^4.2.0",
     "react-loading": "^2.0.3",
+    "react-particle-effect-button": "^1.0.1",
     "react-particles-js": "^3.5.3",
     "react-scripts": "4.0.3",
     "react-scrolltop-button": "^0.1.9",

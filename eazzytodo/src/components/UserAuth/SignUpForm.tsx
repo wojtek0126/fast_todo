@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { Flex } from "theme-ui";
 import { iconCloseBtn, iconSignUpBtn } from "../../content/icons";
 
 import getFirebase from "../../firebase/firebase";
@@ -21,11 +20,15 @@ const SignUpForm = () => {
 
     //all this to recoil  
     const [ animBtn1, setAnimBtn1 ] = useState("");
-    const [ animBtn2, setAnimBtn2 ] = useState("");
+    const [ animBtn2, setAnimBtn2 ] = useState("");    
 
     const setLoginBoxDisplay = useSetRecoilState(displayLoginBoxState);
 
     const [SignupBoxDisplay, setSignupBoxDisplay] = useRecoilState(displaySignupBoxState);  
+
+    const firebaseInstance = getFirebase();
+    const email = emailValue;
+    const password = passwordlValue;
 
     const handleChangeEmail = (event: any) => {
         setEmailValue(event.target.value);
@@ -42,11 +45,7 @@ const SignUpForm = () => {
           setSignupBoxDisplay('none');
         }, 1000);
       
-      };  
-
-    const firebaseInstance = getFirebase();
-    const email = emailValue;
-    const password = passwordlValue;
+      };   
 
     const signUp = async (event: any) => {
       event.preventDefault();   
@@ -70,7 +69,6 @@ const SignUpForm = () => {
          
         }
       }, 1000);
-
   };
 
 

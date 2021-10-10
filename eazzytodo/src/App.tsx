@@ -63,16 +63,16 @@ function App() {
        params={{
         "particles": {
             "number": {
-                "value": 160,
+                "value": 60,
                 "density": {
                     "enable": false
                 }
             },
             "size": {
-                "value": 3,
+                "value": 12,
                 "random": true,
                 "anim": {
-                    "speed": 4,
+                    "speed": 2,
                     "size_min": 0.3
                 }
             },

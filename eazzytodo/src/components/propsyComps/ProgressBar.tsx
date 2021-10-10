@@ -1,6 +1,5 @@
 import { Box } from "@theme-ui/components";
 import Particles from "react-particles-js";
-import Wave from "react-wavify";
 import { useRecoilValue } from "recoil";
 import { todosPercentDone } from "../../recoil/recoil";
 import { boxBorderRadius } from "../../styles/elements";
@@ -19,25 +18,25 @@ const ProgressBar = ({progress}: any) => {
             transition: '1s',
             borderRadius: boxBorderRadius,
             }}>  
-       <Particles style={{position: 'absolute', bottom: 0, left: 0, opacity: 0.4}}
+       {/* <Particles style={{position: 'absolute', bottom: 0, left: 0, opacity: 0.5}}
         params={{
             "particles": {
                 "number": {
-                    "value": 25
+                    "value": 20
                 },
                 "size": {
-                    "value": 3
+                    "value": 10
                 }
             },
             "interactivity": {
                 "events": {
                     "onhover": {
-                        "enable": true,
+                        "enable": false,
                         "mode": "repulse"
                     }
                 }
             }
-        }} />       
+        }} />        */}
         </Box>
         )  
 };

@@ -5,6 +5,8 @@ import { setTimeout } from "timers";
 
 import { iconAddUser, iconCloseBtn, iconForgotpassBtn, iconSendMailBtn, iconSignInBtn } from "../../content/icons";
 
+// import ParticleEffectButton from 'react-particle-effect-button';
+
 import getFirebase from "../../firebase/firebase";
 import { displayAlertBoxState, displayLoginBoxState, displaySignupBoxState } from "../../recoil/recoil";
 import { btnGradient, clickedBtnAnimShrink } from "../../styles/elements";
@@ -24,6 +26,7 @@ const SignInForm = () => {
   const [ animBtn3, setAnimBtn3 ] = useState("");
   const [ animBtn4, setAnimBtn4 ] = useState("");
   const [ animBtn5, setAnimBtn5 ] = useState("");
+  // const [ particleEffect, setParticleEffect ] = useState(false);
 
 
   const [alertDisplay, setAlertDiaspaly] = useState('none');
@@ -86,15 +89,15 @@ const SignInForm = () => {
 
   const signIn = async (event: any) => {
     event.preventDefault();
-    handleButtonAnimation(setAnimBtn1, clickedBtnAnimShrink, 1000);
-    setTimeout(async () => {
+    handleButtonAnimation(setAnimBtn1, clickedBtnAnimShrink, 1000);  
       try {
         if (firebaseInstance) {
+          // setParticleEffect(true);
           const user = await firebaseInstance
             .auth()
             .signInWithEmailAndPassword(email, password);
             localStorage.setItem('userEmail', email);          
-          console.log("user", user);     
+             
         }
       } catch (error: any) {
         console.log("error", error);
@@ -103,28 +106,11 @@ const SignInForm = () => {
         setTimeout(() => {
           setAlertDiaspaly('none');
         }, 2000);
-      }
-    }, 1000);
-    try {
-      if (firebaseInstance) {
-        const user = await firebaseInstance
-          .auth()
-          .signInWithEmailAndPassword(email, password);
-          localStorage.setItem('userEmail', email);          
-        console.log("user", user);     
-      }
-    } catch (error: any) {
-      console.log("error", error);
-      setAlertDiaspaly('flex');
-      setAlerContent(`${error.message}`);
-      setTimeout(() => {
-        setAlertDiaspaly('none');
-      }, 2000);
-    }
+      } 
   };
- // replace with PropsyChoicePopup 
-  const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
 
+ // replace that popup with PropsyChoicePopup 
+  const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
 
     return <PropsyAlertBox  display={display} 
                             margin={'0 auto'} 
@@ -148,6 +134,7 @@ const SignInForm = () => {
 
 
   return (<>   
+  {/* <ParticleEffectButton color="#fe6333" hidden={particleEffect}> */}
     <PropsySignLogForm
         tooltipId={'login'}
         tooltipTxt={'login'}
@@ -162,7 +149,6 @@ const SignInForm = () => {
         onSubmit={signIn}
         btnAnimation={animBtn1} 
         btnAnimTime={'1s'} 
-        // margin={'0 auto'}
         extraContent={<>
         <PropsyBtn background={btnGradient}
                    tooltipId={'register'}
@@ -192,6 +178,7 @@ const SignInForm = () => {
     onClick={handleForgotPasswordSend}
     onClickClose={handleForgotPasswordClose}
      />
+     {/* </ParticleEffectButton> */}
   </>);
 };
 
