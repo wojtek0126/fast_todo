@@ -143,7 +143,8 @@
     borderRadius: boxBorderRadius,
     backgroundColor: 'buttonsBackground' ,
     border:'1px solid',
-    borderColor: 'borderColor'
+    borderColor: 'borderColor',
+    position: 'relative'
   };
 
   export const todoItemContainer: Styles = {
@@ -174,8 +175,19 @@
     color: 'text2',   
     borderRadius: inputBorderRadius,  
     marginTop: 1,
-    padding: 2     
+    padding: 2,       
   }; 
+
+  export const displayStatusBar: Styles = { 
+    position: 'relative',   
+    wordWrap: 'wrap',
+    fontFamily: 'body',
+    backgroundColor: 'inputBackground',
+    color: 'text2',   
+    borderRadius: inputBorderRadius,  
+    marginTop: 1,
+    padding: 20,       
+  };
 
   export const todoLisTWrapper: Styles= {
     flexDirection: 'column',
@@ -339,7 +351,8 @@ export const btnPrimary: Styles = {
    }
   } 
 
-  export const optionBox: Styles = {    
+  export const optionBox: Styles = {  
+    zIndex:15,  
     wordWrap: 'wrap',
     fontFamily: 'body',
     backgroundColor: 'inputBackground',

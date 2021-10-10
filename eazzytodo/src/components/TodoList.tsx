@@ -32,7 +32,8 @@ import { addTaskContainer,
           todoLisTWrapper,
           todosContainer,
           todoStatusContainer,          
-          clickedBtnAnimShrink,             
+          clickedBtnAnimShrink,
+          displayStatusBar,             
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
@@ -185,11 +186,14 @@ const userNameParsedFunc = (userEmail: any) => {
                {`Completed: ${todos?.filter((item) => item.isCompleted).length}`}                      
              
              </Box>
-             <Box sx={displayBar}>
+             <Box sx={displayStatusBar}>
 
                <ProgressBar progress={getPrecentCompleted(todos)} />
+                 
+               <Box sx={{position: 'absolute', width: '100%', bottom: 10}}>
+                   {`You have finished ${getPrecentCompleted(todos)}% of the job`}  
+               </Box>
             
-             {`You have finished ${getPrecentCompleted(todos)}% of the job`}  
                
              
              </Box>
