@@ -22,6 +22,8 @@ const SignInForm = () => {
   const [ animBtn1, setAnimBtn1 ] = useState("");
   const [ animBtn2, setAnimBtn2 ] = useState("");
   const [ animBtn3, setAnimBtn3 ] = useState("");
+  const [ animBtn4, setAnimBtn4 ] = useState("");
+  const [ animBtn5, setAnimBtn5 ] = useState("");
 
 
   const [alertDisplay, setAlertDiaspaly] = useState('none');
@@ -60,14 +62,22 @@ const SignInForm = () => {
   };
 
   const handleForgotPasswordClose = () => {
-    setForgotPasswordDisplay('none');
+    handleButtonAnimation(setAnimBtn5, clickedBtnAnimShrink, 1000);
+    setTimeout(() => {
+      setForgotPasswordDisplay('none');
+    }, 1000)
+   
   };
 
   const handleForgotPasswordSend = () => {
-    firebase.auth().sendPasswordResetEmail(emailValue);
+    handleButtonAnimation(setAnimBtn4, clickedBtnAnimShrink, 1000);
     setTimeout(() => {
-      setForgotPasswordDisplay('none');
-    }, 2000);
+      firebase.auth().sendPasswordResetEmail(emailValue);
+      setTimeout(() => {
+        setForgotPasswordDisplay('none');
+      }, 2000);
+    }, 1000)
+   
   };
  
   const firebaseInstance = getFirebase();
@@ -114,6 +124,8 @@ const SignInForm = () => {
   };
 
   const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
+
+
     return <PropsyAlertBox  display={display} 
                             margin={'0 auto'} 
                             content={<> 
@@ -121,12 +133,16 @@ const SignInForm = () => {
               tooltipId={'reset-password'}
               tooltipTxt={`send reset password request(enter email above): ${emailValue}`}
                content={iconSendMailBtn}
-               background={btnGradient} />
+               background={btnGradient}
+               animation={animBtn4} 
+               animTime={'1s'}  />
       <PropsyBtn content={iconCloseBtn}
        tooltipId={'reset-password-close'}
        tooltipTxt={`close reset password window`}
                  onClick={onClickClose}
-                 background={btnGradient} />
+                 background={btnGradient} 
+                 animation={animBtn5} 
+                 animTime={'1s'} />
       </>} />
   };
 
