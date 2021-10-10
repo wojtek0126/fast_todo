@@ -357,8 +357,9 @@ export const btnPrimary: Styles = {
     alignText: 'center',
     fontSize: [20, 14, 16, 20],   
     textShadow: txtShadow,
-    color: 'text2',    
-    padding: 2
+    color: 'alert',    
+    padding: 2,
+    marginTop: 20
     };
 
     export const userWelcomeTxt: Styles = {

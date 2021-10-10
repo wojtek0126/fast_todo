@@ -23,7 +23,7 @@ export default {
       userBackground: 'rgba(255, 255, 0, 0.8)',
       dateSetBackground1: 'rgb(0, 102, 102)',
       buttonsBackground: 'rgb(0, 51, 51)',
-      progressBarColor: 'silver',
+      progressBarColor: 'crimson',
       progressGrad: 'radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%)',
       progressBarFullColor: 'gold',
       patch: '#000',
@@ -32,7 +32,8 @@ export default {
       received: '#000',
       messageText: '#fff',
       underwater: '#1277b0',
-      border: "#000"
+      border: "#000",
+      alert: 'red'
     },
     images: {
         avatar: {

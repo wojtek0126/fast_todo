@@ -11,6 +11,8 @@ declare module 'react-tooltip';
 declare module 'react-typist';
 declare module 'react-loading';
 declare module 'react-progress-meter';
+declare module 'react-particles-js';
+
 
 
 
