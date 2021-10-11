@@ -14,6 +14,7 @@ export default {
       text4: 'blue',
       borderColor: '#fff',
       appMainbackground: 'rgb(102, 0, 102)',
+      todoEditArea: '#000',
       todoTaskBackground: 'rgba(51, 51, 255, 0.8)',
       todoIdeaBackground: 'rgba(0, 153, 51, 0.8)',
       todoProblemBackground: 'rgba(204, 51, 0, 0.8)',

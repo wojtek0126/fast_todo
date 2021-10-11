@@ -173,7 +173,7 @@ const TodoItem = (props: AppProps) => {
              }}
         />
           <Flex sx={itemsBtnsContainer}>   
-          <Particles style={{position: 'absolute', bottom: 0, left: 0}}
+          {/* <Particles style={{position: 'absolute', bottom: 0, left: 0}}
         params={{
           "particles": {
               "number": {
@@ -224,7 +224,7 @@ const TodoItem = (props: AppProps) => {
                   }
               }
           }
-      }} />   
+      }} />    */}
               <PropsyBtn 
                 tooltipId={'status'}
                 tooltipTxt={'switch completion status'}

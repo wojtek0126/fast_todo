@@ -1,5 +1,5 @@
   // unified styles control center, fused with theme-ui
-  import background from '../assets/background.png'
+  import background from '../assets/bee2.webp'
   import { keyframes } from '@emotion/react'  
 
   
@@ -24,7 +24,7 @@
     // background: `url(${background})`,
     backgroundColor: 'appMainbackground',
     // backgroundBlendMode:'multiply,multiply',
-    axWidth: '100vw',
+    maxWidth: '100vw',
     minHeight: '100vh'    
   };
 
@@ -141,7 +141,10 @@
     justifyContent: 'flex-start',
     flexWrap: 'wrap', 
     borderRadius: boxBorderRadius,
-    backgroundColor: 'buttonsBackground' ,
+    background: `url(${background})`,
+    backgroundSize: 'cover',
+    // backgroundBlendMode:'multiply,multiply',
+    // backgroundColor: 'buttonsBackground' ,
     border:'1px solid',
     borderColor: 'borderColor',
     position: 'relative'
@@ -172,6 +175,8 @@
     wordWrap: 'wrap',
     fontFamily: 'body',
     backgroundColor: 'inputBackground',
+    // background: `url(${background})`,
+    // backgroundSize: 'contain',
     color: 'text2',   
     borderRadius: inputBorderRadius,  
     marginTop: 1,
@@ -330,6 +335,8 @@ export const btnPrimary: Styles = {
     wordWrap: 'wrap',
     fontFamily: 'body',
     backgroundColor: 'inputBackground',
+    // background: `url(${background})`,
+    // backgroundSize: 'cover',
     color: 'text2',   
     borderRadius: inputBorderRadius,
     margin: 0
@@ -338,8 +345,9 @@ export const btnPrimary: Styles = {
   export const inputTodoEdit: Styles = { 
     fontFamily: 'body', 
     wordWrap: 'break-word',
-    backgroundColor: 'transparent',
-    border: 'none',
+    color: 'text2', 
+    backgroundColor: 'todoEditArea',
+    borderRadius: inputBorderRadius,
     maxWidth: '100%',
     paddingTop: 20,
     paddingLeft: 20,
