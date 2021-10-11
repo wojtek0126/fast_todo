@@ -190,7 +190,7 @@ const userNameParsedFunc = (userEmail: any) => {
 
                <ProgressBar progress={getPrecentCompleted(todos)} />
                  
-               <Box sx={{position: 'absolute', width: '100%', bottom: 10}}>
+               <Box sx={{position: 'absolute', width: '100%', bottom: 10, left: 0}}>
                    {`You have finished ${getPrecentCompleted(todos)}% of the job`}  
                </Box>
             
