@@ -69,10 +69,10 @@ function TodoList() {
 const getPrecentCompleted: any = (data: any, precision: number) => {
   let alltodos: any = data?.length;
   let completed: any = data?.filter((item: any) => item.isCompleted).length;
-  let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100
+  let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100;
   let resultPercent = parseFloat(percentage.toFixed(precision));
   setTodosRecoil(resultPercent);    
-  return  resultPercent
+  return  resultPercent;
       
 };
 
@@ -190,7 +190,12 @@ const userNameParsedFunc = (userEmail: any) => {
 
                <ProgressBar progress={getPrecentCompleted(todos)} />
                  
-               <Box sx={{position: 'absolute', width: '100%', bottom: 10, left: 0}}>
+               <Box sx={{position: 'absolute',
+                         width: '100%',
+                         bottom: 10,
+                         left: 0,
+                         fontSize: [12, 14, 20]}}
+                >
                    {`You have finished ${getPrecentCompleted(todos)}% of the job`}  
                </Box>
             

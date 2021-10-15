@@ -24,7 +24,7 @@ import PropsyFlexBox from './propsyComps/PropsyFlexBox';
 import firebase from 'firebase';
 import PropsyInput from './propsyComps/PropsyInput';
 import React from 'react';
-import Particles from 'react-particles-js';
+import { handleButtonAnimation } from './UserAuth/SignOutButton';
 require('firebase/auth');  
 
 type AppProps = {
@@ -42,7 +42,7 @@ const TodoItem = (props: AppProps) => {
     const [ opacity1, setOpacity1 ] = useState(1);
 
     const [ taskTypeColor, setTaskTypeColor ] = useState("todoTaskBackground");
- //use reducer below useReducer(isCompleted => !isCompleted, false) check it out
+
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
       if (props.todo.isCompleted === true) {
         return btnCheckedGradient;
@@ -83,10 +83,7 @@ const TodoItem = (props: AppProps) => {
     const onUpdate = useCallback(
       () => {
           updateFirestoreData('todos', props.todo.id, 'text', todoTxt);       
-        setAnimBtn1(clickedBtnAnimJump);
-        setTimeout(() => {
-          setAnimBtn1("");
-        }, 1000);
+          handleButtonAnimation(setAnimBtn1, clickedBtnAnimJump, 1000);
       },
       [todoTxt],
     );  
@@ -107,10 +104,7 @@ const TodoItem = (props: AppProps) => {
     
     const onDelete = useCallback(
       () => {
-        setAnimBtn2(clickedBtnAnimShrink);
-        setTimeout(() => {
-          setAnimBtn2("");
-        }, 1000);
+        handleButtonAnimation(setAnimBtn2, clickedBtnAnimShrink, 1000);
         setOpacity1(0);
         setTimeout(() => {
           firestore.collection('todos').doc(props.todo.id).delete();   
@@ -148,10 +142,7 @@ const TodoItem = (props: AppProps) => {
 
     const handleDeadline = useCallback((e: any) => {
       updateFirestoreData('todos', props.todo.id, 'deadline', deadline);  
-      setAnimBtn3(clickedBtnAnimShrink);
-      setTimeout(() => {
-        setAnimBtn3("");
-      }, 1000);       
+      handleButtonAnimation(setAnimBtn3, clickedBtnAnimShrink, 1000);    
     },[deadline]);
 
         
@@ -218,7 +209,7 @@ const TodoItem = (props: AppProps) => {
                                    width={'130px'} 
                                    onChange={handleSetDeadline}
                                    value={deadline}
-                                   fontFamily={'progbot'}
+                                   fontFamily={'body'}
                                             />                             
                       <PropsyBtn onClick={handleDeadline}
                                  tooltipId={'set-date'}

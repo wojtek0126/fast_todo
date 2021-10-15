@@ -13,6 +13,8 @@ import Particles from 'react-particles-js';
 
 import { appContainer,
   bigTitleTxt,
+  btnGradient,
+  clickedBtnAnimShrink,
   headerContainer, 
   signInFormContainer, 
   signLogContainer, 
@@ -37,13 +39,19 @@ import SignUpForm from './components/UserAuth/SignUpForm';
 import SignInForm from './components/UserAuth/SignInForm';
 import themeRetro from './styles/themeRetro';
 import PropsyBtn from './components/propsyComps/PropsyBtn';
+import { iconRetroModeBtn } from './content/icons';
+import { handleButtonAnimation } from './components/UserAuth/SignOutButton';
 require('firebase/auth');
 
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
+
   const [themeUI, setThemeUI] = useState(theme);
+  
+  const [animBtn1, setAnimBtn1] = useState("");
+
 
   useEffect(() => {
     const firebase = getFirebase();
@@ -60,16 +68,19 @@ function App() {
   }, []);
 
   const handleThemeSwitchClick = () => {
+    handleButtonAnimation(setAnimBtn1, clickedBtnAnimShrink, 1000);   
     if (themeUI === theme) {
       setThemeUI(themeRetro);
-      console.log(themeUI)
+      // setThemeBtnColor('gold');
     }
     else if (themeUI === themeRetro) {
       setThemeUI(theme);
-      console.log(themeUI)
+      // setThemeBtnColor('grey');
+
     }
   };
-  console.log(themeUI)
+
+
   return (  
       <ThemeProvider theme={themeUI}>    
       <RecoilRoot>
@@ -129,6 +140,15 @@ function App() {
         <TitleBanner />
         <PropsyBtn 
           onClick={handleThemeSwitchClick}
+          tooltipId={'set-theme'}
+          tooltipTxt={'enable/disable retro mode'}
+          background={btnGradient}
+          content={iconRetroModeBtn}
+          position={"absolute"}
+          top={10}
+          color={'text2'}
+          animation={animBtn1} 
+          animTime={'1s'} 
         />
         <Header sx={headerContainer} >    
           <Box sx={{margin: 'auto'}}>    

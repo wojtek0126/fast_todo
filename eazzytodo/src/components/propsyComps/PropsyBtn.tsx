@@ -20,8 +20,10 @@ const PropsyBtn = React.memo(({animTime,
                                position,
                                top,
                                right,
+                               left,
                                fontSize = '[16, 20]',
-                               margin = '10px'
+                               margin = '10px',
+                               color = 'white'
                               }: any ) => {  
     return (<>
         <Button disabled={isDisabled} 
@@ -37,7 +39,7 @@ const PropsyBtn = React.memo(({animTime,
           textAlign: 'center',          
           transition: `${transition}`,
           backgroundSize: '200% auto',
-          color: 'white',            
+          color: color,            
           boxShadow: '0 0 20px #eee',
           borderRadius: borderRadius,
           animation: `${animation} ${animTime} ease 1`,
@@ -45,6 +47,7 @@ const PropsyBtn = React.memo(({animTime,
           position: position,
           top: top,
           right: right,
+          left: left,
           '&:hover, &:focus': {  
             backgroundPosition: 'right center', 
             color: '#fff',

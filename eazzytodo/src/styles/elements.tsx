@@ -362,7 +362,7 @@ export const btnPrimary: Styles = {
   export const optionBox: Styles = {  
     zIndex:15,  
     wordWrap: 'wrap',
-    fontFamily: 'bot',
+    fontFamily: 'body',
     backgroundColor: 'inputBackground',
     color: 'text2',   
     borderRadius: inputBorderRadius,

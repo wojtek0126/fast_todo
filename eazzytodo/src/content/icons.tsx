@@ -4,6 +4,8 @@ import { MdSystemUpdateAlt } from 'react-icons/md';
 import { BiLogOutCircle, BiLogInCircle, BiUserPlus } from 'react-icons/bi';
 import { RiLockPasswordLine, RiMailSendLine } from 'react-icons/ri';
 import { CgCalendarDates } from 'react-icons/cg';
+import { SiRetroarch } from 'react-icons/si';
+
 
 
 
@@ -31,4 +33,7 @@ export const iconForgotpassBtn: JSX.Element = <RiLockPasswordLine />;
 export const iconSendMailBtn: JSX.Element = <RiMailSendLine />;
 
 export const iconDateBtn: JSX.Element = <CgCalendarDates />;
+
+export const iconRetroModeBtn: JSX.Element = <SiRetroarch />;
+
 
