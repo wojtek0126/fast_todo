@@ -1,23 +1,25 @@
 {
   "files": {
-    "main.css": "/fast_todo/static/css/main.5739ad41.chunk.css",
-    "main.js": "/fast_todo/static/js/main.f076249d.chunk.js",
-    "main.js.map": "/fast_todo/static/js/main.f076249d.chunk.js.map",
-    "runtime-main.js": "/fast_todo/static/js/runtime-main.3b129471.js",
-    "runtime-main.js.map": "/fast_todo/static/js/runtime-main.3b129471.js.map",
-    "static/js/2.99a8406e.chunk.js": "/fast_todo/static/js/2.99a8406e.chunk.js",
-    "static/js/2.99a8406e.chunk.js.map": "/fast_todo/static/js/2.99a8406e.chunk.js.map",
-    "static/js/3.bd331010.chunk.js": "/fast_todo/static/js/3.bd331010.chunk.js",
-    "static/js/3.bd331010.chunk.js.map": "/fast_todo/static/js/3.bd331010.chunk.js.map",
+    "main.css": "/fast_todo/static/css/main.0183ed91.chunk.css",
+    "main.js": "/fast_todo/static/js/main.d312e0b1.chunk.js",
+    "main.js.map": "/fast_todo/static/js/main.d312e0b1.chunk.js.map",
+    "runtime-main.js": "/fast_todo/static/js/runtime-main.deba46cb.js",
+    "runtime-main.js.map": "/fast_todo/static/js/runtime-main.deba46cb.js.map",
+    "static/js/2.ef51a5fe.chunk.js": "/fast_todo/static/js/2.ef51a5fe.chunk.js",
+    "static/js/2.ef51a5fe.chunk.js.map": "/fast_todo/static/js/2.ef51a5fe.chunk.js.map",
+    "static/js/3.f84615bc.chunk.js": "/fast_todo/static/js/3.f84615bc.chunk.js",
+    "static/js/3.f84615bc.chunk.js.map": "/fast_todo/static/js/3.f84615bc.chunk.js.map",
     "index.html": "/fast_todo/index.html",
-    "static/css/main.5739ad41.chunk.css.map": "/fast_todo/static/css/main.5739ad41.chunk.css.map",
-    "static/js/2.99a8406e.chunk.js.LICENSE.txt": "/fast_todo/static/js/2.99a8406e.chunk.js.LICENSE.txt",
+    "static/css/main.0183ed91.chunk.css.map": "/fast_todo/static/css/main.0183ed91.chunk.css.map",
+    "static/js/2.ef51a5fe.chunk.js.LICENSE.txt": "/fast_todo/static/js/2.ef51a5fe.chunk.js.LICENSE.txt",
+    "static/media/DIGITALDREAM.a73dceea.ttf": "/fast_todo/static/media/DIGITALDREAM.a73dceea.ttf",
+    "static/media/index.css": "/fast_todo/static/media/progbot.0ffbcb55.ttf",
     "static/media/bee2.33061ea5.webp": "/fast_todo/static/media/bee2.33061ea5.webp"
   },
   "entrypoints": [
-    "static/js/runtime-main.3b129471.js",
-    "static/js/2.99a8406e.chunk.js",
-    "static/css/main.5739ad41.chunk.css",
-    "static/js/main.f076249d.chunk.js"
+    "static/js/runtime-main.deba46cb.js",
+    "static/js/2.ef51a5fe.chunk.js",
+    "static/css/main.0183ed91.chunk.css",
+    "static/js/main.d312e0b1.chunk.js"
   ]
 }
