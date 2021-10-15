@@ -25,6 +25,7 @@ import TodoList from './components/TodoList';
 
 import { Box, Flex, Heading, Paragraph, ThemeProvider } from 'theme-ui';
 import theme from './styles/theme';
+import retroTheme from './styles/themeRetro';
 
 import ScrollText from 'react-scroll-text';
 import Typist from 'react-typist';
@@ -34,12 +35,15 @@ import 'firebase/auth';
 import getFirebase from './firebase/firebase';
 import SignUpForm from './components/UserAuth/SignUpForm';
 import SignInForm from './components/UserAuth/SignInForm';
+import themeRetro from './styles/themeRetro';
+import PropsyBtn from './components/propsyComps/PropsyBtn';
 require('firebase/auth');
 
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [themeUI, setThemeUI] = useState(theme);
 
   useEffect(() => {
     const firebase = getFirebase();
@@ -55,8 +59,19 @@ function App() {
     }
   }, []);
 
+  const handleThemeSwitchClick = () => {
+    if (themeUI === theme) {
+      setThemeUI(themeRetro);
+      console.log(themeUI)
+    }
+    else if (themeUI === themeRetro) {
+      setThemeUI(theme);
+      console.log(themeUI)
+    }
+  };
+  console.log(themeUI)
   return (  
-      <ThemeProvider theme={theme}>    
+      <ThemeProvider theme={themeUI}>    
       <RecoilRoot>
       <Box sx={appContainer} >
       <Particles style={{position: 'absolute'}}
@@ -112,6 +127,9 @@ function App() {
         }
     }} />
         <TitleBanner />
+        <PropsyBtn 
+          onClick={handleThemeSwitchClick}
+        />
         <Header sx={headerContainer} >    
           <Box sx={{margin: 'auto'}}>    
               {currentUser ? <TodoList /> : <>

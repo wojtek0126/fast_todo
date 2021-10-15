@@ -10,6 +10,7 @@ const PropsyInput = React.memo(({text,
                                  marginTop =  0,
                                  width = '100%',
                                  placeholder="...",
+                                 fontFamily = 'body',
                                  value
                                        }: any) => {
     return (
@@ -17,7 +18,7 @@ const PropsyInput = React.memo(({text,
                 sx={{
                     display: `${display}`,
                     wordWrap: 'wrap',
-                    fontFamily: 'body',
+                    fontFamily: fontFamily,
                     backgroundColor: 'inputBackground',
                     color: 'text2',   
                     borderRadius: inputBorderRadius,

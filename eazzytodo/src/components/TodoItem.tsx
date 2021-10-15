@@ -172,59 +172,7 @@ const TodoItem = (props: AppProps) => {
               setTodoTxt(e.target.value);
              }}
         />
-          <Flex sx={itemsBtnsContainer}>   
-          {/* <Particles style={{position: 'absolute', bottom: 0, left: 0}}
-        params={{
-          "particles": {
-              "number": {
-                  "value": 160,
-                  "density": {
-                      "enable": false
-                  }
-              },
-              "size": {
-                  "value": 3,
-                  "random": true,
-                  "anim": {
-                      "speed": 4,
-                      "size_min": 0.3
-                  }
-              },
-              "line_linked": {
-                  "enable": false
-              },
-              "move": {
-                  "random": true,
-                  "speed": 1,
-                  "direction": "top",
-                  "out_mode": "out"
-              }
-          },
-          "interactivity": {
-              "events": {
-                  "onhover": {
-                      "enable": true,
-                      "mode": "bubble"
-                  },
-                  "onclick": {
-                      "enable": true,
-                      "mode": "repulse"
-                  }
-              },
-              "modes": {
-                  "bubble": {
-                      "distance": 250,
-                      "duration": 2,
-                      "size": 0,
-                      "opacity": 0
-                  },
-                  "repulse": {
-                      "distance": 400,
-                      "duration": 4
-                  }
-              }
-          }
-      }} />    */}
+          <Flex sx={itemsBtnsContainer}>       
               <PropsyBtn 
                 tooltipId={'status'}
                 tooltipTxt={'switch completion status'}
@@ -270,6 +218,7 @@ const TodoItem = (props: AppProps) => {
                                    width={'130px'} 
                                    onChange={handleSetDeadline}
                                    value={deadline}
+                                   fontFamily={'progbot'}
                                             />                             
                       <PropsyBtn onClick={handleDeadline}
                                  tooltipId={'set-date'}

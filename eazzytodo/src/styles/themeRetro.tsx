@@ -1,7 +1,7 @@
 export default {
     fonts: {
-      body: 'progbot',
-      // body: 'system-ui, sans-serif',
+    //   body: 'progbot',
+      body: 'system-ui, sans-serif',
       heading: '"Avenir Next", sans-serif',
       monospace: 'Menlo, monospace',
       digitag: "Digitag",

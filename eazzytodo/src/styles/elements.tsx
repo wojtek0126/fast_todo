@@ -347,7 +347,7 @@ export const btnPrimary: Styles = {
     wordWrap: 'break-word',
     color: 'text2', 
     backgroundColor: 'todoEditArea',
-    borderRadius: inputBorderRadius,
+    borderRadius: inputBorderRadius,  
     maxWidth: '100%',
     paddingTop: 20,
     paddingLeft: 20,
@@ -362,7 +362,7 @@ export const btnPrimary: Styles = {
   export const optionBox: Styles = {  
     zIndex:15,  
     wordWrap: 'wrap',
-    fontFamily: 'body',
+    fontFamily: 'bot',
     backgroundColor: 'inputBackground',
     color: 'text2',   
     borderRadius: inputBorderRadius,
