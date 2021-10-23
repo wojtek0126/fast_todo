@@ -4,6 +4,7 @@ import { inputBorderRadius } from "../../styles/elements";
 
 
 const PropsyInput = React.memo(({text,
+                                 fontSize = "12px !important",
                                  onChange,
                                  display,
                                  type,
@@ -16,6 +17,7 @@ const PropsyInput = React.memo(({text,
     return (
                <Input type={type}                     
                 sx={{
+                    fontSize: fontSize,
                     display: `${display}`,
                     wordWrap: 'wrap',
                     fontFamily: fontFamily,
@@ -28,7 +30,7 @@ const PropsyInput = React.memo(({text,
                     width: `${width}`,
                     alignSelf: 'center',
                     "@media (max-width: 780px)": { 
-                        fontSize: "12px",
+                        fontSize: "8px !important",
                         width: '103px'             
                       }
             }} onChange={onChange}
