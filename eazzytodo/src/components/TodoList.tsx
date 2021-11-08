@@ -63,7 +63,7 @@ function TodoList() {
     
     const [animBtn1, setAnimBtn1] = useState("");
 
-   const setTodosRecoil = useSetRecoilState(todosRecoil);
+    const setTodosRecoil = useSetRecoilState(todosRecoil);
 
 
 const getPrecentCompleted: any = (data: any, precision: number) => {
@@ -72,8 +72,7 @@ const getPrecentCompleted: any = (data: any, precision: number) => {
   let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100;
   let resultPercent = parseFloat(percentage.toFixed(precision));
   setTodosRecoil(resultPercent);    
-  return  resultPercent;
-      
+  return  resultPercent;      
 };
 
 const filteredStatus = (status: string): any => {
@@ -137,10 +136,19 @@ const userNameParsedFunc = (userEmail: any) => {
       if (dummy) dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
     };
 
+    const handleAddTaskInputValue = (e: any) => {
+      setFormValue(e.target.value);
+    };
+
+    const handleClearValue = (e: any) => {
+      e.target.value = "";
+    };
+
     const handleAddTaskButtonClick = () => {
       setAnimBtn1(clickedBtnAnimShrink);
       setTimeout(() => {
-        setAnimBtn1("");        
+        setAnimBtn1(""); 
+        setFormValue("");       
       }, 1000);   
     };
   
@@ -212,10 +220,11 @@ const userNameParsedFunc = (userEmail: any) => {
           <form className='form' onSubmit={sendTodo} >
               <Flex  sx={addTodoForm}>
                 <Box sx={addTaskContainer}>
-                <Textarea sx={inputTodoAdd}                     
-                      onChange={(e: any) => setFormValue(e.target.value)} 
+                <Textarea sx={inputTodoAdd}  
+                      onBlur={handleClearValue}                
+                      onChange={handleAddTaskInputValue} 
                       placeholder={txtTodoInputEng}               
-                >{formValue}
+                >
                 </Textarea>               
                   <PropsyBtn type={"submit"}
                              tooltipId={'add'}
