@@ -220,8 +220,9 @@ const userNameParsedFunc = (userEmail: any) => {
           <form className='form' onSubmit={sendTodo} >
               <Flex  sx={addTodoForm}>
                 <Box sx={addTaskContainer}>
-                <Textarea sx={inputTodoAdd}  
-                      onBlur={handleClearValue}                
+                <Textarea sx={inputTodoAdd} 
+                      value={formValue}
+                      // onBlur={handleClearValue}                
                       onChange={handleAddTaskInputValue} 
                       placeholder={txtTodoInputEng}               
                 >
