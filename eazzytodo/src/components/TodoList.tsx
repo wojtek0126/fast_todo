@@ -4,8 +4,11 @@ import {
   Box, 
   Textarea,
   Input,
-  Select,  
-  } from 'theme-ui';  
+  Select,
+  Container,  
+  } from 'theme-ui'; 
+  
+import ReactLoading from 'react-loading';
 
 import ScrollTop from "react-scrolltop-button";  
 import { BsArrowBarUp } from 'react-icons/bs'; 
@@ -33,7 +36,8 @@ import { addTaskContainer,
           todosContainer,
           todoStatusContainer,          
           clickedBtnAnimShrink,
-          displayStatusBar,             
+          displayStatusBar,
+          loadingBox,             
           } from '../styles/elements';
 import { txtSearchInputEng, txtTodoInputEng } from '../content/content';
 import { iconAddTaskBtn } from '../content/icons';
@@ -54,6 +58,8 @@ function TodoList() {
     const query = todosRef.orderBy('createdAt').limit(100);
   
     const [todos] = useCollectionData(query, { idField: 'id' });
+
+    // const [loading, setLoading] = useState(true);
   
     const [formValue, setFormValue] = useState('');
 
@@ -140,10 +146,6 @@ const userNameParsedFunc = (userEmail: any) => {
       setFormValue(e.target.value);
     };
 
-    const handleClearValue = (e: any) => {
-      e.target.value = "";
-    };
-
     const handleAddTaskButtonClick = () => {
       setAnimBtn1(clickedBtnAnimShrink);
       setTimeout(() => {
@@ -151,7 +153,18 @@ const userNameParsedFunc = (userEmail: any) => {
         setFormValue("");       
       }, 1000);   
     };
-  
+
+    if (!todos) {
+      return (
+        <Flex sx={todoLisTWrapper}>
+              <Container>
+                   <Flex sx={loadingBox}>
+                     <ReactLoading type={'spin'} height={30} width={30} />
+                   </Flex>
+             </Container>  
+        </Flex>  
+      )
+    }  
     return (<Flex sx={todoLisTWrapper}>                 
           <Box sx={welcomeUserWrapper} >
             <RenderUserName />             
