@@ -15,9 +15,9 @@ import { BsArrowBarUp } from 'react-icons/bs';
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
 
-import TodoItem from './TodoItem';
+import TodoItem, { Todo } from './TodoItem';
 
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
@@ -58,8 +58,6 @@ function TodoList() {
     const query = todosRef.orderBy('createdAt').limit(100);
   
     const [todos] = useCollectionData(query, { idField: 'id' });
-
-    // const [loading, setLoading] = useState(true);
   
     const [formValue, setFormValue] = useState('');
 
@@ -72,16 +70,16 @@ function TodoList() {
     const setTodosRecoil = useSetRecoilState(todosRecoil);
 
 
-const getPrecentCompleted: any = (data: any, precision: number) => {
-  let alltodos: any = data?.length;
-  let completed: any = data?.filter((item: any) => item.isCompleted).length;
+const getPrecentCompleted: any = (data: [], precision: number) => {
+  let alltodos: number = data?.length;
+  let completed: number = data?.filter((item: Todo) => item.isCompleted).length;
   let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100;
   let resultPercent = parseFloat(percentage.toFixed(precision));
   setTodosRecoil(resultPercent);    
   return  resultPercent;      
 };
 
-const filteredStatus = (status: string): any => {
+const filteredStatus = (status: string) => {
   setFilterCompleted(status);
 };
 
@@ -142,7 +140,7 @@ const userNameParsedFunc = (userEmail: any) => {
       if (dummy) dummy!.current!.scrollIntoView({ behavior: 'smooth' }); 
     };
 
-    const handleAddTaskInputValue = (e: any) => {
+    const handleAddTaskInputValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
       setFormValue(e.target.value);
     };
 

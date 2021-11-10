@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, ChangeEvent } from 'react';
 
 import { Image, Textarea, Paragraph, Select, Flex } from 'theme-ui'; 
 
@@ -27,8 +27,19 @@ import React from 'react';
 import { handleButtonAnimation } from './UserAuth/SignOutButton';
 require('firebase/auth');  
 
+export interface Todo {
+  isCompleted: boolean,
+  uid: string,
+  text: string,
+  type: string,
+  deadline: string,
+  id: string | undefined,
+  userName: string,
+  photoURL: string | null
+};
+
 type AppProps = {
-  todo: any;     
+  todo: Todo;     
 }; 
 
 const TodoItem = (props: AppProps) => {  
@@ -52,7 +63,7 @@ const TodoItem = (props: AppProps) => {
       }
     });    
 
-    const {  photoURL }: any = props.todo;    
+    const {  photoURL } = props.todo;    
 
     useEffect(() => {
       if (props.todo.type === "Task") {
@@ -74,7 +85,7 @@ const TodoItem = (props: AppProps) => {
       setDeadline(props.todo.deadline);
     }, []);
 
-    const updateFirestoreData = (collection: string, item: any, data: any, keyValue: any) => {
+    const updateFirestoreData = (collection: string, item: string | undefined, data: string, keyValue: string | boolean) => {
       firestore.collection(collection).doc(item).update({[data]: keyValue,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
@@ -113,7 +124,7 @@ const TodoItem = (props: AppProps) => {
       [props],
     );  
   
-    const handleTaskTypeChange = useCallback((e: any) => {
+    const handleTaskTypeChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
       if (e.target.value === "Task") {
         setTaskTypeColor("todoTaskBackground");
         updateFirestoreData('todos', props.todo.id, 'type', "Task");       
@@ -136,11 +147,11 @@ const TodoItem = (props: AppProps) => {
       }
     },[props]);
 
-    const handleSetDeadline = useCallback((e: any) => {
+    const handleSetDeadline = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
       setDeadline(e.target.value);
     },[deadline]);
 
-    const handleDeadline = useCallback((e: any) => {
+    const handleDeadline = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
       updateFirestoreData('todos', props.todo.id, 'deadline', deadline);  
       handleButtonAnimation(setAnimBtn3, clickedBtnAnimShrink, 1000);    
     },[deadline]);
