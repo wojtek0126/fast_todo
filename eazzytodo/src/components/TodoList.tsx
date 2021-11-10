@@ -17,7 +17,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import TodoItem, { Todo } from './TodoItem';
 
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, FormEventHandler, useRef, useState } from 'react';
 
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
@@ -93,21 +93,21 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
 
     switch (filterCompleted) {
     case "Show all":
-      return data && data.filter((task: any) => 
+      return data && data.filter((task: Todo) => 
       searchIt(task.text, searchBy))
-      .map((task: any): JSX.Element => TodoJsx(task.id, task));
+      .map((task: Todo): JSX.Element => TodoJsx(task.id, task));
     case "In progress only":
-      return data && data.filter((task: any): JSX.Element => 
+      return data && data.filter((task: Todo): JSX.Element => 
       searchIt(task.text, searchBy) && task.isCompleted === false)
-      .map((task: any): JSX.Element => TodoJsx(task.id, task));       
+      .map((task: Todo): JSX.Element => TodoJsx(task.id, task));       
     case "Completed only":
-      return data && data.filter((task: any) => 
+      return data && data.filter((task: Todo) => 
       searchIt(task.text, searchBy) && task.isCompleted === true)
-      .map((task: any): JSX.Element => TodoJsx(task.id, task)); 
+      .map((task: Todo): JSX.Element => TodoJsx(task.id, task)); 
     default:
-      return data && data.filter((task: any) => 
+      return data && data.filter((task: Todo) => 
       searchIt(task.text, searchBy))
-      .map((task: any): JSX.Element => TodoJsx(task.id, task));
+      .map((task: Todo): JSX.Element => TodoJsx(task.id, task));
   };
 };
 
@@ -116,7 +116,7 @@ const userNameParsedFunc = (userEmail: any) => {
   return userNameParsed;
 };
 
-    const sendTodo = async (e: any) => {
+    const sendTodo = async (e:  React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
   
       const { uid, photoURL } = auth.currentUser!;

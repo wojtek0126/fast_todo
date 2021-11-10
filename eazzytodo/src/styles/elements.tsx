@@ -3,7 +3,7 @@
   import { keyframes } from '@emotion/react'  
 
   
-  type Styles = {
+  export type Styles = {
     [key: string]: any;
   };
 

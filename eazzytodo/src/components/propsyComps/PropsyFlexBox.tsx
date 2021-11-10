@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "theme-ui";
 import { boxBorderRadius, itemBoxShadow } from "../../styles/elements";
+import { PropsyCompProps } from "./propsyCompsInterface";
 
 
 const PropsyFlexBox = React.memo(({display = 'flex',
@@ -14,7 +15,7 @@ const PropsyFlexBox = React.memo(({display = 'flex',
                                    content, 
                                    opacity = 0.8,
                                    backgroundColor = 'todoTaskBackground' 
-                                }: any) => {
+                                }: PropsyCompProps) => {
     return (
         <Box 
         sx={{

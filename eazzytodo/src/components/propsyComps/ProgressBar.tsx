@@ -2,8 +2,10 @@ import { Box } from "@theme-ui/components";
 import { useRecoilValue } from "recoil";
 import { todosPercentDone } from "../../recoil/recoil";
 import { boxBorderRadius } from "../../styles/elements";
+import { PropsyCompProps } from "./propsyCompsInterface";
 
-const ProgressBar = ({progress}: any) => { 
+
+const ProgressBar = ({progress}: PropsyCompProps) => { 
     const percentGetRecoil = useRecoilValue(todosPercentDone);
 
     return (

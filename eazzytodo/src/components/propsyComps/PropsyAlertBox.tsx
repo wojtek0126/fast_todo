@@ -1,9 +1,10 @@
 import React from "react";
 import { Box } from "theme-ui";
 import { boxBorderRadius, itemBoxShadow } from "../../styles/elements";
+import { PropsyCompProps } from "./propsyCompsInterface";
 
 
-const PropsyAlertBox = React.memo(({content, display = 'none'}: any ) => {
+const PropsyAlertBox = React.memo(({content, margin, display = 'none'}: PropsyCompProps ) => {
 
     return (
         <Box
@@ -20,7 +21,8 @@ const PropsyAlertBox = React.memo(({content, display = 'none'}: any ) => {
         transition: '1s',
         position: 'absolute',
         top:'50%',    
-        zIndex: 20    
+        zIndex: 20,
+        margin: margin    
     }}       
         >{content}</Box>
     )

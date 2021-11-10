@@ -12,14 +12,15 @@ const PropsyInput = React.memo(({text,
                                  width = '100%',
                                  placeholder="...",
                                  fontFamily = 'body',
-                                 value
+                                 value,
+                                 wordWrap = "wrap"
                                        }: any) => {
     return (
                <Input type={type}                     
                 sx={{
                     fontSize: fontSize,
                     display: `${display}`,
-                    wordWrap: 'wrap',
+                    wordWrap: wordWrap,
                     fontFamily: fontFamily,
                     backgroundColor: 'inputBackground',
                     color: 'text2',   

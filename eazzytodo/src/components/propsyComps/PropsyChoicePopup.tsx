@@ -1,6 +1,7 @@
 import { btnGradient } from "../../styles/elements";
 import PropsyAlertBox from "./PropsyAlertBox";
 import PropsyBtn from "./PropsyBtn";
+import { PropsyCompProps } from "./propsyCompsInterface";
 
 const PropsyChoicePopup = ({display,
                             onClickYes, 
@@ -12,7 +13,7 @@ const PropsyChoicePopup = ({display,
                             tooltipYesId,
                             tooltipNoId,
                             tooltipYesTxt, 
-                            tooltipNoTxt}: any) => {
+                            tooltipNoTxt}: PropsyCompProps) => {
     return <PropsyAlertBox  display={display} 
                             margin={'0 auto'} 
                             content={<> 

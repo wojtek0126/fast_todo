@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "theme-ui";
 import { btnBorderRadius } from "../../styles/elements";
 import ReactTooltip from 'react-tooltip';
+import { PropsyCompProps } from "./propsyCompsInterface";
+
 
 const PropsyBtn = React.memo(({animTime,
                                background,
@@ -24,7 +26,7 @@ const PropsyBtn = React.memo(({animTime,
                                fontSize = '[16, 20]',
                                margin = '10px',
                                color = 'white'
-                              }: any ) => {  
+                              }: PropsyCompProps ) => {  
     return (<>
         <Button disabled={isDisabled} 
                 type={type}                

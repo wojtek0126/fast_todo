@@ -4,11 +4,14 @@ import { loadingBox, userWelcomeTxt } from "../../styles/elements";
 
 import ReactLoading from 'react-loading';
 
+import Typist from 'react-typist';
+
+
 const RenderUserName = () => {
     const userEmail = localStorage.getItem('userEmail'); 
     const [loadingDisplay, setLoadingDisplay] = useState('flex');
     const [userDisplay, setUserDisplay] = useState('none');
-    const timeoutTime = 1500;
+    const timeoutTime = 100;
     useEffect(() => {
       setTimeout(() => {
         setLoadingDisplay('none');
@@ -23,10 +26,12 @@ const RenderUserName = () => {
                    <Flex sx={loadingBox}>
                      <ReactLoading type={'spin'} height={30} width={30} />
                    </Flex>
-             </Container>            
+              </Container>            
             
               <Container sx={{display: userDisplay}}>
-                   <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
+                <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }}>
+                    <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
+                </Typist>
               </Container>
 
             </>);  
