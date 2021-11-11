@@ -4,7 +4,7 @@ import getFirebase from "../../firebase/firebase";
 import { btnGradient, clickedBtnAnimShrink } from "../../styles/elements";
 import PropsyBtn from "../propsyComps/PropsyBtn";
 
-export const handleButtonAnimation = (setButtonState: any, animationName: string, delay: number) => {
+export const handleButtonAnimation = (setButtonState: React.Dispatch<React.SetStateAction<string>>, animationName: string, delay: number) => {
   setButtonState(animationName);
   setTimeout(() => {
     setButtonState("");

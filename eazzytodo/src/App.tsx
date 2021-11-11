@@ -60,7 +60,7 @@ function App() {
     const firebase = getFirebase();
 
     if (firebase) {
-      firebase.auth().onAuthStateChanged((authUser: any) => {
+      firebase.auth().onAuthStateChanged((authUser: { email: React.SetStateAction<User | null>; }) => {
         if (authUser) {
           setCurrentUser(authUser.email);
         } else {

@@ -48,11 +48,16 @@ import RenderUserName from './propsyComps/RenderUserName';
 import ProgressBar from './propsyComps/ProgressBar';
 import { useSetRecoilState } from 'recoil';
 import { todosRecoil } from '../recoil/recoil';
+import { Data } from 'react-firebase-hooks/firestore/dist/firestore/types';
 require('firebase/auth');  
+
+export type UserEmail = {
+  userEmail?: string;
+}
 
 
 function TodoList() {
-    const userEmail = localStorage.getItem('userEmail'); 
+    const userEmail: string | null = localStorage.getItem('userEmail'); 
     const dummy = useRef<null | HTMLDivElement>(null); 
     const todosRef = firestore.collection('todos');
     const query = todosRef.orderBy('createdAt').limit(100);
@@ -83,12 +88,16 @@ const filteredStatus = (status: string) => {
   setFilterCompleted(status);
 };
 
-const renderFiltered = (data: any, filterCompleted: string, searchBy: string): JSX.Element => {
+console.log(typeof(todos), "type of todos")
+
+const renderFiltered = (data: any, filterCompleted: string, searchBy: string) => {
   const TodoJsx = (keyId: string | undefined, todo: Todo): JSX.Element => {
     return <TodoItem key={keyId} todo={todo} />;
    };
-  const searchIt = (task: string | any, searchItTxt: string) => {
-    return task.includes(searchItTxt);
+  const searchIt = (task: string | boolean, searchItTxt: string) => {
+    if (typeof task === 'string') {
+      return task.includes(searchItTxt);
+    }; 
   };
 
     switch (filterCompleted) {
@@ -97,7 +106,7 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
       searchIt(task.text, searchBy))
       .map((task: Todo): JSX.Element => TodoJsx(task.id, task));
     case "In progress only":
-      return data && data.filter((task: Todo): JSX.Element => 
+      return data && data.filter((task: Todo) => 
       searchIt(task.text, searchBy) && task.isCompleted === false)
       .map((task: Todo): JSX.Element => TodoJsx(task.id, task));       
     case "Completed only":
@@ -111,8 +120,8 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   };
 };
 
-const userNameParsedFunc = (userEmail: string | RegExpMatchArray | undefined | null | any) => {
-  const userNameParsed = userEmail.match(/^(.+)@/)[1];
+const userNameParsedFunc = (userEmail: any) => { 
+    const userNameParsed = userEmail.match(/^(.+)@/)[1]; 
   return userNameParsed;
 };
 

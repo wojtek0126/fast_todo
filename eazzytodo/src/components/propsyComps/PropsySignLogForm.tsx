@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Input, Paragraph } from "theme-ui";
 import { btnGradient, btnPrimary, inputGeneral, loginSignupTxt } from "../../styles/elements";
 import PropsyBtn from "./PropsyBtn";
+import { PropsyCompProps } from "./propsyCompsInterface";
 import PropsyFlexBox from "./PropsyFlexBox";
 
 
@@ -22,7 +23,7 @@ const PropsySignLogForm = React.memo(({textHead,
                                        tooltipId,
                                        tooltipTxt,
                                        width
-                                       }: any) => {
+                                       }: PropsyCompProps) => {
     return (
         <PropsyFlexBox 
         width={width}

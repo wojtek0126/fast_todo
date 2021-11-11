@@ -36,8 +36,8 @@ export interface Todo {
   id: string | undefined,
   userName: string,
   photoURL: string | null,
-  includes?: any, 
-  match?: any
+  includes?: string, 
+  match?: boolean
 };
 
 type AppProps = {

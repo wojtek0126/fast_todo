@@ -49,7 +49,7 @@ export interface PropsyCompProps {
     value?: string | number;
     text?: string; 
     wordWrap?: StylePropertyValue<any | undefined>
-    textHead?: any;
+    textHead?: string;
     buttonContent?: any;
     onChangeEmail?: any;
     onChangePass?: any; 
@@ -58,4 +58,8 @@ export interface PropsyCompProps {
     extraContent?: any;
     btnAnimation?: string;
     btnAnimTime?: string;
+    onClickClose?: () => void;
+    emailValue?: string;
+    animBtnState1?: string;
+    animBtnState2?: string;
   };
