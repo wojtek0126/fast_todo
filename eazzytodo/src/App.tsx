@@ -41,12 +41,15 @@ import themeRetro from './styles/themeRetro';
 import PropsyBtn from './components/propsyComps/PropsyBtn';
 import { iconRetroModeBtn } from './content/icons';
 import { handleButtonAnimation } from './components/UserAuth/SignOutButton';
+import React from 'react';
+import { User } from 'firebase';
 require('firebase/auth');
 
+export const AuthContext = React.createContext<firebase.User | null>(null);
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
 
   const [themeUI, setThemeUI] = useState(theme);
   

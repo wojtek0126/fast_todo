@@ -17,7 +17,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import TodoItem, { Todo } from './TodoItem';
 
-import { ChangeEvent, FormEventHandler, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
@@ -84,10 +84,10 @@ const filteredStatus = (status: string) => {
 };
 
 const renderFiltered = (data: any, filterCompleted: string, searchBy: string): JSX.Element => {
-  const TodoJsx = (keyId: any, todo: any): JSX.Element => {
+  const TodoJsx = (keyId: string | undefined, todo: Todo): JSX.Element => {
     return <TodoItem key={keyId} todo={todo} />;
    };
-  const searchIt = (task: any, searchItTxt: string) => {
+  const searchIt = (task: string | any, searchItTxt: string) => {
     return task.includes(searchItTxt);
   };
 
@@ -111,12 +111,12 @@ const renderFiltered = (data: any, filterCompleted: string, searchBy: string): J
   };
 };
 
-const userNameParsedFunc = (userEmail: any) => {
+const userNameParsedFunc = (userEmail: string | RegExpMatchArray | undefined | null | any) => {
   const userNameParsed = userEmail.match(/^(.+)@/)[1];
   return userNameParsed;
 };
 
-    const sendTodo = async (e:  React.FormEvent<HTMLFormElement>) => {
+    const sendTodo = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
   
       const { uid, photoURL } = auth.currentUser!;

@@ -4,12 +4,13 @@ import getFirebase from "../../firebase/firebase";
 import { btnGradient, clickedBtnAnimShrink } from "../../styles/elements";
 import PropsyBtn from "../propsyComps/PropsyBtn";
 
-export const handleButtonAnimation = (setButtonState: any, animationName: any, delay: number) => {
+export const handleButtonAnimation = (setButtonState: any, animationName: string, delay: number) => {
   setButtonState(animationName);
   setTimeout(() => {
     setButtonState("");
   }, delay);  
 };
+
 
 const SignOutButton = () => {
   const [animBtn1, setAnimBtn1] = useState("");

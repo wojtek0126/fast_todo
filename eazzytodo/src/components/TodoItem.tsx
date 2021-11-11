@@ -35,7 +35,9 @@ export interface Todo {
   deadline: string,
   id: string | undefined,
   userName: string,
-  photoURL: string | null
+  photoURL: string | null,
+  includes?: any, 
+  match?: any
 };
 
 type AppProps = {
@@ -216,7 +218,7 @@ const TodoItem = (props: AppProps) => {
                   set date marker/date due
                 </ReactTooltip> 
                 <Flex sx={editItemDateAndTaskTypeWrapper}>
-                      <PropsyInput type={'date'}
+                      <PropsyInput inputType={'date'}
                                    width={'130px'} 
                                    onChange={handleSetDeadline}
                                    value={deadline}

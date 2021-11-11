@@ -33,6 +33,7 @@ export interface PropsyCompProps {
     tooltipTxt?: string;
     size?: string | number;
     position?: "absolute" | "relative" | "fixed" | undefined;
+    inputType?: string | undefined;
     top?: string | number;
     right?: string | number;
     left?: string | number;
@@ -48,4 +49,13 @@ export interface PropsyCompProps {
     value?: string | number;
     text?: string; 
     wordWrap?: StylePropertyValue<any | undefined>
+    textHead?: any;
+    buttonContent?: any;
+    onChangeEmail?: any;
+    onChangePass?: any; 
+    emailInputTxt?: string;
+    passInputTxt?: string;
+    extraContent?: any;
+    btnAnimation?: string;
+    btnAnimTime?: string;
   };

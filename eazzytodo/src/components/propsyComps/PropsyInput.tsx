@@ -1,22 +1,23 @@
 import React from "react";
 import { Input } from "theme-ui";
 import { inputBorderRadius } from "../../styles/elements";
+import { PropsyCompProps } from "./propsyCompsInterface";
 
 
 const PropsyInput = React.memo(({text,
                                  fontSize = "12px !important",
                                  onChange,
-                                 display,
-                                 type,
+                                 display,                                 
                                  marginTop =  0,
                                  width = '100%',
                                  placeholder="...",
                                  fontFamily = 'body',
                                  value,
-                                 wordWrap = "wrap"
-                                       }: any) => {
+                                 wordWrap = "wrap",
+                                 inputType
+                                       }: PropsyCompProps) => {
     return (
-               <Input type={type}                     
+               <Input type={inputType}                     
                 sx={{
                     fontSize: fontSize,
                     display: `${display}`,

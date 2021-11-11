@@ -30,11 +30,11 @@ const SignUpForm = () => {
     const email = emailValue;
     const password = passwordlValue;
 
-    const handleChangeEmail = (event: any) => {
+    const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmailValue(event.target.value);
       };
 
-      const handleChangePassword = (event: any) => {
+      const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordValue(event.target.value);
       };       
       
@@ -47,7 +47,7 @@ const SignUpForm = () => {
       
       };   
 
-    const signUp = async (event: any) => {
+    const signUp = async (event: Event) => {
       event.preventDefault();   
       handleButtonAnimation(setAnimBtn1, clickedBtnAnimShrink, 1000);
       setTimeout(async () => {
@@ -59,7 +59,7 @@ const SignUpForm = () => {
               localStorage.setItem('userEmail', email);
               console.log("user", user);        
           }
-        } catch (error: any) {
+        } catch (error: string | any) {
           console.log("error", error);
           setAlertDiaspaly('flex');
           setAlerContent(`${error.message}`);

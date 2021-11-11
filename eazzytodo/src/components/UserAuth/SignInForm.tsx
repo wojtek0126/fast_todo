@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { setTimeout } from "timers";
 
-import { iconAddUser, iconCloseBtn, iconForgotpassBtn, iconSendMailBtn, iconSignInBtn } from "../../content/icons";
+import { iconAddUser, iconForgotpassBtn, iconSignInBtn } from "../../content/icons";
 
 // import ParticleEffectButton from 'react-particle-effect-button';
 
@@ -14,7 +14,9 @@ import PropsyAlertBox from "../propsyComps/PropsyAlertBox";
 import PropsyBtn from "../propsyComps/PropsyBtn";
 
 import PropsySignLogForm from "../propsyComps/PropsySignLogForm";
+import ResetPasswordPopup from "../propsyComps/ResetPasswordPopup";
 import { handleButtonAnimation } from "./SignOutButton";
+
 
 const SignInForm = () => {
 
@@ -30,7 +32,7 @@ const SignInForm = () => {
 
 
   const [alertDisplay, setAlertDiaspaly] = useState('none');
-  const [alertContent, setAlerContent] = useState("");
+  const [alertContent, setAlertContent] = useState("");
 
   const [forgotPasswordDisplay, setForgotPasswordDisplay] = useState('none');
   
@@ -49,11 +51,11 @@ const SignInForm = () => {
       }, 1000);     
   };
   
-  const handleChangeEmail = (event: any) => {
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(event.target.value);
   };
 
-  const handleChangePassword = (event: any) => {
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(event.target.value);
   };  
 
@@ -87,7 +89,7 @@ const SignInForm = () => {
   const email = emailValue;
   const password = passwordlValue;
 
-  const signIn = async (event: any) => {
+  const signIn = async (event: Event) => {
     event.preventDefault();
     handleButtonAnimation(setAnimBtn1, clickedBtnAnimShrink, 1000);  
       try {
@@ -99,10 +101,11 @@ const SignInForm = () => {
             localStorage.setItem('userEmail', email);          
              
         }
-      } catch (error: any) {
+      } catch (error: string | any) {
+        // const err: firebase.firestore.FirestoreError | unknown = error;
         console.log("error", error);
         setAlertDiaspaly('flex');
-        setAlerContent(`${error.message}`);
+        setAlertContent(`${error.message}`);
         setTimeout(() => {
           setAlertDiaspaly('none');
         }, 2000);
@@ -110,27 +113,27 @@ const SignInForm = () => {
   };
 
  // replace that popup with PropsyChoicePopup 
-  const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
+  // const ResetPasswordPopup = ({display, onClick, onClickClose}: any) => {
 
-    return <PropsyAlertBox  display={display} 
-                            margin={'0 auto'} 
-                            content={<> 
-    <PropsyBtn onClick={onClick}
-              tooltipId={'reset-password'}
-              tooltipTxt={`send reset password request(enter email above): ${emailValue}`}
-               content={iconSendMailBtn}
-               background={btnGradient}
-               animation={animBtn4} 
-               animTime={'1s'}  />
-      <PropsyBtn content={iconCloseBtn}
-       tooltipId={'reset-password-close'}
-       tooltipTxt={`close reset password window`}
-                 onClick={onClickClose}
-                 background={btnGradient} 
-                 animation={animBtn5} 
-                 animTime={'1s'} />
-      </>} />
-  };
+  //   return <PropsyAlertBox  display={display} 
+  //                           margin={'0 auto'} 
+  //                           content={<> 
+  //   <PropsyBtn onClick={onClick}
+  //             tooltipId={'reset-password'}
+  //             tooltipTxt={`send reset password request(enter email above): ${emailValue}`}
+  //              content={iconSendMailBtn}
+  //              background={btnGradient}
+  //              animation={animBtn4} 
+  //              animTime={'1s'}  />
+  //     <PropsyBtn content={iconCloseBtn}
+  //      tooltipId={'reset-password-close'}
+  //      tooltipTxt={`close reset password window`}
+  //                onClick={onClickClose}
+  //                background={btnGradient} 
+  //                animation={animBtn5} 
+  //                animTime={'1s'} />
+  //     </>} />
+  // };
 
 
   return (<>   
@@ -177,6 +180,9 @@ const SignInForm = () => {
     <ResetPasswordPopup display={forgotPasswordDisplay} 
     onClick={handleForgotPasswordSend}
     onClickClose={handleForgotPasswordClose}
+    animBtnState1={animBtn4}
+    animBtnState2={animBtn5}
+    emailValue={emailValue}
      />
      {/* </ParticleEffectButton> */}
   </>);

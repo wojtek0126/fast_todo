@@ -4,6 +4,7 @@ import PropsyBtn from "./PropsyBtn";
 import { PropsyCompProps } from "./propsyCompsInterface";
 
 const PropsyChoicePopup = ({display,
+                            type,
                             onClickYes, 
                             onClickNo,
                             yesBtnAnimation,
@@ -18,6 +19,7 @@ const PropsyChoicePopup = ({display,
                             margin={'0 auto'} 
                             content={<> 
     <PropsyBtn onClick={onClickYes}
+              type={type}
               tooltipId={tooltipYesId}
               tooltipTxt={tooltipYesTxt}
                content={yesBtnContent}
@@ -25,8 +27,9 @@ const PropsyChoicePopup = ({display,
                animation={yesBtnAnimation} 
                animTime={'1s'}  />
       <PropsyBtn content={noBtnContent}
-       tooltipId={tooltipNoId}
-       tooltipTxt={tooltipNoTxt}
+                 type={type}
+                 tooltipId={tooltipNoId}
+                 tooltipTxt={tooltipNoTxt}
                  onClick={onClickNo}
                  background={btnGradient} 
                  animation={noBtnAnimation} 
