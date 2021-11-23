@@ -5,11 +5,6 @@ import { atom, selector } from 'recoil';
     default: '', // default value (aka initial value)
   });
 
-  export const todosRecoil = atom({
-    key: 'todosRecoil', // unique ID (with respect to other atoms/selectors)
-    default: 0, // default value (aka initial value)
-  });
-
   export const displayAlertBoxState = atom({
     key: 'displayAlertBoxState', // unique ID (with respect to other atoms/selectors)
     default: 'none', // default value (aka initial value)
@@ -34,20 +29,7 @@ import { atom, selector } from 'recoil';
     },
   });
 
-  export const todosPercentDone = selector({
-    key: 'todosPercentDone', // unique ID (with respect to other atoms/selectors)
-    get: ({get}) => {
-      const percentageCompleted = get(todosRecoil);
-
-      if (percentageCompleted < 100) {
-        return 'progressBarColor'         
-     }
-     else {
-         return 'progressBarFullColor';
-     }      
-    },
-  });
-
+ 
   export const loggedUserText = selector({
     key: 'charCountState', // unique ID (with respect to other atoms/selectors)
     get: ({get}) => {

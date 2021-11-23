@@ -10,14 +10,11 @@ import {
   
 import ReactLoading from 'react-loading';
 
-import ScrollTop from "react-scrolltop-button";  
-import { BsArrowBarUp } from 'react-icons/bs'; 
-
 import { useCollectionData } from 'react-firebase-hooks/firestore';  
 
 import TodoItem, { Todo } from './TodoItem';
 
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { auth, firestore } from '../firebase/firebase'; 
 import firebase from 'firebase';
@@ -46,9 +43,7 @@ import PropsyBtn from './propsyComps/PropsyBtn';
 import { setTimeout } from 'timers';
 import RenderUserName from './propsyComps/RenderUserName';
 import ProgressBar from './propsyComps/ProgressBar';
-import { useSetRecoilState } from 'recoil';
-import { todosRecoil } from '../recoil/recoil';
-// import { Data } from 'react-firebase-hooks/firestore/dist/firestore/types';
+import { ScrollToTop } from 'react-simple-scroll-up'
 require('firebase/auth');  
 
 export type UserEmail = {
@@ -70,9 +65,9 @@ function TodoList() {
 
     const [filterCompleted, setFilterCompleted] = useState("Show");   
     
-    const [animBtn1, setAnimBtn1] = useState("");
-
-    const setTodosRecoil = useSetRecoilState(todosRecoil);
+    const [animBtn1, setAnimBtn1] = useState("");    
+   
+    const [progressBarCount, setProgressBarCount] = useState<number>(0);
 
 
 const getPrecentCompleted: any = (data: [], precision: number) => {
@@ -80,9 +75,18 @@ const getPrecentCompleted: any = (data: [], precision: number) => {
   let completed: number = data?.filter((item: Todo) => item.isCompleted).length;
   let percentage = alltodos === 0 ? 0 : (completed / alltodos) * 100;
   let resultPercent = parseFloat(percentage.toFixed(precision));
-  setTodosRecoil(resultPercent);    
+ 
   return  resultPercent;      
 };
+
+useEffect(() => {
+  setProgressBarCount(getPrecentCompleted(todos));     
+},[todos])
+
+const percentCompletedColorhandler = (percent: number): string => {
+  if (percent < 100) return "progressBarColor";
+  else return "progressBarFullColor"; 
+}
 
 const filteredStatus = (status: string) => {
   setFilterCompleted(status);
@@ -149,7 +153,7 @@ const userNameParsedFunc = (userEmail: any) => {
 
     const handleAddTaskInputValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
       setFormValue(e.target.value);
-    };
+    };    
 
     const handleAddTaskButtonClick = () => {
       setAnimBtn1(clickedBtnAnimShrink);
@@ -214,7 +218,9 @@ const userNameParsedFunc = (userEmail: any) => {
              </Box>
              <Box sx={displayStatusBar}>
 
-               <ProgressBar progress={getPrecentCompleted(todos)} />
+               <ProgressBar progress={progressBarCount}
+                            progressColor={percentCompletedColorhandler(progressBarCount)}        
+               />
                  
                <Box sx={{position: 'absolute',
                          width: '100%',
@@ -240,7 +246,6 @@ const userNameParsedFunc = (userEmail: any) => {
                 <Box sx={addTaskContainer}>
                 <Textarea sx={inputTodoAdd} 
                       value={formValue}
-                      // onBlur={handleClearValue}                
                       onChange={handleAddTaskInputValue} 
                       placeholder={txtTodoInputEng}               
                 >
@@ -259,16 +264,7 @@ const userNameParsedFunc = (userEmail: any) => {
           </Flex>         
             </Flex>
           </form>  
-          <ScrollTop
-        text={<BsArrowBarUp />}
-        distance={0}
-        breakpoint={0}
-        style={btnScrollUp}
-        className="scroll-your-role"
-        speed={1000}
-        target={75}
-        icon={<BsArrowBarUp />}
-      />          
+            <ScrollToTop style={btnScrollUp} bgColor={'rgba(51, 51, 255, 0.8)'}/>
         </Flex>)
   }  
       

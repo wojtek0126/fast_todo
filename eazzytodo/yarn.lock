@@ -10853,7 +10853,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@*", "react-dom@^^0.14 || ^15.0 || ^16.0", "react-dom@^0.14.0 || ^15.0.0 || ^16.0.0", "react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.0.0", "react-dom@^16.0.0 || ^17.0.0", "react-dom@^16.7.0", "react-dom@^16.8.0 || ^17", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^17.0.1", "react-dom@^17.0.2", "react-dom@>= 16.3.0", "react-dom@>=16.0.0":
+"react-dom@*", "react-dom@^^0.14 || ^15.0 || ^16.0", "react-dom@^0.14.0 || ^15.0.0 || ^16.0.0", "react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.0.0", "react-dom@^16.0.0 || ^17.0.0", "react-dom@^16.7.0", "react-dom@^16.8.0 || ^17", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^17.0.1", "react-dom@^17.0.2", "react-dom@>= 16.3.0", "react-dom@>=16.0.0", "react-dom@>=16.8.0":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -11032,6 +11032,11 @@
   "version" "0.1.9"
   dependencies:
     "react-icons" "^2.2.7"
+
+"react-simple-scroll-up@^0.2.0":
+  "integrity" "sha512-He8gXc9G7dWrbABlUl+2G57bpbvRcFjLBqBPoxozv84IRNtsxmy9inqMtKLncodQPa2rmYnymxQfjN+tKAC67g=="
+  "resolved" "https://registry.npmjs.org/react-simple-scroll-up/-/react-simple-scroll-up-0.2.0.tgz"
+  "version" "0.2.0"
 
 "react-sky@^1.1.0":
   "integrity" "sha512-ySaTRgfz2rnKnYnNOMxigfZVsIjV5QNUI+2ePuAszi07mOlhj3/GHZwOGoNBNCxCjjAjR0TXb78C5nalWTbkiQ=="

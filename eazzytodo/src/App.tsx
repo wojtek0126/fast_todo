@@ -45,7 +45,6 @@ require('firebase/auth');
 
 export const AuthContext = React.createContext<firebase.User | null>(null);
 
-
 function App() {
 
   const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);

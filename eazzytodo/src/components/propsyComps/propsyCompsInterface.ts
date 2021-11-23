@@ -47,7 +47,7 @@ export interface PropsyCompProps {
     placeholder?: string;
     fontFamily?: string;
     value?: string | number;
-    text?: {}; 
+    text?: string | JSX.Element; 
     wordWrap?: StylePropertyValue<any | undefined>
     textHead?: string;
     buttonContent?: any;
@@ -62,4 +62,5 @@ export interface PropsyCompProps {
     emailValue?: string;
     animBtnState1?: string;
     animBtnState2?: string;
+    progressColor?: string;
   };

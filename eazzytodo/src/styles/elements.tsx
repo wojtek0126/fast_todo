@@ -230,13 +230,13 @@ export const btnPrimary: Styles = {
   };
 
   export const btnScrollUp: Styles = {
-    backgroundImage: btnGradient,
+    backgroundImage: btnGradient,    
     cursor: 'pointer',
-    padding: '15px',
+    // padding: '15px',
     textAlign: 'center',
     textTransform: 'uppercase',
     transition: '0.5s',
-    backgroundSize: '200% auto',
+    // backgroundSize: '200% auto',
     color: 'white',            
     boxShadow: '0 0 20px #eee',
     borderRadius: '50%',
