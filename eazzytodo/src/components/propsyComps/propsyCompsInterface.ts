@@ -47,7 +47,7 @@ export interface PropsyCompProps {
     placeholder?: string;
     fontFamily?: string;
     value?: string | number;
-    text?: string; 
+    text?: {}; 
     wordWrap?: StylePropertyValue<any | undefined>
     textHead?: string;
     buttonContent?: any;

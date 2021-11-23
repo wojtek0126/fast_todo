@@ -85,7 +85,7 @@ const TodoItem = (props: AppProps) => {
       } 
       setTodoTxt(props.todo.text);
       setDeadline(props.todo.deadline);
-    }, []);
+    },[props.todo.type, props.todo.text, props.todo.deadline] );
 
     const updateFirestoreData = (collection: string, item: string | undefined, data: string, keyValue: string | boolean) => {
       firestore.collection(collection).doc(item).update({[data]: keyValue,
@@ -98,7 +98,7 @@ const TodoItem = (props: AppProps) => {
           updateFirestoreData('todos', props.todo.id, 'text', todoTxt);       
           handleButtonAnimation(setAnimBtn1, clickedBtnAnimJump, 1000);
       },
-      [todoTxt],
+      [todoTxt, props.todo.id],
     );  
 
     const onComplete = useCallback(
@@ -151,12 +151,12 @@ const TodoItem = (props: AppProps) => {
 
     const handleSetDeadline = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
       setDeadline(e.target.value);
-    },[deadline]);
+    },[]);
 
     const handleDeadline = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
       updateFirestoreData('todos', props.todo.id, 'deadline', deadline);  
       handleButtonAnimation(setAnimBtn3, clickedBtnAnimShrink, 1000);    
-    },[deadline]);
+    },[deadline, props.todo.id]);
 
         
     return (<>  

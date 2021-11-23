@@ -2,13 +2,14 @@ import { iconCloseBtn, iconSendMailBtn } from "../../content/icons";
 import { btnGradient } from "../../styles/elements";
 import PropsyAlertBox from "./PropsyAlertBox";
 import PropsyBtn from "./PropsyBtn";
+import { PropsyCompProps } from "./propsyCompsInterface";
 
 // type SigInFormProps = {
 //     todo: Todo;     
 //   };   
 
  // replace that popup with PropsyChoicePopup 
- const ResetPasswordPopup = ({display, onClick, onClickClose, emailValue, animBtnState1, animBtnState2}: any) => {
+ const ResetPasswordPopup = ({display, onClick, onClickClose, emailValue, animBtnState1, animBtnState2}: PropsyCompProps) => {
 
     return <PropsyAlertBox  display={display} 
                             margin={'0 auto'} 

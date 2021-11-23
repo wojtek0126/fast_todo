@@ -21,13 +21,12 @@ import { appContainer,
   smallTitleTxt, 
   waveEffectContainer } from './styles/elements';
 
-import {  RecoilRoot } from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 import TodoList from './components/TodoList';
 
 import { Box, Flex, Heading, Paragraph, ThemeProvider } from 'theme-ui';
-import theme from './styles/theme';
-import retroTheme from './styles/themeRetro';
+import { theme, themeRetro } from './styles/theme';
 
 import ScrollText from 'react-scroll-text';
 import Typist from 'react-typist';
@@ -37,7 +36,6 @@ import 'firebase/auth';
 import getFirebase from './firebase/firebase';
 import SignUpForm from './components/UserAuth/SignUpForm';
 import SignInForm from './components/UserAuth/SignInForm';
-import themeRetro from './styles/themeRetro';
 import PropsyBtn from './components/propsyComps/PropsyBtn';
 import { iconRetroModeBtn } from './content/icons';
 import { handleButtonAnimation } from './components/UserAuth/SignOutButton';
@@ -46,6 +44,7 @@ import { User } from 'firebase';
 require('firebase/auth');
 
 export const AuthContext = React.createContext<firebase.User | null>(null);
+
 
 function App() {
 

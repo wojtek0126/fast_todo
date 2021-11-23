@@ -1,4 +1,4 @@
-export default {
+export const themeRetro = {
     fonts: {
     //   body: 'progbot',
       body: 'system-ui, sans-serif',

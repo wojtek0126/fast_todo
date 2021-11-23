@@ -95,7 +95,7 @@ const SignInForm = () => {
       try {
         if (firebaseInstance) {
           // setParticleEffect(true);
-          const user = await firebaseInstance
+          await firebaseInstance
             .auth()
             .signInWithEmailAndPassword(email, password);
             localStorage.setItem('userEmail', email);          

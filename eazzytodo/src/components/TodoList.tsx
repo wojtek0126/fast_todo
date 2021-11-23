@@ -48,7 +48,7 @@ import RenderUserName from './propsyComps/RenderUserName';
 import ProgressBar from './propsyComps/ProgressBar';
 import { useSetRecoilState } from 'recoil';
 import { todosRecoil } from '../recoil/recoil';
-import { Data } from 'react-firebase-hooks/firestore/dist/firestore/types';
+// import { Data } from 'react-firebase-hooks/firestore/dist/firestore/types';
 require('firebase/auth');  
 
 export type UserEmail = {
@@ -87,8 +87,6 @@ const getPrecentCompleted: any = (data: [], precision: number) => {
 const filteredStatus = (status: string) => {
   setFilterCompleted(status);
 };
-
-console.log(typeof(todos), "type of todos")
 
 const renderFiltered = (data: any, filterCompleted: string, searchBy: string) => {
   const TodoJsx = (keyId: string | undefined, todo: Todo): JSX.Element => {
