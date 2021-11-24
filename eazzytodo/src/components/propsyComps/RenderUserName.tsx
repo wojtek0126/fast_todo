@@ -29,7 +29,7 @@ const RenderUserName = () => {
               </Container>            
             
               <Container sx={{display: userDisplay}}>
-                <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }}>
+                <Typist sx={userWelcomeTxt} cursor={{ show: false }}>
                     <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
                 </Typist>
               </Container>

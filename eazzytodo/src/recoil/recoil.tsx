@@ -29,16 +29,6 @@ import { atom, selector } from 'recoil';
     },
   });
 
- 
-  export const loggedUserText = selector({
-    key: 'charCountState', // unique ID (with respect to other atoms/selectors)
-    get: ({get}) => {
-      const text = get(recoilUser);
-  
-      return `Currently logged user: ${text}`;
-    },
-  });
-
   export const displayAlertBoxValue = selector({
     key: 'displayAlertBoxValue', // unique ID (with respect to other atoms/selectors)
     get: ({get}) => {

@@ -25,7 +25,7 @@ import { RecoilRoot } from 'recoil';
 
 import TodoList from './components/TodoList';
 
-import { Box, Flex, Heading, Paragraph, ThemeProvider } from 'theme-ui';
+import { Box, Flex, Paragraph, ThemeProvider } from 'theme-ui';
 import { theme, themeRetro } from './styles/theme';
 
 import ScrollText from 'react-scroll-text';
@@ -162,10 +162,10 @@ function App() {
                 </Flex>
                 <Box sx={waveEffectContainer}>                 
                 </Box>           
-                <Typist cursor={{ show: false, hideWhenDone: true, hideWhenDoneDelay: 0 }}>
+                <Typist cursor={{ show: false }}>
                   <Paragraph sx={smallTitleTxt}>{txtTitleSmallEng}</Paragraph>                  
                 </Typist>
-                <ScrollText><Heading sx={bigTitleTxt}>{txtTitleBigEng}</Heading></ScrollText>  
+                <ScrollText sx={bigTitleTxt}>{txtTitleBigEng}</ScrollText>  
           </>}
           </Box>
         </Header>
