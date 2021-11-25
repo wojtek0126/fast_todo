@@ -229,9 +229,7 @@ const userNameParsedFunc = (userEmail: any) => {
                          fontSize: [12, 14, 20]}}
                 >
                    {`You have finished ${getPrecentCompleted(todos)}% of the job`}  
-               </Box>
-            
-               
+               </Box>          
              
              </Box>
             </Flex>             
@@ -264,7 +262,7 @@ const userNameParsedFunc = (userEmail: any) => {
           </Flex>         
             </Flex>
           </form>  
-            <ScrollToTop style={btnScrollUp} bgColor={'rgba(51, 51, 255, 0.8)'}/>
+            <ScrollToTop style={btnScrollUp} />
         </Flex>)
   }  
       

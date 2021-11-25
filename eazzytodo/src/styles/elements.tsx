@@ -230,24 +230,12 @@ export const btnPrimary: Styles = {
   };
 
   export const btnScrollUp: Styles = {
-    backgroundImage: btnGradient,    
     cursor: 'pointer',
-    // padding: '15px',
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    transition: '0.5s',
-    // backgroundSize: '200% auto',
-    color: 'white',            
     boxShadow: '0 0 20px #eee',
     borderRadius: '50%',
     position: 'fixed',
     right: 8,
-    bottom: 65,      
-    '&:hover, &:focus': {  
-      backgroundPosition: 'right center', 
-      color: '#fff',
-      textDecoration: 'none'
-   }
+    bottom: 65,  
   };
 
   export const btnAddTask: Styles = {
@@ -329,6 +317,7 @@ export const btnPrimary: Styles = {
     backgroundColor: 'inputBackground',
     color: 'text2',   
     borderRadius: inputBorderRadius,
+    minHeight: '65px'
   };
 
   export const inputTodoSearch: Styles = {    

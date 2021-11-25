@@ -63,4 +63,6 @@ export interface PropsyCompProps {
     animBtnState1?: string;
     animBtnState2?: string;
     progressColor?: string;
+    typistText?: any;
+    typistStyle?: any;
   };

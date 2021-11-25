@@ -89,6 +89,7 @@ export const theme = {
       progressBarColor: 'green',
       progressGrad: 'radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%)',
       progressBarFullColor: 'gold',
+      bulbOnColor: 'gold',
       patch: '#000',
       primary: '#33e',
       sent: 'teal',

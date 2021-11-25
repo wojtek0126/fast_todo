@@ -9,8 +9,6 @@ import { Header } from 'semantic-ui-react';
 
 import TitleBanner from './components/propsyComps/TitleBanner';
 
-import Particles from 'react-particles-js';
-
 import { appContainer,
   bigTitleTxt,
   btnGradient,
@@ -25,11 +23,10 @@ import { RecoilRoot } from 'recoil';
 
 import TodoList from './components/TodoList';
 
-import { Box, Flex, Paragraph, ThemeProvider } from 'theme-ui';
+import { Box, Flex, ThemeProvider } from 'theme-ui';
 import { theme, themeRetro } from './styles/theme';
 
 import ScrollText from 'react-scroll-text';
-import Typist from 'react-typist';
 
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -41,6 +38,8 @@ import { iconRetroModeBtn } from './content/icons';
 import { handleButtonAnimation } from './components/UserAuth/SignOutButton';
 import React from 'react';
 import { User } from 'firebase';
+import TypistText from './components/propsyComps/TypistText';
+import ParticleBackground from './components/propsyComps/ParticleBackground';
 require('firebase/auth');
 
 export const AuthContext = React.createContext<firebase.User | null>(null);
@@ -53,7 +52,17 @@ function App() {
   
   const [animBtn1, setAnimBtn1] = useState("");
 
+  // will need local storage for theme info preservation
+  // const [themeBtnColor, setThemeBtnColor] = useState(() =>{ 
+  //   if (themeUI.fonts.body === 'progbot') return 'bulbOnColor';
+  // else if(themeUI.fonts.body !== 'progbot') return 'text2';});
+  // console.log(themeBtnColor);
 
+  // useEffect(() => {
+  //   if (themeUI.fonts.body === 'progbot') setThemeBtnColor('bulbOnColor');
+  //   else if(themeUI.fonts.body !== 'progbot') setThemeBtnColor('text2');    
+  // },[])
+  
   useEffect(() => {
     const firebase = getFirebase();
 
@@ -71,13 +80,10 @@ function App() {
   const handleThemeSwitchClick = () => {
     handleButtonAnimation(setAnimBtn1, clickedBtnAnimShrink, 1000);   
     if (themeUI === theme) {
-      setThemeUI(themeRetro);
-      // setThemeBtnColor('gold');
+      setThemeUI(themeRetro);      
     }
     else if (themeUI === themeRetro) {
       setThemeUI(theme);
-      // setThemeBtnColor('grey');
-
     }
   };
 
@@ -86,58 +92,7 @@ function App() {
       <ThemeProvider theme={themeUI}>    
       <RecoilRoot>
       <Box sx={appContainer} >
-      <Particles style={{position: 'absolute'}}
-       params={{
-        "particles": {
-            "number": {
-                "value": 60,
-                "density": {
-                    "enable": false
-                }
-            },
-            "size": {
-                "value": 12,
-                "random": true,
-                "anim": {
-                    "speed": 2,
-                    "size_min": 0.3
-                }
-            },
-            "line_linked": {
-                "enable": false
-            },
-            "move": {
-                "random": true,
-                "speed": 1,
-                "direction": "top",
-                "out_mode": "out"
-            }
-        },
-        "interactivity": {
-            "events": {
-                "onhover": {
-                    "enable": true,
-                    "mode": "bubble"
-                },
-                "onclick": {
-                    "enable": true,
-                    "mode": "repulse"
-                }
-            },
-            "modes": {
-                "bubble": {
-                    "distance": 250,
-                    "duration": 2,
-                    "size": 0,
-                    "opacity": 0
-                },
-                "repulse": {
-                    "distance": 400,
-                    "duration": 4
-                }
-            }
-        }
-    }} />
+      <ParticleBackground />
         <TitleBanner />
         <PropsyBtn 
           onClick={handleThemeSwitchClick}
@@ -161,10 +116,8 @@ function App() {
                     </Flex>                                   
                 </Flex>
                 <Box sx={waveEffectContainer}>                 
-                </Box>           
-                <Typist cursor={{ show: false }}>
-                  <Paragraph sx={smallTitleTxt}>{txtTitleSmallEng}</Paragraph>                  
-                </Typist>
+                </Box>    
+                <TypistText typistText={txtTitleSmallEng} typistStyle={smallTitleTxt} />                
                 <ScrollText sx={bigTitleTxt}>{txtTitleBigEng}</ScrollText>  
           </>}
           </Box>

@@ -1,10 +1,10 @@
-import { Container, Flex, Paragraph } from "@theme-ui/components";
+import { Container, Flex } from "@theme-ui/components";
 import { useEffect, useState } from "react";
 import { loadingBox, userWelcomeTxt } from "../../styles/elements";
 
 import ReactLoading from 'react-loading';
 
-import Typist from 'react-typist';
+import TypistText from "./TypistText";
 
 
 const RenderUserName = () => {
@@ -29,9 +29,7 @@ const RenderUserName = () => {
               </Container>            
             
               <Container sx={{display: userDisplay}}>
-                <Typist sx={userWelcomeTxt} cursor={{ show: false }}>
-                    <Paragraph sx={userWelcomeTxt}>{`Currently logged user: ${userEmail}`}</Paragraph>
-                </Typist>
+                <TypistText typistText={`Currently logged user: ${userEmail}`} typistStyle={userWelcomeTxt} />               
               </Container>
 
             </>);  
