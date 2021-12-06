@@ -51,17 +51,7 @@ function App() {
   const [themeUI, setThemeUI] = useState(theme);
   
   const [animBtn1, setAnimBtn1] = useState("");
-
-  // will need local storage for theme info preservation
-  // const [themeBtnColor, setThemeBtnColor] = useState(() =>{ 
-  //   if (themeUI.fonts.body === 'progbot') return 'bulbOnColor';
-  // else if(themeUI.fonts.body !== 'progbot') return 'text2';});
-  // console.log(themeBtnColor);
-
-  // useEffect(() => {
-  //   if (themeUI.fonts.body === 'progbot') setThemeBtnColor('bulbOnColor');
-  //   else if(themeUI.fonts.body !== 'progbot') setThemeBtnColor('text2');    
-  // },[])
+   
   
   useEffect(() => {
     const firebase = getFirebase();

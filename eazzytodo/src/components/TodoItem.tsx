@@ -57,12 +57,8 @@ const TodoItem = (props: AppProps) => {
     const [ taskTypeColor, setTaskTypeColor ] = useState("todoTaskBackground");
 
     const [ btnCompletedColor, setBtnCompletedColor ] = useState(() => {
-      if (props.todo.isCompleted === true) {
-        return btnCheckedGradient;
-      }
-      else {
-        return btnGradient;
-      }
+      if (props.todo.isCompleted === true) return btnCheckedGradient;
+      else return btnGradient
     });    
 
     const {  photoURL } = props.todo;    
